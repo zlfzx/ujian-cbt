@@ -52,7 +52,6 @@ class Admin extends CI_Controller {
 
 		$data['title'] = 'Dashboard';
 
-		//$this->load->view('template/header', $data);
 		$this->header($data);
 		$this->load->view('utama');
 		$this->load->view('template/footer');
@@ -67,7 +66,6 @@ class Admin extends CI_Controller {
 		$data['guru'] = $this->m_admin->list_guru()->result();
 		$data['listmapel'] = $this->m_admin->list_mapel()->result();
 
-		//$this->load->view('template/header', $data);
 		$this->header($data);
 		$this->load->view('guru');
 		$this->load->view('template/footer');
@@ -125,7 +123,6 @@ class Admin extends CI_Controller {
 
 		$data['mapel'] = $this->m_admin->list_mapel()->result();
 
-		//$this->load->view('template/header', $data);
 		$this->header($data);
 		$this->load->view('mapel');
 		$this->load->view('template/footer');
@@ -167,7 +164,6 @@ class Admin extends CI_Controller {
 		$data['siswa'] = $this->m_admin->list_siswa()->result();
 		$data['listkelas'] = $this->m_admin->list_kelas()->result();
 
-		//$this->load->view('template/header', $data);
 		$this->header($data);
 		$this->load->view('siswa');
 		$this->load->view('template/footer');
@@ -234,7 +230,6 @@ class Admin extends CI_Controller {
 		$data['kelas'] = $this->m_admin->list_kelas()->result();
 		$data['jurusan'] = $this->m_admin->list_jurusan()->result();
 
-		//$this->load->view('template/header', $data);
 		$this->header($data);
 		$this->load->view('kelas');
 		$this->load->view('template/footer');
@@ -325,7 +320,6 @@ class Admin extends CI_Controller {
 			$data['listsoal'] = $this->m_admin->soal_guru($where)->result();
 		}
 
-		//$this->load->view('template/header', $data);
 		$this->header($data);
 		$this->load->view('soal');
 		$this->load->view('template/footer');
@@ -338,7 +332,6 @@ class Admin extends CI_Controller {
 		$data['listkelas'] = $this->m_admin->list_kelas()->result();
 		$data['listguru'] = $this->m_admin->list_guru()->result();
 
-		//$this->load->view('template/header', $data);
 		$this->header($data);
 		$this->load->view('tambahsoal');
 		$this->load->view('template/footer');
@@ -354,13 +347,14 @@ class Admin extends CI_Controller {
 		$where = array(
 			'kelas.kelas' => $pk,
 			'kelas.id_kelas' => $pjk,
+			'nilai.id_kelas' => 'kelas.id_kelas',
 			'siswa.kelas' => 'kelas.id_kelas',
 			'nilai.id_siswa' => 'siswa.id_siswa',
 			'nilai.id_mapel' => 'mapel.id_mapel'
 		);
-		$data['nilai'] = $this->m_admin->nilai_kelas($where)->result();
+		$data['nilai'] = $this->m_admin->nilai_kelas($pk, $pjk)->result();
+		$data['hitungnilai'] = $this->m_admin->nilai_kelas($pk, $pjk)->num_rows();
 
-		//$this->load->view('template/header', $data);
 		$this->header($data);
 		$this->load->view('nilai');
 		$this->load->view('template/footer');
@@ -377,7 +371,6 @@ class Admin extends CI_Controller {
 	public function setting(){
 		$data['title'] = 'Pengaturan';
 
-		//$this->load->view('template/header', $data);
 		$this->header($data);
 		$this->load->view('setting');
 		$this->load->view('template/footer');
@@ -423,7 +416,6 @@ class Admin extends CI_Controller {
 	public function error(){
 		$data['title'] = '404 Not Found';
 
-		//$this->load->view('template/header', $data);
 		$this->header($data);
 		$this->load->view('template/404');
 		$this->load->view('template/footer');

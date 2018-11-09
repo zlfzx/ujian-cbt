@@ -33,6 +33,7 @@
                         <h1 class="text-center lead">Silahkan Pilih Kelas dan Mata Pelajaran !</h1>
                     </div>
                 </div>
+                <?=$hitungnilai;?>
 
                 <table class="table table-striped table-bordered table-hover">
                     <thead>

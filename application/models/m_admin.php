@@ -138,16 +138,14 @@ class m_admin extends CI_Model{
     }
 
     //Nilai
-    function nilai_kelas($where){
-        $this->db->select('nilai.*, siswa.nis, siswa.nama, kelas.id_kelas, kelas.kelas, mapel.*');
-        $this->db->from('nilai, siswa, kelas, mapel');
-        $this->db->where($where);
-        return $this->db->get();
+    function nilai_kelas($pk, $pjk){
+        //$this->db->select('nilai.*, mapel.*, siswa.id_siswa, siswa.nama, siswa.nis, siswa.kelas, kelas.id_kelas, kelas.kelas, kelas.kode_kelas');
+        //$this->db->from('nilai, siswa, kelas, mapel');
+        //$this->db->where($where);
+        //return $this->db->get();
+        return $this->db->query('select nilai.*, mapel.*, siswa.id_siswa, siswa.nama, siswa.nis, siswa.kelas, kelas.id_kelas, kelas.kelas, kelas.kode_kelas from nilai, siswa, mapel, kelas where kelas.kelas='.$pk.' and kelas.id_kelas='.$pjk.' and nilai.id_kelas=kelas.id_kelas and nilai.id_siswa=siswa.id_siswa and nilai.id_mapel=mapel.id_mapel');
     }
-    //select nilai.*, siswa.nis, siswa.nama, kelas.id_kelas, kelas.kelas, mapel.* 
-    //from nilai, siswa, kelas, mapel 
-    //where kelas.kelas=12 and kelas.id_kelas=1 and siswa.kelas=kelas.id_kelas and nilai.id_siswa=siswa.id_siswa and nilai.id_mapel=mapel.id_mapel
-    
+   
     //Soal
     //Tampil Soal Admin
     function soal_admin(){
