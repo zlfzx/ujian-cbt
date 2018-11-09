@@ -134,6 +134,7 @@ class m_admin extends CI_Model{
         $this->db->select('id_kelas, kode_kelas');
         $this->db->from('kelas');
         $this->db->where($where);
+        $this->db->order_by('kode_kelas', 'ASC');
         return $this->db->get();
     }
 
