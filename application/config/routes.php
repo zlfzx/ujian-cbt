@@ -59,6 +59,7 @@ $route['soal'] = 'admin/soal';
 $route['tsoal'] = 'admin/tambahsoal';
 $route['ujian'] = 'admin/ujian';
 $route['nilai/(:num)/(:num)'] = 'admin/nilai/$pk/$pjk';
+$route['ujian'] = 'admin/ujian';
 $route['setting'] = 'admin/setting';
 $route['404_override'] = 'admin/error';
 $route['translate_uri_dashes'] = FALSE;

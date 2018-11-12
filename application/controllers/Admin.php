@@ -366,6 +366,15 @@ class Admin extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	//Ujian
+	public function ujian(){
+		$data['title'] = 'Ujian';
+
+		$this->load->view('template/header', $data);
+		$this->load->view('ujian');
+		$this->load->view('template/footer');
+	}
+
 
 	//Setting
 	public function setting(){
