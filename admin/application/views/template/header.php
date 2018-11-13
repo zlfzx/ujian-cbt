@@ -20,7 +20,9 @@
   <!-- Daterange picker -->
   <link rel="stylesheet" href="<?= base_url('assets/adminlte/bower_components/bootstrap-daterangepicker/daterangepicker.css');?>">
   <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css');?>">
+  <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css');?>">  
+  <!-- Select2 -->
+  <link rel="stylesheet" href="<?=base_url('assets/adminlte/bower_components/select2/dist/css/select2.min.css');?>">
   <!-- jQuery 3 -->
   <script src="<?= base_url('assets/adminlte/bower_components/jquery/dist/jquery.min.js');?>"></script>
   <!-- jQuery UI 1.11.4 -->
@@ -113,6 +115,9 @@
         </li>
         <li>
         <a href="<?= base_url('mapel');?>"><i class="fa fa-clone text-aqua"></i>Mapel</a>
+        </li>
+        <li>
+        <a href="<?= base_url('tsoal');?>"><i class="fa fa-list-alt text-aqua"></i>Tambah Soal</a>
         </li>
         <!-- Menu Soal -->
         <li class="treeview">

@@ -358,7 +358,7 @@ class Admin extends CI_Controller {
 		$this->header($data);
 		$this->load->view('nilai');
 		$this->load->view('template/footer');
-	}
+	}  
 	public function pilih_siswa_by_kelas(){
 		$kelas = $this->input->post('kelas');
 		$where = array('kelas' => $id);

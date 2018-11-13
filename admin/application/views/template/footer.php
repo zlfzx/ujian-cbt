@@ -222,6 +222,8 @@
 <script src="<?= base_url('assets/adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js');?>"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <script src="<?= base_url('assets/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js');?>"></script>
+<!-- Select2 -->
+<script src="<?=base_url('assets/adminlte/bower_components/select2/dist/js/select2.full.min.js');?>"></script>
 <!-- CK Editor -->
 <script src="<?= base_url('assets/adminlte/bower_components/ckeditor/ckeditor.js');?>"></script>
 <!-- Slimscroll -->

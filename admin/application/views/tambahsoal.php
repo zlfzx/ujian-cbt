@@ -9,10 +9,10 @@
                 <a href="<?= site_url('soal');?>" class="btn btn-sm btn-warning"><i class="fa fa-angle-left"></i>  Kembali</a>
             </div>
             <div class="box-body">
-                <form action="">
+                <form action="" enctype="multipart/form-data" method="POST">
                     <div class="col-md-4 form-group">
                         <label for="MataPelajaran">Mata Pelajaran :</label>
-                        <select name="" id="" class="form-control">
+                        <select name="mapel" class="form-control">
                             <option selected>Pilih Mata Pelajaran...</option>
                             <?php foreach($listmapel as $lm){ ?>
                             <option value="<?= $lm->id_mapel;?>"><?= $lm->mapel;?></option>
@@ -21,7 +21,7 @@
                     </div>
                     <div class="col-md-4 form-group">
                         <label for="MataPelajaran">Kelas :</label>
-                        <select name="" id="" class="form-control">
+                        <select name="kelas" class="form-control">
                             <option selected>Pilih Kelas...</option>
                             <?php foreach($listkelas as $lk){ ?>
                             <option value="<?= $lk->id_kelas;?>"><?= $lk->kode_kelas;?></option>
@@ -30,7 +30,7 @@
                     </div>
                     <div class="col-md-4 form-group">
                         <label for="MataPelajaran">Guru :</label>
-                        <select name="" id="" class="form-control">
+                        <select name="guru" class="form-control">
                             <option selected>Pilih Guru...</option>
                             <?php foreach($listguru as $lg){ ?>
                             <option value="<?= $lg->id_guru;?>"><?= $lg->nama;?></option>
@@ -39,35 +39,36 @@
                     </div>
                     <div class="col-md-12 form-group">
                         <label for="Soal">Soal :</label>
-                        <textarea id="fieldSoal" name="editor1"></textarea>
+                        <textarea id="fieldSoal" name="soal"></textarea>
                     </div>
                     <div class="col-md-12 form-group">
                         <label for="Media">Media :</label>
-                        <input type="file" name="" id="">
+                        <input type="file" name="media">
                     </div>
                     <div class="col-md-6 form-group">
                         <label for="A">Opsi A</label>
-                        <input type="text" class="form-control">
+                        <input type="text" name="a" class="form-control" placeholder="Jawaban A">
                     </div>
                     <div class="col-md-6 form-group">
-                        <label for="A">Opsi B</label>
-                        <input type="text" class="form-control">
+                        <label for="B">Opsi B</label>
+                        <input type="text" name="b" class="form-control" placeholder="Jawaban B">
                     </div>
                     <div class="col-md-6 form-group">
-                        <label for="A">Opsi C</label>
-                        <input type="text" class="form-control">
+                        <label for="C">Opsi C</label>
+                        <input type="text" name="c" class="form-control" placeholder="Jawaban C">
                     </div>
                     <div class="col-md-6 form-group">
-                        <label for="A">Opsi D</label>
-                        <input type="text" class="form-control">
+                        <label for="D">Opsi D</label>
+                        <input type="text" name="d" class="form-control" placeholder="Jawaban D">
                     </div>
                     <div class="col-md-6 form-group">
-                        <label for="A">Opsi E</label>
-                        <input type="text" class="form-control">
+                        <label for="E">Opsi E</label>
+                        <input type="text" name="e" class="form-control" placeholder="Jawaban E">
                     </div>
                     <div class="col-md-6 form-group">
-                        <label for="A">Jawaban</label>
-                        <select name="" id="" class="form-control">
+                        <label for="Jawaban">Jawaban</label>
+                        <select name="jawaban" id="" class="form-control">
+                            <option value="pilih">Pilih Jawaban...</option>
                             <option value="a">A</option>
                             <option value="b">B</option>
                             <option value="c">C</option>
