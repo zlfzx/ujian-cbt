@@ -38,6 +38,7 @@ class m_admin extends CI_Model{
         $this->db->select('guru.*, mapel.*');
         $this->db->from('guru');
         $this->db->join('mapel', 'mapel.id_mapel=guru.mapel');
+        $this->db->order_by('mapel.mapel', 'asc');
         $query = $this->db->get();
         return $query;
     }
@@ -55,6 +56,7 @@ class m_admin extends CI_Model{
 
     //Mapel
     function list_mapel(){
+        $this->db->order_by('mapel');
         return $this->db->get('mapel');
     }
     function insert_mapel($table, $data){
@@ -71,7 +73,7 @@ class m_admin extends CI_Model{
 
     //Siswa
     function list_siswa(){
-        return $this->db->query('select siswa.*, kelas.kode_kelas from siswa join kelas on siswa.kelas=kelas.id_kelas');
+        return $this->db->query('select siswa.*, kelas.kode_kelas from siswa join kelas on siswa.kelas=kelas.id_kelas order by nis');
     }
     function insert_siswa($table, $data){
         $this->db->insert($table, $data);

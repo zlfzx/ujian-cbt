@@ -61,12 +61,13 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <td>No.</td>
-                            <td>Kelas</td>
-                            <td>Mapel</td>
-                            <td>Guru</td>
-                            <td>Waktu</td>
-                            <td>#</td>
+                            <th>No.</th>
+                            <th>Kelas</th>
+                            <th>Mapel</th>
+                            <th>Guru</th>
+                            <th>Waktu</th>
+                            <th>Tanggal</th>
+                            <th>#</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -76,6 +77,7 @@
                             <td>Matematika</td>
                             <td>Guru Matematika</td>
                             <td>60 Menit</td>
+                            <td>16/11/18</td>
                             <td>
                                 <button class="btn btn-sm btn-warning"><i class="fa fa-edit"></i> Edit</button> &nbsp;
                                 <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus</button>
