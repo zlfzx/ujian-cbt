@@ -9,11 +9,11 @@
                 <a href="<?= site_url('soal');?>" class="btn btn-sm btn-warning"><i class="fa fa-angle-left"></i>  Kembali</a>
             </div>
             <div class="box-body">
-                <form action="" enctype="multipart/form-data" method="POST">
+                <form action="admin/act_tsoal" enctype="multipart/form-data" method="POST">
                     <div class="col-md-4 form-group">
                         <label for="MataPelajaran">Mata Pelajaran :</label>
-                        <select name="mapel" class="form-control">
-                            <option selected>Pilih Mata Pelajaran...</option>
+                        <select name="mapel" class="form-control" required="">
+                            <option value="">Pilih Mata Pelajaran...</option>
                             <?php foreach($listmapel as $lm){ ?>
                             <option value="<?= $lm->id_mapel;?>"><?= $lm->mapel;?></option>
                             <?php } ?>
@@ -21,8 +21,8 @@
                     </div>
                     <div class="col-md-4 form-group">
                         <label for="MataPelajaran">Kelas :</label>
-                        <select name="kelas" class="form-control">
-                            <option selected>Pilih Kelas...</option>
+                        <select name="kelas" class="form-control" required="">
+                            <option value="">Pilih Kelas...</option>
                             <?php foreach($listkelas as $lk){ ?>
                             <option value="<?= $lk->id_kelas;?>"><?= $lk->kode_kelas;?></option>
                             <?php } ?>
@@ -30,8 +30,8 @@
                     </div>
                     <div class="col-md-4 form-group">
                         <label for="MataPelajaran">Guru :</label>
-                        <select name="guru" class="form-control">
-                            <option selected>Pilih Guru...</option>
+                        <select name="guru" class="form-control" required="">
+                            <option value="">Pilih Guru...</option>
                             <?php foreach($listguru as $lg){ ?>
                             <option value="<?= $lg->id_guru;?>"><?= $lg->nama;?></option>
                             <?php } ?>
@@ -39,7 +39,7 @@
                     </div>
                     <div class="col-md-12 form-group">
                         <label for="Soal">Soal :</label>
-                        <textarea id="fieldSoal" name="soal"></textarea>
+                        <textarea id="fieldSoal" name="soal" required=""></textarea>
                     </div>
                     <div class="col-md-12 form-group">
                         <label for="Media">Media :</label>
@@ -47,28 +47,28 @@
                     </div>
                     <div class="col-md-6 form-group">
                         <label for="A">Opsi A</label>
-                        <input type="text" name="a" class="form-control" placeholder="Jawaban A">
+                        <input type="text" name="a" class="form-control" placeholder="Jawaban A" required="">
                     </div>
                     <div class="col-md-6 form-group">
                         <label for="B">Opsi B</label>
-                        <input type="text" name="b" class="form-control" placeholder="Jawaban B">
+                        <input type="text" name="b" class="form-control" placeholder="Jawaban B" required="">
                     </div>
                     <div class="col-md-6 form-group">
                         <label for="C">Opsi C</label>
-                        <input type="text" name="c" class="form-control" placeholder="Jawaban C">
+                        <input type="text" name="c" class="form-control" placeholder="Jawaban C" required="">
                     </div>
                     <div class="col-md-6 form-group">
                         <label for="D">Opsi D</label>
-                        <input type="text" name="d" class="form-control" placeholder="Jawaban D">
+                        <input type="text" name="d" class="form-control" placeholder="Jawaban D" required="">
                     </div>
                     <div class="col-md-6 form-group">
                         <label for="E">Opsi E</label>
-                        <input type="text" name="e" class="form-control" placeholder="Jawaban E">
+                        <input type="text" name="e" class="form-control" placeholder="Jawaban E" required="">
                     </div>
                     <div class="col-md-6 form-group">
                         <label for="Jawaban">Jawaban</label>
-                        <select name="jawaban" id="" class="form-control">
-                            <option value="pilih">Pilih Jawaban...</option>
+                        <select name="jawaban" id="" class="form-control" required="">
+                            <option value="">Pilih Jawaban...</option>
                             <option value="a">A</option>
                             <option value="b">B</option>
                             <option value="c">C</option>

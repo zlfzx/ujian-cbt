@@ -28,8 +28,19 @@ class Admin extends CI_Controller {
 	}
 
 	//Header
-	public function header($data){
-		$data['perkelas'] = $this->m_admin->perkelas()->result();
+	private function header($data){
+		//admin
+		if ($this->session->status == 'admin') {
+			# code...
+			$data['perkelas'] = $this->m_admin->perkelas()->result();
+		}
+		//Guru
+		if ($this->session->status == 'guru') {
+			# code...
+			$guru = $this->session->id;
+			$data['perkelas'] = $this->m_admin->perkelas_g($guru)->result();
+		}
+		//$data['perkelas'] = $this->m_admin->perkelas()->result();
 
 		$this->load->view('template/header', $data);
 	}
@@ -307,17 +318,28 @@ class Admin extends CI_Controller {
 	}
 
 	//Soal
-	public function soal(){
-		$data['title'] = 'Soal';
+	public function soal($pk, $pjk){
+		//$data['title'] = 'Soal';
+
+		$vkelas = array('kelas' => $pk, 'id_kelas' => $pjk);
+		$data['kelas'] = $this->m_admin->vkelas($vkelas)->row_array();
+		$data['title'] = 'Soal '.$data['kelas']['kode_kelas'];
 		
 		//admin
 		if($this->session->status == 'admin'){
-			$data['listsoal'] = $this->m_admin->soal_admin()->result();
+			$data['listsoal'] = $this->m_admin->soal_admin($pk, $pjk)->result();
 		}
 		//Guru
 		if($this->session->status == 'guru'){
-			$where = array('guru' => $this->session->id);
-			$data['listsoal'] = $this->m_admin->soal_guru($where)->result();
+			//$where = array('guru' => $this->session->id,);
+			/*$where = array(
+				'guru.id_guru' => $this->session->id,
+				'kelas.kelas' => $pk,
+				'kelas.id_kelas' => $pjk,
+				'soal.guru=guru.id_guru',
+				'soal.kelas=kelas.id_kelas'
+			);*/
+			$data['listsoal'] = $this->m_admin->soal_guru($this->session->id, $pk, $pjk)->result();
 		}
 
 		$this->header($data);
@@ -326,20 +348,90 @@ class Admin extends CI_Controller {
 	}
 
 	//Tambah Soal
+	//Sebelum menambah soal, ubah settingan maximum file upload pada php.ini
 	public function tambahsoal(){
 		$data['title'] = 'Tambah Soal';
 		$data['listmapel'] = $this->m_admin->list_mapel()->result();
-		$data['listkelas'] = $this->m_admin->list_kelas()->result();
-		$data['listguru'] = $this->m_admin->list_guru()->result();
 
 		$this->header($data);
 		$this->load->view('tambahsoal');
 		$this->load->view('template/footer');
 	}
+	//Aksi tambah soal
+	//Sebelum menambah soal, ubah settingan maximum file upload pada php.ini
+	public function act_tsoal(){
+		$mapel = $this->input->post('mapel');
+		$kelas = $this->input->post('kelas');
+		$guru = $this->input->post('guru');
+		$soal = $this->input->post('soal');
+		$a = $this->input->post('a');
+		$b = $this->input->post('b');
+		$c = $this->input->post('c');
+		$d = $this->input->post('d');
+		$e = $this->input->post('e');
+		$jawaban = $this->input->post('jawaban');
+		$cekmedia = $_FILES['media'];
+
+		//jika ada file
+		if (empty($cekmedia['name'])) {
+			# code...
+			$data = array(
+				'mapel' => $mapel,
+				'kelas' => $kelas,
+				'guru' => $guru,
+				'soal' => $soal,
+				'opsi_a' => $a,
+				'opsi_b' => $b,
+				'opsi_c' => $c,
+				'opsi_d' => $d,
+				'opsi_e' => $e,
+				'jawaban' => $jawaban
+			);
+			$this->m_admin->in_soal_nomedia('soal', $data);
+			redirect('soal');
+		}
+		else{
+			$config['upload_path'] = './../media';
+			$config['allowed_types'] = 'jpg|png|gif|wav|mp3';
+			//load library upload
+			$this->load->library('upload', $config);
+
+			//proses upload file
+			if (!$this->upload->do_upload('media')) {
+				$data['error'] = $this->upload->display_errors();
+				redirect('tsoal', $data);
+			}
+			else{
+				$media = $this->upload->data('file_name');
+				$data = array(
+					'mapel' => $mapel,
+					'kelas' => $kelas,
+					'guru' => $guru,
+					'soal' => $soal,
+					'media' => $media,
+					'opsi_a' => $a,
+					'opsi_b' => $b,
+					'opsi_c' => $c,
+					'opsi_d' => $d,
+					'opsi_e' => $e,
+					'jawaban' => $jawaban
+				);
+
+				$this->m_admin->in_soal_media('soal', $data);
+				redirect('soal');
+			}
+		}
+	}
 
 	//Nilai
 	public function nilai($pk, $pjk){
-		$data['title'] = 'Nilai';
+		//$data['title'] = 'Nilai';
+
+		$vkelas = array('kelas' => $pk, 'id_kelas' => $pjk);
+		$data['kelas'] = $this->m_admin->vkelas($vkelas)->row_array();
+		$data['kls'] = $data['kelas']['kode_kelas'];
+		$data['title'] = 'Nilai '.$data['kelas']['kode_kelas'];
+
 		$data['listmapel'] = $this->m_admin->list_mapel()->result();
 
 		$data['kelas'] = $pk;
@@ -353,7 +445,6 @@ class Admin extends CI_Controller {
 			'nilai.id_mapel' => 'mapel.id_mapel'
 		);
 		$data['nilai'] = $this->m_admin->nilai_kelas($pk, $pjk)->result();
-		$data['hitungnilai'] = $this->m_admin->nilai_kelas($pk, $pjk)->num_rows();
 
 		$this->header($data);
 		$this->load->view('nilai');

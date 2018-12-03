@@ -140,6 +140,16 @@ class m_admin extends CI_Model{
         return $this->db->get();
     }
 
+    // tampil perkelas  guru
+    function perkelas_g($id){
+        return $this->db->query('select kelas.* from soal, guru, kelas where guru.id_guru='.$id.' and soal.guru=guru.id_guru and soal.kelas=kelas.id_kelas group by kode_kelas');
+    }
+    // tampil perkelas jurusan - guru
+    function perkelasjurusan_g($kelas, $idguru){
+        return $this->db->query('select kelas.* from soal, guru, kelas where guru.id_guru='.$idguru.' and kelas.kelas='.$kelas.' and soal.guru=guru.id_guru and soal.kelas=kelas.id_kelas group by kode_kelas');
+    }
+    // select kelas.* from soal, guru, kelas where guru.id_guru=4 and soal.guru=guru.id_guru and soal.kelas=kelas.id_kelas
+
     //Nilai
     function nilai_kelas($pk, $pjk){
         //$this->db->select('nilai.*, mapel.*, siswa.id_siswa, siswa.nama, siswa.nis, siswa.kelas, kelas.id_kelas, kelas.kelas, kelas.kode_kelas');
@@ -151,12 +161,31 @@ class m_admin extends CI_Model{
    
     //Soal
     //Tampil Soal Admin
-    function soal_admin(){
-        return $this->db->get('soal');
+    function soal_admin($pk, $pjk){
+        //return $this->db->get_where('soal', $where);
+        return $this->db->query('select soal.*, kelas.id_kelas, kelas.kelas, kelas.kode_kelas, guru.id_guru, guru.nama, guru.mapel from soal, kelas, guru where kelas.kelas='.$pk.' and soal.kelas='.$pjk.' and soal.kelas=kelas.id_kelas and soal.guru=guru.id_guru');
     }
+
     //Tampil Soal Guru
-    function soal_guru($where){
-        return $this->db->get_where('soal', $where);
+    function soal_guru($idguru, $pk, $pkj){
+        //return $this->db->get_where('soal, guru, kelas', $where);
+        return $this->db->query('select soal.* from soal, guru, kelas where guru.id_guru='.$idguru.' and kelas.kelas='.$pk.' and kelas.id_kelas='.$pkj.' and soal.guru=guru.id_guru and soal.kelas=kelas.id_kelas');
+    }
+
+    //Tambah soal tanpa media
+    function in_soal_nomedia($table, $data){
+        $this->db->insert($table, $data);
+    }
+
+    //Tambah soal dengan media
+    function in_soal_media($table, $data){
+        $this->db->insert($table, $data);
+    }
+
+
+    //Tampil kelas
+    function vkelas($where){
+        return $this->db->get_where('kelas', $where);
     }
 
 }

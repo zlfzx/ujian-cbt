@@ -89,7 +89,9 @@
         </div>
 
         <div class="box box-warning">
-
+            <div class="box-header">
+                <h4 class="text-center">Terlaksana</h4>
+            </div>
         </div>
     </section>
 </div>

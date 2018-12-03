@@ -23,6 +23,8 @@
   <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css');?>">  
   <!-- Select2 -->
   <link rel="stylesheet" href="<?=base_url('assets/adminlte/bower_components/select2/dist/css/select2.min.css');?>">
+  <!-- CSS -->
+  <link rel="stylesheet" href="<?=base_url('assets/css/style.css');?>">
   <!-- jQuery 3 -->
   <script src="<?= base_url('assets/adminlte/bower_components/jquery/dist/jquery.min.js');?>"></script>
   <!-- jQuery UI 1.11.4 -->
@@ -84,10 +86,6 @@
               </li>
             </ul>
           </li>
-          <!-- Control Sidebar Toggle Button -->
-          <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li>
         </ul>
       </div>
     </nav>
@@ -102,39 +100,42 @@
           <img src="<?= base_url('assets/adminlte/dist/img/avatar5.png');?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Administrator</p>
+          <p><?php if($this->session->status == 'admin'){echo 'Administrator';}
+                      elseif($this->session->status == 'guru'){echo 'Guru';}?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu tree" data-widget="tree">
         <li class="header text-aqua">MENU NAVIGASI</li>
-        <?php if($this->session->status == 'admin'){ ?>
+    <?php
+      //Menu navigasi admin
+      if($this->session->status == 'admin'){ ?>
         <li>
-        <a href="<?= base_url('guru');?>"><i class="fa fa-users text-aqua"></i>Guru</a>
+        <a href="<?= base_url('guru');?>"><i class="fa fa-users text-aqua"></i><span>Guru</span></a>
         </li>
         <li>
-        <a href="<?= base_url('mapel');?>"><i class="fa fa-clone text-aqua"></i>Mapel</a>
+        <a href="<?= base_url('mapel');?>"><i class="fa fa-clone text-aqua"></i><span>Mapel</span></a>
         </li>
         <li>
-        <a href="<?= base_url('tsoal');?>"><i class="fa fa-list-alt text-aqua"></i>Tambah Soal</a>
+        <a href="<?= base_url('tsoal');?>"><i class="fa fa-list-alt text-aqua"></i><span>Tambah Soal</span></a>
         </li>
         <!-- Menu Soal -->
         <li class="treeview">
-        <a href="<?= base_url('soal');?>">
-        <i class="fa fa-list text-aqua"></i> Soal
+        <a href="#">
+        <i class="fa fa-list text-aqua"></i> <span>Soal</span>
         <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
         </a>
           <ul class="treeview-menu">
             <?php foreach($perkelas as $pk){ ?>
             <li class="treeview">
-              <a href=""><i class="fa fa-circle-o"></i> Kelas <?=$pk->kelas;?> <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+              <a href="#"><i class="fa fa-circle-o"></i> Kelas <?=$pk->kelas;?> <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
               <ul class="treeview-menu">
                 <?php
                   $where = array('kelas' => $pk->kelas); 
                   $perkelasjurusan = $this->m_admin->perkelasjurusan($where)->result();
                   foreach($perkelasjurusan as $pkj){ ?>
-                <li><a href=""><?=$pkj->kode_kelas;?></a></li>
+                <li><a href="<?=base_url('admin/soal/'.$pk->kelas.'/'.$pkj->id_kelas);?>"><?=$pkj->kode_kelas;?></a></li>
                 <?php } ?>
               </ul>
             </li>
@@ -144,7 +145,7 @@
         <!-- Menu Nilai -->
         <li class="treeview">
         <a href="#">
-        <i class="fa fa-table text-aqua"></i> Nilai
+        <i class="fa fa-table text-aqua"></i> <span>Nilai</span>
         <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
         </a>
           <ul class="treeview-menu">
@@ -164,23 +165,66 @@
           </ul>
         </li> <!-- End Menu Nilai -->
         <li>
-        <a href="<?= base_url('siswa');?>"><i class="fa fa-user text-aqua"></i>Siswa</a>
+        <a href="<?= base_url('siswa');?>"><i class="fa fa-user text-aqua"></i><span>Siswa</span></a>
         </li>
         <li>
-        <a href="<?= base_url('kelas');?>"><i class="fa fa-th text-aqua"></i>Kelas / Jurusan</a>
+        <a href="<?= base_url('kelas');?>"><i class="fa fa-th text-aqua"></i><span>Kelas / Jurusan</span></a>
         </li>
         <li>
-        <a href="<?= base_url('ujian');?>"><i class="fa fa-th-list text-aqua"></i>Ujian</a>
+        <a href="<?= base_url('ujian');?>"><i class="fa fa-th-list text-aqua"></i><span>Ujian</span></a>
         </li>
-        <?php } ?>
-        <?php if($this->session->status == 'guru'){ ?>
+    <?php } ?>
+    <?php 
+      // Menu navigasi guru
+      if($this->session->status == 'guru'){ ?>
         <li>
-          <a href="<?= base_url('soal');?>"><i class="fa fa-list text-aqua"></i>Soal</a>
+        <a href="<?= base_url('tsoal');?>"><i class="fa fa-list-alt text-aqua"></i><span>Tambah Soal</span></a>
         </li>
-        <li>
-        <a href="<?= base_url('nilai');?>"><i class="fa fa-table text-aqua"></i>Nilai</a>
-        </li>
-        <?php } ?>
+        <!-- Menu Soal -->
+        <li class="treeview">
+        <a href="#">
+        <i class="fa fa-list text-aqua"></i> <span>Soal</span>
+        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+        </a>
+          <ul class="treeview-menu">
+            <?php foreach($perkelas as $pk){ ?>
+            <li class="treeview">
+              <a href="#"><i class="fa fa-circle-o"></i> Kelas <?=$pk->kelas;?> <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+              <ul class="treeview-menu">
+                <?php
+                  //$where = array('kelas' => $pk->kelas, 'id_guru' => $this->session->id); 
+                  $perkelasjurusan = $this->m_admin->perkelasjurusan_g($pk->kelas, $this->session->id)->result();
+                  foreach($perkelasjurusan as $pkj){ ?>
+                <li><a href="<?=base_url('admin/soal/'.$pk->kelas.'/'.$pkj->id_kelas);?>"><?=$pkj->kode_kelas;?></a></li>
+                <?php } ?>
+              </ul>
+            </li>
+            <?php } ?>
+          </ul>
+        </li> <!-- End Menu Soal -->
+        <!-- Menu Nilai -->
+        <li class="treeview">
+        <a href="#">
+        <i class="fa fa-table text-aqua"></i> <span>Nilai</span>
+        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+        </a>
+          <ul class="treeview-menu">
+            <?php foreach($perkelas as $pk){ ?>
+            <li class="treeview">
+              <a href="#"><i class="fa fa-circle-o"></i> Kelas <?=$pk->kelas;?> <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+              <ul class="treeview-menu">
+                <?php
+                  //$where = array('kelas' => $pk->kelas, 'id_guru' => $this->session->id); 
+                  $perkelasjurusan = $this->m_admin->perkelasjurusan_g($pk->kelas, $this->session->id)->result();
+                  foreach($perkelasjurusan as $pkj){ ?>
+                <li><a href="<?= base_url('admin/nilai/'.$pk->kelas.'/'.$pkj->id_kelas);?>"><i class="fa fa-circle-o"></i> <?=$pkj->kode_kelas;?></a></li>
+                <?php } ?>
+              </ul>
+            </li>
+            <?php } ?>
+          </ul>
+        </li> <!-- End Menu Nilai -->
+    <?php } ?>
       </ul>
     </section>
     <!-- /.sidebar -->

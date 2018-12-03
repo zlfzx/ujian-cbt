@@ -1,6 +1,6 @@
 <div class="content-wrapper">
     <section class="content-header">
-        <h1 class="text-center">Nilai</h1>
+        <h1 class="text-center">Nilai | <small><?=$kls;?></small></h1>
     </section>
 
     <section class="content">
@@ -27,13 +27,6 @@
                         </div>
                     </form>
                 </div>
-                
-                <div class="pad">
-                    <div class="well">
-                        <h1 class="text-center lead">Silahkan Pilih Kelas dan Mata Pelajaran !</h1>
-                    </div>
-                </div>
-                <?=$hitungnilai;?>
 
                 <table class="table table-striped table-bordered table-hover">
                     <thead>

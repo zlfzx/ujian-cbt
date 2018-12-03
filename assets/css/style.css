@@ -1,0 +1,490 @@
+/*css untuk form geser kana kiri*/
+/**
+ * General variables
+ */
+/**
+ * General configs
+ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  font-size: 12px;
+  line-height: 1em;
+}
+
+button {
+  background-color: transparent;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+}
+input[type="submit"] {
+  cursor: pointer;
+}
+/**
+ * Bounce to the left side
+ */
+@-webkit-keyframes bounceLeft {
+  0% {
+    -webkit-transform: translate3d(100%, -50%, 0);
+            transform: translate3d(100%, -50%, 0);
+  }
+  50% {
+    -webkit-transform: translate3d(-30px, -50%, 0);
+            transform: translate3d(-30px, -50%, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(0, -50%, 0);
+            transform: translate3d(0, -50%, 0);
+  }
+}
+@keyframes bounceLeft {
+  0% {
+    -webkit-transform: translate3d(100%, -50%, 0);
+            transform: translate3d(100%, -50%, 0);
+  }
+  50% {
+    -webkit-transform: translate3d(-30px, -50%, 0);
+            transform: translate3d(-30px, -50%, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(0, -50%, 0);
+            transform: translate3d(0, -50%, 0);
+  }
+}
+/**
+ * Bounce to the left side
+ */
+@-webkit-keyframes bounceRight {
+  0% {
+    -webkit-transform: translate3d(0, -50%, 0);
+            transform: translate3d(0, -50%, 0);
+  }
+  50% {
+    -webkit-transform: translate3d(calc(100% + 30px), -50%, 0);
+            transform: translate3d(calc(100% + 30px), -50%, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(100%, -50%, 0);
+            transform: translate3d(100%, -50%, 0);
+  }
+}
+@keyframes bounceRight {
+  0% {
+    -webkit-transform: translate3d(0, -50%, 0);
+            transform: translate3d(0, -50%, 0);
+  }
+  50% {
+    -webkit-transform: translate3d(calc(100% + 30px), -50%, 0);
+            transform: translate3d(calc(100% + 30px), -50%, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(100%, -50%, 0);
+            transform: translate3d(100%, -50%, 0);
+  }
+}
+/**
+ * Show Sign Up form
+ */
+@-webkit-keyframes showSignUp {
+  100% {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes showSignUp {
+  100% {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+}
+/**
+ * Page background
+ */
+.user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #42a5f5;
+}
+.user_options-container {
+  position: relative;
+  width: 80%;
+}
+.user_options-text {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: rgba(0,0,0,0.7);
+  border-radius: 3.333px;
+}
+
+/**
+ * Registered and Unregistered user box and text
+ */
+.user_options-registered,
+.user_options-unregistered {
+  width: 50%;
+  padding: 75px 45px;
+  color: #fff;
+  font-weight: 300;
+}
+
+.user_registered-title,
+.user_unregistered-title {
+  margin-bottom: 15px;
+  font-size: 1.66rem;
+  line-height: 1em;
+  font-weight: lighter;
+}
+
+.user_unregistered-text,
+.user_registered-text {
+  font-size: 0.83rem;
+  line-height: 1.4em;
+}
+
+.user_registered-login,
+.user_unregistered-signup {
+  margin-top: 30px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 10px 30px;
+  color: #fff;
+  text-transform: uppercase;
+  line-height: 1em;
+  letter-spacing: 0.2rem;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+.user_registered-login:hover,
+.user_unregistered-signup:hover {
+  color: #ccc; 
+  background-color: #42a5f5;
+}
+
+/**
+ * Login and signup forms
+ */
+.user_options-forms {
+  position: absolute;
+  top: 50%;
+  left: 30px;
+  width: calc(50% - 30px);
+  min-height: 420px;
+  border-top: 2.5px solid orange;
+  background-color: #fff;
+  border-radius: 1px 1px 3.5px 3.5px;
+  box-shadow: 2px 0 15px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  -webkit-transform: translate3d(100%, -50%, 0);
+          transform: translate3d(100%, -50%, 0);
+  transition: -webkit-transform 0.4s ease-in-out;
+  transition: transform 0.4s ease-in-out;
+  transition: transform 0.4s ease-in-out, -webkit-transform 0.4s ease-in-out;
+}
+.user_options-forms .user_forms-login {
+  transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+}
+.user_options-forms .forms_title {
+  margin-bottom: 25px;
+  margin-top: -10px;
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1.5em;
+  text-transform: uppercase;
+  color: #42a5f5;
+  letter-spacing: 0.1rem;
+}
+.user_options-forms .user_forms-signup,
+.user_options-forms .user_forms-login {
+  position: absolute;
+  top: 70px;
+  left: 12.55554%;
+  width: calc(100% - 80px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out, -webkit-transform 0.5s ease-in-out;
+  transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out, transform 0.5s ease-in-out;
+  transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out, transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
+}
+.user_options-forms .user_forms-signup {
+  -webkit-transform: translate3d(120px, 0, 0);
+          transform: translate3d(120px, 0, 0);
+}
+.user_options-forms .user_forms-signup .forms_buttons {
+  justify-content: flex-end;
+}
+.user_options-forms .user_forms-login {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  opacity: 1;
+  visibility: visible;
+}
+
+/**
+ * Triggers
+ */
+.user_options-forms.bounceLeft {
+  -webkit-animation: bounceLeft 1s forwards;
+          animation: bounceLeft 1s forwards;
+}
+.user_options-forms.bounceLeft .user_forms-signup {
+  -webkit-animation: showSignUp 1.5s forwards;
+          animation: showSignUp 1.5s forwards;
+}
+.user_options-forms.bounceLeft .user_forms-login {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: translate3d(-120px, 0, 0);
+          transform: translate3d(-120px, 0, 0);
+}
+.user_options-forms.bounceRight {
+  -webkit-animation: bounceRight 1.5s forwards;
+          animation: bounceRight 1.5s forwards;
+}
+
+/**
+ * Responsive 990px
+ */
+@media screen and (max-width: 990px) {
+  .user_options-forms {
+    min-height: 350px;
+  }
+  .user_options-forms .forms_buttons {
+    flex-direction: column;
+  }
+  .user_options-forms .user_forms-login .forms_buttons-action {
+    margin-top: 30px;
+  }
+  .user_options-forms .user_forms-signup,
+  .user_options-forms .user_forms-login {
+    top: 40px;
+  }
+
+  .user_options-registered,
+  .user_options-unregistered {
+    padding: 50px 45px;
+  }
+}
+
+
+ /*css untuk form loginya*/
+* {
+  box-sizing: border-box;
+}
+.form {
+  border-radius: 2px 2px 5px 5px;
+  padding: 10px 20px 10px 20px;
+  width: 100%;
+  max-width: 395px;
+  background: #ffffff;
+  position: relative;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
+}
+.padding-b{
+  padding-bottom: 80px;
+}
+.form input {
+  display: block;
+  padding: 15px 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  font-size: 1.3em;
+  border: 1px solid #ddd;
+  transition: border-width 0.5s ease;
+  border-radius: 2px;
+  color: #000;
+}
+.form input + i.fa {
+  color: #fff;
+  font-size: 1.5em;
+  position: absolute;
+  margin-top: -45px;
+  opacity: 0;
+  left: 0;
+  transition: all 0.25s ease-in;
+}
+.form input:focus {
+  outline: none;
+  color: #222;
+  border-color: #42a5f5;
+  border-left-width: 35px;
+}
+.form input:focus + i.fa {
+  opacity: 1;
+  left: 30px;
+  transition: all 0.25s ease-out;
+}
+.form button {
+  width: 100%;
+  height: 100%;
+  padding: 10px 10px;
+  background: #42a5f5;
+  color: #fff;
+  display: block;
+  border: none;
+  margin-top: 20px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  max-height: 60px;
+  border: 0px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 2px 2px;
+  transition: all 0.1s ease-out;
+  border-bottom-width: 9px;
+}
+.form:not(.loading) button:hover {
+  box-shadow: 0px 1px 3px #42a5f5;
+}
+.form:not(.loading) button:focus {
+  border-bottom-width: 3px;
+}
+.jawab{
+  position: relative;
+  margin-top: 10px;
+}
+
+/*flow-text responsive text :)*/
+@media only screen and (min-width: 360px) {
+  .flow-text {
+    font-size: 0.7rem;
+  }
+}
+
+@media only screen and (min-width: 390px) {
+  .flow-text {
+    font-size: 0.924rem;
+  }
+}
+
+@media only screen and (min-width: 420px) {
+  .flow-text {
+    font-size: 1.248rem;
+  }
+}
+
+@media only screen and (min-width: 450px) {
+  .flow-text {
+    font-size: 1.272rem;
+  }
+}
+
+@media only screen and (min-width: 480px) {
+  .flow-text {
+    font-size: 1.296rem;
+  }
+}
+
+@media only screen and (min-width: 510px) {
+  .flow-text {
+    font-size: 1.32rem;
+  }
+}
+
+@media only screen and (min-width: 540px) {
+  .flow-text {
+    font-size: 1.344rem;
+  }
+}
+
+@media only screen and (min-width: 570px) {
+  .flow-text {
+    font-size: 1.368rem;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .flow-text {
+    font-size: 1.392rem;
+  }
+}
+
+@media only screen and (min-width: 630px) {
+  .flow-text {
+    font-size: 1.416rem;
+  }
+}
+
+@media only screen and (min-width: 660px) {
+  .flow-text {
+    font-size: 1.44rem;
+  }
+}
+
+@media only screen and (min-width: 690px) {
+  .flow-text {
+    font-size: 1.464rem;
+  }
+}
+
+@media only screen and (min-width: 720px) {
+  .flow-text {
+    font-size: 1.488rem;
+  }
+}
+
+@media only screen and (min-width: 750px) {
+  .flow-text {
+    font-size: 1.512rem;
+  }
+}
+
+@media only screen and (min-width: 780px) {
+  .flow-text {
+    font-size: 1.536rem;
+  }
+}
+
+@media only screen and (min-width: 810px) {
+  .flow-text {
+    font-size: 1.56rem;
+  }
+}
+
+@media only screen and (min-width: 840px) {
+  .flow-text {
+    font-size: 1.584rem;
+  }
+}
+
+@media only screen and (min-width: 870px) {
+  .flow-text {
+    font-size: 1.608rem;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .flow-text {
+    font-size: 1.632rem;
+  }
+}
+
+@media only screen and (min-width: 930px) {
+  .flow-text {
+    font-size: 1.656rem;
+  }
+}
+
+@media only screen and (min-width: 960px) {
+  .flow-text {
+    font-size: 1.68rem;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .flow-text {
+    font-size: 1.2rem;
+  }
+}

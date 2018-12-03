@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2018 at 03:39 AM
+-- Generation Time: Dec 03, 2018 at 11:18 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -64,7 +64,9 @@ CREATE TABLE `guru` (
 
 INSERT INTO `guru` (`id_guru`, `nama`, `mapel`, `username`, `password`) VALUES
 (2, 'Guru Bahasa Inggris', 4, 'Guru Bahasa Inggris', 'qwe'),
-(3, 'Guru Matematika', 5, 'mtk', 'mtk');
+(3, 'Guru Matematika', 5, 'mtk', 'mtk'),
+(4, 'Guru Bahasa Indonesia', 6, 'asd', 'asd'),
+(5, 'Guru Bahasa Inggris 2', 4, 'qwe', 'qwe');
 
 --
 -- Triggers `guru`
@@ -130,7 +132,11 @@ INSERT INTO `kelas` (`id_kelas`, `kelas`, `jurusan`, `rombel`, `kode_kelas`) VAL
 (4, 10, 1, 1, '10 TKJ 1'),
 (5, 12, 1, 1, '12 TKJ 1'),
 (6, 11, 1, 1, '11 TKJ 1'),
-(7, 12, 3, 1, '12 TLAS 1');
+(7, 12, 3, 1, '12 TLAS 1'),
+(8, 10, 1, 2, '10 TKJ 2'),
+(9, 12, 3, 2, '12 TLAS 2'),
+(10, 10, 3, 2, '10 TLAS 2'),
+(11, 11, 3, 1, '11 TLAS 1');
 
 --
 -- Triggers `kelas`
@@ -160,7 +166,9 @@ CREATE TABLE `mapel` (
 
 INSERT INTO `mapel` (`id_mapel`, `mapel`) VALUES
 (4, 'Bahasa Inggris'),
-(5, 'Matematika');
+(5, 'Matematika'),
+(6, 'Bahasa Indonesia'),
+(7, 'Sejarah Indonesia');
 
 --
 -- Triggers `mapel`
@@ -258,8 +266,24 @@ CREATE TABLE `soal` (
 --
 
 INSERT INTO `soal` (`id_soal`, `mapel`, `kelas`, `guru`, `soal`, `media`, `opsi_a`, `opsi_b`, `opsi_c`, `opsi_d`, `opsi_e`, `jawaban`) VALUES
-(1, 4, 1, 3, 'what your name?', 'gambar.jpg', 'zulfi', 'zz', 'qwe', 'asd', 'frfrf', 'a'),
-(2, 5, 1, 2, 'qwerr', 'qweqweqwe', 'asd', 'zxc', 'ert', 'dfg', 'bgfgb', 'dfgdf');
+(5, 6, 4, 4, '<p>qwe</p>\r\n', NULL, 'qwe', 'qwe', 'qwe', 'qwe', 'qwe', 'a'),
+(6, 6, 4, 4, '<p>bahasa kita adalah?</p>\r\n', 'Koala.jpg', 'indonesia', 'jawa', 'sunda', 'madura', 'jepang', 'a'),
+(7, 4, 10, 2, 'hgkhh', NULL, 'asd', 'asd', 'asd', 'asd', NULL, NULL),
+(8, 6, 1, 4, 'qwe', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ujian`
+--
+
+CREATE TABLE `ujian` (
+  `id_ujian` int(11) NOT NULL,
+  `kelas` int(11) DEFAULT NULL,
+  `mapel` int(11) DEFAULT NULL,
+  `guru` int(11) DEFAULT NULL,
+  `waktu` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -323,6 +347,12 @@ ALTER TABLE `soal`
   ADD KEY `guru` (`guru`);
 
 --
+-- Indexes for table `ujian`
+--
+ALTER TABLE `ujian`
+  ADD PRIMARY KEY (`id_ujian`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -336,7 +366,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `guru`
 --
 ALTER TABLE `guru`
-  MODIFY `id_guru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_guru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `jurusan`
@@ -348,13 +378,13 @@ ALTER TABLE `jurusan`
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `mapel`
 --
 ALTER TABLE `mapel`
-  MODIFY `id_mapel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_mapel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `nilai`
@@ -372,7 +402,13 @@ ALTER TABLE `siswa`
 -- AUTO_INCREMENT for table `soal`
 --
 ALTER TABLE `soal`
-  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `ujian`
+--
+ALTER TABLE `ujian`
+  MODIFY `id_ujian` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
