@@ -19,9 +19,27 @@ class User extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 
+	//Header
+	private function header($data){
+		$this->load->view('template/header', $data);
+	}
+
      //Index
      public function index(){
-         $this->load->view('utama');
+     	$data['title'] = 'Ujian Berbasis Komputer';
+
+     	$this->header($data);
+        $this->load->view('utama');
+        $this->load->view('template/footer');
+     }
+
+     //Profil
+     public function profil(){
+     	$data['title'] = 'Profil | Ujian Berbasis Komputer';
+
+     	$this->header($data);
+     	$this->load->view('profil');
+     	$this->load->view('template/footer');
      }
 
 }
