@@ -3,15 +3,15 @@
 <head>
 	<meta charset="UTF-8">
 	<title><?=$title;?></title>
-
 	<!-- css -->
     <link rel="stylesheet" href="<?=base_url('assets/css/css.css');?>">
-
 	<!-- materialize -->
     <link rel="stylesheet" href="<?=base_url('assets/materialize/css/materialize.css');?>">
-
 	<!-- fontawesome -->
 	<link rel="stylesheet" href="<?=base_url('assets/fontawesome/css/all.css');?>">
+	<!-- Jquery -->
+	<script src="<?=base_url('assets/js/jquery.js');?>"></script>
+
 
 </head>
 <body class="blue-grey lighten-5">
@@ -32,7 +32,7 @@
 							<p>12 TKJ 2</p>
 						</div>
 						<div class="card-action flxspacebetween">
-							<a href="/profil" class="btn waves-effect waves-light green">Profile</a>
+							<a href="/profil" class="btn waves-effect waves-light orange">Profile</a>
 							<button class="btn waves-effect waves-light red">Keluar</button>
 						</div>
 					</div>

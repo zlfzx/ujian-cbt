@@ -269,7 +269,7 @@ main .card .container .parent .spek a{
 .form-group input,
 .form-group textarea {
   flex: 1 1 auto;
-  border: 1px solid #cecece	!important;
+  border: 1px solid #c0c0c0	!important;
   border-radius: 5px !important;
   color: #000;
   padding-left: .5rem!important;
@@ -277,7 +277,7 @@ main .card .container .parent .spek a{
 
 .form-group textarea {
 	margin-bottom: 5px;
-	ont-family: sans-serif;
+	font-family: sans-serif;
 	height: 3em;
   	font-size: 1.2rem;
   	line-height: 1.5rem;
@@ -398,3 +398,27 @@ nav .nav-wrapper ul li .card p{
 .btntimeout{
 	width: 100% !important;
 }
+
+/* Profil */
+.profil{
+	align-items: flex-start;
+}
+
+/* Ganti Password */
+.g-passwd,
+.g-pertanyaan{
+	background-color: #fff;
+	margin: 10px;
+	width: 100%;
+	padding: 20px;
+}
+.g-passwd h5,
+.g-pertanyaan h5{
+	margin: 0;
+	margin-bottom: 20px;
+}
+.btn-gnt{
+	display: flex;
+	justify-content: center;
+}
+

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2018 at 11:18 PM
+-- Generation Time: Jan 09, 2019 at 12:37 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -228,7 +228,7 @@ CREATE TABLE `siswa` (
 
 INSERT INTO `siswa` (`id_siswa`, `nama`, `nis`, `kelas`, `password`, `nohp`, `pertanyaan`, `jawaban`) VALUES
 (1, 'Muhammad Zulfi Izzulhaq', 1610853, 1, '1610853', '081228075321', '', ''),
-(2, 'Zulfi Izzulhaq', 1610859, 1, '1610859', '0812345324', '', '');
+(2, 'Zulfi Izzulhaq', 1610859, 1, '1610859', '0812345324', 'contoh pertanyaan', 'jawaban');
 
 --
 -- Triggers `siswa`

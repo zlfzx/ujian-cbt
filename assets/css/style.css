@@ -211,7 +211,7 @@ input[type="submit"] {
 .user_options-forms .user_forms-login {
   position: absolute;
   top: 70px;
-  left: 12.55554%;
+  left: 9.55554%;
   width: calc(100% - 80px);
   opacity: 0;
   visibility: hidden;
@@ -286,12 +286,12 @@ input[type="submit"] {
 }
 .form {
   border-radius: 2px 2px 5px 5px;
-  padding: 10px 20px 10px 20px;
+  /*padding: 10px 20px 10px 20px;*/
   width: 100%;
   max-width: 395px;
   background: #ffffff;
   position: relative;
-  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
+  /*box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);*/
 }
 .padding-b{
   padding-bottom: 80px;
@@ -324,7 +324,7 @@ input[type="submit"] {
 }
 .form input:focus + i.fa {
   opacity: 1;
-  left: 30px;
+  left: 10px;
   transition: all 0.25s ease-out;
 }
 .form button {
@@ -487,4 +487,25 @@ input[type="submit"] {
   .flow-text {
     font-size: 1.2rem;
   }
+}
+
+/* Other */
+.error-redB{
+  color: red;
+  font-weight: 600;
+  display: none;
+}
+.formjawab,
+.formreset{
+  display: none;
+}
+
+.alert{
+  width: 100%;
+  height: 2.5rem;
+  position: fixed;
+  background-color: #ffea00;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
