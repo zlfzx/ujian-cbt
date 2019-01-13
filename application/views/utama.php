@@ -1,5 +1,5 @@
 <?php 
-	$mapel = ['matematika', 'Indonesia', 'Inggris', 'PPKn'];
+	$mapel = ['matematika', 'Indonesia', 'Inggris'];
 ?>
 	<!-- main -->
 

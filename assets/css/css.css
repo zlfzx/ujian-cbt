@@ -7,6 +7,15 @@ body,html{
 	height: 100%;
 	font-family: sans-serif;
 }
+nav ul a.btn{
+	margin: 0;
+}
+.card .card-action{
+	padding: 10px;
+}
+.card .card-content{
+	padding: 15px;
+}
 
 /*MENGATUR WIDTH*/
 .w99-1{
@@ -211,7 +220,7 @@ main .card .container .parent{
 	margin-bottom: 10px;
 	background-color: #fff;
 	box-shadow: 0 0 4px 0 #ccc;
-	border-radius: 5px;
+	border-radius: 3px;
 }
 main .card .container .parent:hover{
 	opacity: 0.9;
@@ -220,7 +229,7 @@ main .card .container .parent .jadwal{
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	border-radius: 5px;
+	border-radius: 3px;
 }
 main .card .container .parent .jadwal p{
 	font-size: 2em;
@@ -363,7 +372,6 @@ nav .nav-wrapper ul li .card p{
 	width: 100%;
 	height: 1.5em;
 	line-height: 1.5em;
-	margin-top: .3em;
 }
 .icon{
 	width: 100px;
@@ -422,3 +430,20 @@ nav .nav-wrapper ul li .card p{
 	justify-content: center;
 }
 
+
+
+footer{
+	width: 100%;
+	height: 2rem;
+	position: fixed;
+	bottom: 0;
+	background-color: #ababab;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+footer h4{
+	font-size: 1rem;
+	line-height: 0;
+	margin: 0;
+}

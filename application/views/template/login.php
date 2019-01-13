@@ -51,10 +51,10 @@
     <div class="user_options-forms" id="user_options-forms">
       <div class="user_forms-login">
         <h2 class="forms_title">Login</h2>
-        <form class="form padding-b">
-  		    <input type="text" placeholder="NIS" autofocus required="" />
+        <form class="form padding-b" action="/Login/actlogin" method="POST">
+  		    <input type="text" name="nis" placeholder="NIS" autofocus required="" />
   		    <i class="fa fa-user"></i>
-  		    <input type="password" placeholder="Password" required="" />
+  		    <input type="password" name="password" placeholder="Password" required="" />
   		    <i class="fa fa-lock"></i>
           <button type="submit">
   		      LOGIN

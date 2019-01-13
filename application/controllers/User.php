@@ -18,10 +18,22 @@ class User extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+	function __construct(){
+		parent::__construct();
+		$this->load->model('m_user');
+		if (!$this->session->userdata('login')) {
+			redirect('login');
+		}
+	}
 
 	//Header
 	private function header($data){
 		$this->load->view('template/header', $data);
+	}
+
+	//404
+	function notfound(){
+		redirect('');
 	}
 
      //Index
@@ -34,11 +46,11 @@ class User extends CI_Controller {
      }
 
      //Profil
-     public function profil(){
-     	$data['title'] = 'Profil | Ujian Berbasis Komputer';
+     public function setting(){
+     	$data['title'] = 'Setting | Ujian Berbasis Komputer';
 
      	$this->header($data);
-     	$this->load->view('profil');
+     	$this->load->view('setting');
      	$this->load->view('template/footer');
      }
 
