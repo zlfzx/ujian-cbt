@@ -21,7 +21,7 @@
 	    <div class="nav-wrapper">
 	      <a href="<?=base_url();?>" class="brand-logo">UjianCBT</a>
 	      <ul class="right">
-	        <li><a href="#"><p>M.Afakhan Saifudin Alwi</p><i class="fa fa-caret-down"></i></a>
+	        <li><a href="#"><p><?=$this->session->nama;?></p><i class="fa fa-caret-down"></i></a>
 				<div id="dropdown" class="card">
 					<div class="arrow"></div>
 					<div class="w98 mgratas0">
