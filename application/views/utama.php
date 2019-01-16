@@ -4,6 +4,21 @@
 	<!-- main -->
 
 	<main class="w84 mgratas3">
+
+		<?php
+		if ($ar['password'] == $this->session->nis || empty($ar['pertanyaan']) && empty($ar['jawaban'])): ?>
+		<div class="card uporen">
+			<div class="container alert-pass">
+				<img src="./../assets/img/warsegitiga.jpg" style="width: 75px;">
+				<ul>
+					<li><h6><i class="fa fa-caret-right"></i> Ubah password default anda dengan yang baru !</h6></li>
+					<li><h6><i class="fa fa-caret-right"></i> Atur pertanyaan dan jawaban untuk mereset password !</h6></li>
+					<li><h6><i class="fa fa-caret-right"></i> Silahkan <a href="/setting">klik disini !</a></h6></li>
+				</ul>
+			</div>
+		</div>
+		<?php else:?>
+
 		<div class="card uporen">
 			<h4 class="center-align">Jadwal Hari ini</h4>
 			<div class="container white">
@@ -34,25 +49,7 @@
 					})
 				</script>
 			<?php endforeach; ?>
-
-				<!--<div class="parent">
-					<div id="jadwal1" class="jadwal orange white-text waves-effect waves-light"><p class="kiri center-align">Matematika</p></div>
-					<div class="spek"><p>jumlah soal : 20 <br>waktu : 60 menit</p>
-					<a href="index(1).html">
-					<button class="btn mulai">mulai</button></a></div>
-				</div>
-				<div class="parent">
-					<div id="jadwal2" class="jadwal orange white-text waves-effect waves-light"><p class="kiri center-align">Bahasa Indonesia</p></div>
-					<div class="spek"><p>jumlah soal : 30 <br>waktu : 60 menit</p>
-					<a href="#">
-					<button class="btn mulai">mulai</button></a></div>
-				</div>
-				<div class="parent">
-					<div id="jadwal3" class="jadwal orange white-text waves-effect waves-light"><p class="kiri center-align">Rancang Bangun Jaringan</p></div>
-					<div class="spek"><p>jumlah soal : 50 <br>waktu : 60 menit</p>
-					<a href="#">
-					<button class="btn mulai">mulai</button></a></div>
-				</div>-->
 		   	</div>
 		</div>
+		<?php endif;?>
 	</main>

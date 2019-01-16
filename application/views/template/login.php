@@ -15,14 +15,9 @@
 
 <body>
 
-  <!--
-  This was created based on the Dribble shot by Deepak Yadav that you can find at https://goo.gl/XRALsw
-  I am @hurickkrugner on Twitter or @hk95 on GitHub. Feel free to message me anytime.
--->
-
 <?php if($this->session->flashdata('flash')){ ?>
 <div class="alert">
-  <h3><?=$this->session->flashdata('flash');?></h3>
+  <h3><i class="fa fa-warning"></i> <?=$this->session->flashdata('flash');?></h3>
 </div>
 <?php } ?>
 

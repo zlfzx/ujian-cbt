@@ -38,6 +38,8 @@ class User extends CI_Controller {
 
      //Index
      public function index(){
+     	$id = ['id_siswa' => $this->session->id];
+     	$data['ar'] = $this->m_user->cekdefpass($id)->row_array();
      	$data['title'] = 'Ujian Berbasis Komputer';
 
      	$this->header($data);
@@ -45,13 +47,45 @@ class User extends CI_Controller {
         $this->load->view('template/footer');
      }
 
-     //Profil
+     //Setting
      public function setting(){
+     	$id = ['id_siswa' => $this->session->id];
+     	$data['ar'] = $this->m_user->cekdefpass($id)->row_array();
      	$data['title'] = 'Setting | Ujian Berbasis Komputer';
 
      	$this->header($data);
      	$this->load->view('setting');
      	$this->load->view('template/footer');
      }
+     function gantipass(){
+     	$password = $this->input->post('passLama');
+     	$passwordBaru = $this->input->post('konfirPass');
+
+     	$whr = ['id_siswa' => $this->session->id];
+     	$cek = $this->m_user->cekpass($whr)->row_array();
+     	if ($password != $cek['password']) {
+     		# code...
+     		$this->session->set_flashdata('repass', 'Password lama tidak cocok !');
+     		redirect('setting');
+     	}
+     	else{
+     		$data = ['password' => $passwordBaru];
+     		$this->m_user->gantipass($data, $whr);
+               $this->session->set_flashdata('repass', 'Password berhasil diubah');
+               redirect('setting');
+     	}
+     }
+      function gantiprtnyan(){
+          $pertanyaan = $this->input->post('pertanyaan');
+          $jawaban = $this->input->post('konfirJawaban');
+          $whr = ['id_siswa' => $this->session->id];
+          $data = [
+               'pertanyaan' => $pertanyaan,
+               'jawaban' => $jawaban
+          ];
+          $this->m_user->gantipass($data, $whr);
+          $this->session->set_flashdata('reper', 'Pertanyaan dan jawaban berhasil diubah');
+          redirect('setting');
+      }
 
 }

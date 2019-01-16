@@ -3,18 +3,24 @@
 	<main class="w96 mgratas3 flxctr profil">
 		<div class="col s5 g-passwd uporen">
 			<h5 class="center-align">Ganti Password</h5>
-			<form action="">
+			<?php if ($ar['password'] == $this->session->nis): ?>
+			<h6 class="center-align red-text">*Anda belum mengubah password !</h6>
+			<?php endif ?>
+			<?php if ($this->session->flashdata('repass')): ?>
+				<h6 class="center-align red-text"><?=$this->session->flashdata('repass');?></h6>
+			<?php endif ?>
+			<form action="/user/gantipass" method="POST">
 				<div class="form-group">
 					<label for="PasswordLama">Password Lama :</label>
-					<input type="password" placeholder="Masukkan Password Lama">
+					<input type="password" name="passLama" placeholder="Masukkan Password Lama">
 				</div>
 				<div class="form-group">
 					<label for="PasswordBaru">Password Baru :</label>
-					<input type="password" name="" id="" placeholder="Masukkan Password Baru">
+					<input type="password" name="passBaru" placeholder="Masukkan Password Baru">
 				</div>
 				<div class="form-group">
 					<label for="KonfirmasiPassword">Konfirmasi Password :</label>
-					<input type="password" name="" id="" placeholder="Masukkan Kembali Password">
+					<input type="password" name="konfirPass" placeholder="Masukkan Kembali Password">
 				</div>
 				<div class="btn-gnt mgratas2">
 			    	<button class="btn waves-effect waves-light orange">Ubah Password</button>
@@ -23,18 +29,24 @@
 		</div>
 		<div class="col s5 g-pertanyaan uporen">
 			<h5 class="center-align">Ganti Pertanyaan</h5>
-			<form action="">
+			<?php if (empty($ar['pertanyaan']) && empty($ar['jawaban'])): ?>
+			<h6 class="center-align red-text">*Anda belum membuat pertanyaan !</h6>
+			<?php endif ?>
+			<?php if ($this->session->flashdata('reper')): ?>
+				<h6 class="center-align red-text"><?=$this->session->flashdata('reper');?></h6>
+			<?php endif ?>
+			<form action="/user/gantiprtnyan" method="POST">
 				<div class="form-group">
 					<label for="PasswordLama">Pertanyaan :</label>
-					<input type="password" placeholder="Masukkan Pertanyaan">
+					<input type="text" name="pertanyaan" placeholder="Masukkan Pertanyaan" value="<?=$ar['pertanyaan'];?>">
 				</div>
 				<div class="form-group">
 					<label for="PasswordBaru">Jawaban :</label>
-					<input type="password" name="" id="" placeholder="Masukkan Jawaban">
+					<input type="text" name="jawaban" placeholder="Masukkan Jawaban">
 				</div>
 				<div class="form-group">
 					<label for="KonfirmasiPassword">Konfirmasi Jawaban :</label>
-					<input type="password" name="" id="" placeholder="Masukkan Kembali Jawaban">
+					<input type="text" name="konfirJawaban" placeholder="Masukkan Kembali Jawaban">
 				</div>
 				<div class="btn-gnt mgratas2">
 			    	<button class="btn waves-effect waves-light orange">Ubah Pertanyaan</button>
@@ -42,40 +54,3 @@
 			</form>
 		</div>
 	</main>
-
-	<!--<main class="w96 mgratas3">
-		<div class="card uporen">
-			<h4 class="center-align">Lupa Password</h4>
-			<div class="container">
-					<form class="login-form">  
-					    <div class="form-group mgratas3">
-					      <label for="#">NIS : </label>
-					      <input id="#" name="#" type="text" placeholder="16. . . . . ."  required>
-					    </div>
-					    <div class="form-group">
-					      <label for="#">Password Lama : </label>
-					      <input id="#" name="#" type="password" required>
-					    </div>
-					    <div class="form-group">
-					      <label for="#">Password Baru : </label>
-					      <input id="#" name="#" type="password"  required>
-					    </div>
-					    <div class="form-group">
-					      <label for="#">Pertanyaan : </label>
-					      <textarea id="#" name="#" type="password" required></textarea>
-					    </div>					    
-					    <div class="form-group">
-					      <label for="#">jawaban : </label>
-					      <textarea id="#" name="#" type="password" required></textarea>
-					    </div>
-					    <div class="buttons mgratas2">
-					    	<button class="btn waves-effect waves-light orange">Ubah Password</button>
-					    </div>
-					</form>
-		   	</div>
-		</div>
-
-		<div class="card uporen">
-			<h4>Pertanyaan</h4>
-		</div>
-	</main>-->

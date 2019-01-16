@@ -430,7 +430,16 @@ nav .nav-wrapper ul li .card p{
 	justify-content: center;
 }
 
-
+.alert-pass{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+.alert-pass ul{
+	margin-left: 20px;
+	list-style: initial;
+}
 
 footer{
 	width: 100%;
@@ -441,6 +450,7 @@ footer{
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	z-index: 9999;
 }
 footer h4{
 	font-size: 1rem;

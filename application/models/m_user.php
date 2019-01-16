@@ -26,4 +26,17 @@ class m_user extends CI_Model{
 		$this->db->update($table, $data);
 	}
 
+	function cekdefpass($id){
+		$this->db->select('password, pertanyaan, jawaban');
+		return $this->db->get_where('siswa', $id);
+	}
+	function cekpass($whr){
+		$this->db->select('password');
+		return $this->db->get_where('siswa', $whr);
+	}
+	
+	function gantipass($data, $whr){
+		$this->db->where($whr);
+		$this->db->update('siswa', $data);
+	}
 }
