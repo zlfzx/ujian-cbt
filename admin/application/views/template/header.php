@@ -23,12 +23,16 @@
   <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css');?>">  
   <!-- Select2 -->
   <link rel="stylesheet" href="<?=base_url('assets/adminlte/bower_components/select2/dist/css/select2.min.css');?>">
+  <!-- Sweetalert -->
+  <link rel="stylesheet" href="<?=base_url('assets/css/sweetalert2.min.css');?>">
   <!-- CSS -->
   <link rel="stylesheet" href="<?=base_url('assets/css/style.css');?>">
   <!-- jQuery 3 -->
   <script src="<?= base_url('assets/adminlte/bower_components/jquery/dist/jquery.min.js');?>"></script>
   <!-- jQuery UI 1.11.4 -->
   <script src="<?= base_url('assets/adminlte/bower_components/jquery-ui/jquery-ui.min.js');?>"></script>
+  <!-- Sweetalert -->
+  <script src="<?=base_url('assets/js/sweetalert2.all.min.js');?>"></script>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

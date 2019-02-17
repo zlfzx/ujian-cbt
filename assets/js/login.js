@@ -28,7 +28,7 @@ loginButton.addEventListener('click', () => {
         var nis = $('#fnis').val();
         //alert(nis);
         $.ajax({
-          url: '/Login/ceknis',
+          url: base_url + '/Login/ceknis',
           data: { nis: nis },
           method: 'POST',
           dataType: 'json',
@@ -45,7 +45,7 @@ loginButton.addEventListener('click', () => {
                     var jawab = $('.jawab').val();
                     var nis = hasil.nis;
                     $.ajax({
-                      url: '/Login/cekjawab',
+                      url: base_url + '/Login/cekjawab',
                       type: 'POST',
                       data: {
                         nis: nis, jawaban: jawab

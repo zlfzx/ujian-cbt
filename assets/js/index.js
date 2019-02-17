@@ -1,7 +1,6 @@
 const drop = document.querySelector('nav .nav-wrapper ul li');
 const menu = document.querySelector('#dropdown');
 const main = document.querySelector('main');
-const time = document.getElementById('masuk')
 	function muncul() {
 		menu.classList.toggle('muncul');
 	};

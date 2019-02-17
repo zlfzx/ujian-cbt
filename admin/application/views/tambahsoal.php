@@ -6,7 +6,7 @@
     <section class="content">
         <div class="box box-warning">
             <div class="box-header">
-                <a href="<?= site_url('soal');?>" class="btn btn-sm btn-warning"><i class="fa fa-angle-left"></i>  Kembali</a>
+                <a href="<?= site_url('');?>" class="btn btn-sm btn-warning"><i class="fa fa-angle-left"></i>  Kembali</a>
             </div>
             <div class="box-body">
                 <form action="admin/act_tsoal" enctype="multipart/form-data" method="POST">
@@ -91,3 +91,12 @@ $(function(){
     CKEDITOR.replace('fieldSoal')
 })
 </script>
+
+<?php
+if ($this->session->flashdata('soal')) { ?>
+  <script>
+    Swal.fire('Sukses!', 'Soal berhasil ditambahkan', 'success');
+  </script>  
+<?php
+}
+?>

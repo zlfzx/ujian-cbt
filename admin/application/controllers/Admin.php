@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+date_default_timezone_set("Asia/Jakarta");
+
 class Admin extends CI_Controller {
 
 	/**
@@ -21,6 +23,7 @@ class Admin extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
+        $this->db->query('SET time_zone="+7:00"');
 		if(!$this->session->status){
 			redirect('login');
 		}
@@ -60,6 +63,10 @@ class Admin extends CI_Controller {
 			);
 			$data['passwdguru'] = $this->m_admin->cek_passwd_guru($where)->row_array();
 		}
+
+		$data['jmlmapel'] = $this->m_admin->list_mapel()->num_rows();
+		$data['jmlsiswa'] = $this->m_admin->list_siswa()->num_rows();
+		$data['jmlkelas'] = $this->m_admin->list_kelas()->num_rows();
 
 		$data['title'] = 'Dashboard';
 
@@ -352,6 +359,8 @@ class Admin extends CI_Controller {
 	public function tambahsoal(){
 		$data['title'] = 'Tambah Soal';
 		$data['listmapel'] = $this->m_admin->list_mapel()->result();
+		$data['listkelas'] = $this->m_admin->list_kelas()->result();
+		$data['listguru'] = $this->m_admin->list_guru()->result();
 
 		$this->header($data);
 		$this->load->view('tambahsoal');
@@ -388,7 +397,8 @@ class Admin extends CI_Controller {
 				'jawaban' => $jawaban
 			);
 			$this->m_admin->in_soal_nomedia('soal', $data);
-			redirect('soal');
+			$this->session->set_flashdata('soal', 'Soal berhasil ditambahkan');
+			redirect('tsoal');
 		}
 		else{
 			$config['upload_path'] = './../media';
@@ -418,7 +428,8 @@ class Admin extends CI_Controller {
 				);
 
 				$this->m_admin->in_soal_media('soal', $data);
-				redirect('soal');
+				$this->session->set_flashdata('soal', 'Soal berhasil ditambahkan');
+				redirect('tsoal');
 			}
 		}
 	}
@@ -460,10 +471,34 @@ class Admin extends CI_Controller {
 	//Ujian
 	public function ujian(){
 		$data['title'] = 'Ujian';
+		$data['listmapel'] = $this->m_admin->list_mapel()->result();
+		$data['listkelas'] = $this->m_admin->list_kelas()->result();
+		$data['listguru'] = $this->m_admin->list_guru()->result();
+		$data['listujian'] = $this->m_admin->list_ujian()->result();
 
-		$this->load->view('template/header', $data);
+		$this->header($data);
 		$this->load->view('ujian');
 		$this->load->view('template/footer');
+	}
+	function tambah_ujian(){
+		$ujian = $this->input->post('nmujian');
+		$kelas = $this->input->post('kelas');
+		$mapel = $this->input->post('mapel');
+		$guru = $this->input->post('guru');
+		$waktu = $this->input->post('waktu');
+		$tanggal = $this->input->post('tanggal');
+		$data = [
+			'nama_ujian' => $ujian,
+			'id_kelas' => $kelas,
+			'id_mapel' => $mapel,
+			'id_guru' => $guru,
+			'waktu' => $waktu,
+			'tanggal' => $tanggal
+		];
+
+		$this->m_admin->t_ujian("ujian", $data);
+		$this->session->set_flashdata('t_ujian', '');
+		redirect('ujian');
 	}
 
 

@@ -39,4 +39,23 @@ class m_user extends CI_Model{
 		$this->db->where($whr);
 		$this->db->update('siswa', $data);
 	}
+
+	//Jadwal Ujian
+	function jadwal_ujian($where){
+		$this->db->select('ujian.*, kelas.id_kelas, kelas.kode_kelas, mapel.*');
+        $this->db->from('ujian');
+        $this->db->join('kelas', 'ujian.id_kelas=kelas.id_kelas');
+        $this->db->join('mapel', 'ujian.id_mapel=mapel.id_mapel');
+        $this->db->where($where);
+        return $this->db->get();
+	}
+
+	//Ujian
+	function ujian($whr){
+		$this->db->select('*');
+		$this->db->from('ujian');
+		$this->db->join('mapel', 'ujian.id_mapel=mapel.id_mapel');
+		$this->db->where($whr);
+		return $this->db->get();
+	}
 }

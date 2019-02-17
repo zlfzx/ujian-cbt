@@ -11,7 +11,8 @@
 	<link rel="stylesheet" href="<?=base_url('assets/fontawesome/css/all.css');?>">
 	<!-- Jquery -->
 	<script src="<?=base_url('assets/js/jquery.js');?>"></script>
-
+	<!-- Countodwn js -->
+	<script src="<?=base_url('assets/js/jquery.countdown.min.js');?>"></script>
 
 </head>
 <body class="blue-grey lighten-5">
@@ -19,7 +20,7 @@
 	  <nav class="blue">
 	  	<div class="w97">
 	    <div class="nav-wrapper">
-	      <a href="<?=base_url();?>" class="brand-logo">UjianCBT</a>
+	      <a href="<?=base_url();?>" class="brand-logo"><img src="<?=base_url('assets/img/lsmk.png');?>" style="width: 30px;"> UjianCBT</a>
 	      <ul class="right">
 	        <li><a href="#"><p><?=$this->session->nama;?></p><i class="fa fa-caret-down"></i></a>
 				<div id="dropdown" class="card">
@@ -32,8 +33,8 @@
 							<p><?=$this->session->kelas;?></p>
 						</div>
 						<div class="card-action flxspacebetween">
-							<a href="/setting" class="btn waves-effect waves-light orange">Setting</a>
-							<a href="logout" class="btn waves-effect waves-light red">Keluar</a>
+							<a href="<?=base_url('setting');?>" class="btn waves-effect waves-light orange">Setting</a>
+							<a href="<?=base_url('logout');?>" class="btn waves-effect waves-light red">Keluar</a>
 						</div>
 					</div>
 				</div>

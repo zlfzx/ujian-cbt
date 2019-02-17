@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+date_default_timezone_set("Asia/Jakarta");
+
 class User extends CI_Controller {
 
 	/**
@@ -20,6 +22,7 @@ class User extends CI_Controller {
 	 */
 	function __construct(){
 		parent::__construct();
+          $this->db->query('SET time_zone="+7:00"');
 		$this->load->model('m_user');
 		if (!$this->session->userdata('login')) {
 			redirect('login');
@@ -41,10 +44,46 @@ class User extends CI_Controller {
      	$id = ['id_siswa' => $this->session->id];
      	$data['ar'] = $this->m_user->cekdefpass($id)->row_array();
      	$data['title'] = 'Ujian Berbasis Komputer';
+          $whrkelas = ['kelas.kode_kelas' => $this->session->userdata('kelas')];
+          $data['jdwlujian'] = $this->m_user->jadwal_ujian($whrkelas)->result();
 
      	$this->header($data);
-        $this->load->view('utama');
-        $this->load->view('template/footer');
+          $this->load->view('utama');
+          $this->load->view('template/footer');
+     }
+
+     //Ujian
+     public function ujian($id_ujian){
+          //def session siswa
+          $data['sess_id'] = $this->session->userdata('id');
+          $data['sess_nama'] = $this->session->userdata('nama');
+
+          
+
+          //data ujian
+          $whr_ujian = ['id_ujian' => $id_ujian];
+          $data['ujian'] = $this->m_user->ujian($whr_ujian)->row_array();
+          if (count($data['ujian']) < 1) {
+               redirect('');
+          }
+          else{
+               $data['title'] = $data['ujian']['nama_ujian'].' | '.$data['ujian']['mapel'];
+
+               $this->header($data);
+               $this->load->view('ujian');
+               $this->load->view('template/footer');
+          }
+     }
+     //fungsi proses ujian
+     function simpan(){
+          echo '1';
+     }
+     public function ujian_selesai(){
+          $data['title'] = 'Ujian Selesai';
+
+          $this->header($data);
+          $this->load->view('waktu_habis');
+          $this->load->view('template/footer');
      }
 
      //Setting

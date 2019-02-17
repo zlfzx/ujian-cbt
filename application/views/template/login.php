@@ -46,7 +46,7 @@
     <div class="user_options-forms" id="user_options-forms">
       <div class="user_forms-login">
         <h2 class="forms_title">Login</h2>
-        <form class="form padding-b" action="/Login/actlogin" method="POST">
+        <form class="form padding-b" action="<?=base_url('Login/actlogin');?>" method="POST">
   		    <input type="text" name="nis" placeholder="NIS" autofocus required="" />
   		    <i class="fa fa-user"></i>
   		    <input type="password" name="password" placeholder="Password" required="" />
@@ -71,7 +71,7 @@
             <p class="error-redB">Jawaban Anda Salah !</p>
             <button class="btn-jawab">JAWAB</button>
         </form>
-        <form method="post" action="/Login/resetpasswd" class="form padding-b formreset">
+        <form method="post" action="<?=base_url('Login/resetpasswd');?>" class="form padding-b formreset">
           <input type="hidden" class="nis" name="nis">
           <input type="text" id="passwd" name="password" placeholder="Masukkan Password Baru" required>
           <i class="fa fa-key"></i>
@@ -85,6 +85,9 @@
   </div>
 </section>
 
+<script>
+  var base_url = '<?=base_url();?>';
+</script>
 <script  src="<?=base_url('assets/js/login.js');?>"></script>
 </body>
 </html>

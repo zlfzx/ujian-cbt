@@ -15,35 +15,48 @@
                                 <h4 class="modal-title"><i class="fa fa-list"></i> Tambah Ujian</h4>
                             </div>
                             <div class="modal-body">
-                                <form action="">
+                                <form action="admin/tambah_ujian" method="POST">
                                     <div class="box-body">
                                         <div class="form-group">
+                                            <label for="NamaUjian">Nama Ujian :</label>
+                                            <input type="text" name="nmujian" class="form-control" placeholder="Masukkan Nama Ujian">
+                                        </div>
+                                        <div class="form-group">
                                             <label for="Kelas">Kelas :</label>
-                                            <select name="" class="form-control select2">
+                                            <select name="kelas" class="form-control select2">
                                                 <option selected>Pilih Kelas...</option>
+                                                <?php foreach ($listkelas as $lk) { ?>
+                                                <option value="<?= $lk->id_kelas;?>"><?= $lk->kode_kelas;?></option>
+                                                <?php } ?>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="Mapel">Mapel :</label>
-                                            <select name="" id="" class="form-control">
+                                            <select name="mapel" class="form-control">
                                                 <option value="">Pilih Mapel...</option>
+                                                <?php foreach($listmapel as $lm){ ?>
+                                                <option value="<?= $lm->id_mapel;?>"><?= $lm->mapel;?></option>
+                                                <?php } ?>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="Guru">Guru :</label>
-                                            <select name="" id="" class="form-control">
+                                            <select name="guru" class="form-control">
                                                 <option value="">Pilih Guru...</option>
+                                                <?php foreach($listguru as $lg){ ?>
+                                                <option value="<?= $lg->id_guru;?>"><?= $lg->nama;?></option>
+                                                <?php } ?>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="Waktu">Waktu :</label>
-                                            <input type="text" class="form-control" placeholder="Menit">
+                                            <input type="text" name="waktu" class="form-control" placeholder="Menit">
                                         </div>
                                         <div class="form-group">
                                             <label for="Tanggal">Tanggal :</label>
                                             <div class="input-group date">
                                                 <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                                <input type="text" class="form-control pull-right" id="tanggalujian" placeholder="Pilih Tanggal">
+                                                <input type="text" name="tanggal" class="form-control pull-right" id="tanggalujian" placeholder="Pilih Tanggal">
                                             </div>
                                         </div>
                                     </div>
@@ -62,6 +75,7 @@
                     <thead>
                         <tr>
                             <th>No.</th>
+                            <th>Nama Ujian</th>
                             <th>Kelas</th>
                             <th>Mapel</th>
                             <th>Guru</th>
@@ -71,18 +85,23 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php 
+                        $no = 1;
+                        foreach ($listujian as $lu) { ?>
                         <tr>
-                            <td>1.</td>
-                            <td>12 TKJ 2</td>
-                            <td>Matematika</td>
-                            <td>Guru Matematika</td>
-                            <td>60 Menit</td>
-                            <td>16/11/18</td>
+                            <td><?=$no++;?>.</td>
+                            <td><?=$lu->nama_ujian;?></td>
+                            <td><?=$lu->kode_kelas;?></td>
+                            <td><?=$lu->mapel;?></td>
+                            <td><?=$lu->nama;?></td>
+                            <td><?=$lu->waktu;?> Menit</td>
+                            <td><?=$lu->tanggal;?></td>
                             <td>
                                 <button class="btn btn-sm btn-warning"><i class="fa fa-edit"></i> Edit</button> &nbsp;
                                 <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus</button>
                             </td>
                         </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
             </div>
@@ -100,7 +119,8 @@
 $(function(){
     $('#tanggalujian').datepicker({
         autoclose: true,
-        todayHighlight: true
+        todayHighlight: true,
+        format: 'yyyy-mm-dd'
     })
 })
 </script>

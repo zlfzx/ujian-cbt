@@ -32,6 +32,8 @@ class m_admin extends CI_Model{
         $this->db->update($table, $data);
     }
 
+    //Halaman Utama
+
     //Guru
     function list_guru(){
         //return $this->db->get('guru');
@@ -186,6 +188,20 @@ class m_admin extends CI_Model{
     //Tampil kelas
     function vkelas($where){
         return $this->db->get_where('kelas', $where);
+    }
+
+    //Ujian
+    function list_ujian(){
+        $this->db->select('ujian.*, kelas.id_kelas, kelas.kode_kelas, mapel.*, guru.id_guru, guru.nama');
+        $this->db->from('ujian');
+        $this->db->join('kelas', 'ujian.id_kelas=kelas.id_kelas');
+        $this->db->join('mapel', 'ujian.id_mapel=mapel.id_mapel');
+        $this->db->join('guru', 'ujian.id_guru=guru.id_guru');
+        return $this->db->get();
+    }
+    //Tambah ujian
+    function t_ujian($table, $data){
+        $this->db->insert($table, $data);
     }
 
 }
