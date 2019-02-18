@@ -1,0 +1,7 @@
+-cek sudah ujian atau belum
+-jika belum ambil datail ujian
+-buat ujian baru ke tabel ujian
+-tampilkan soal
+-mulai ujian
+
+-jika sudah ujian lanjut ke nilai

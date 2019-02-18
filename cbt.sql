@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 09, 2019 at 12:37 PM
+-- Generation Time: Feb 18, 2019 at 11:18 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -66,7 +66,7 @@ INSERT INTO `guru` (`id_guru`, `nama`, `mapel`, `username`, `password`) VALUES
 (2, 'Guru Bahasa Inggris', 4, 'Guru Bahasa Inggris', 'qwe'),
 (3, 'Guru Matematika', 5, 'mtk', 'mtk'),
 (4, 'Guru Bahasa Indonesia', 6, 'asd', 'asd'),
-(5, 'Guru Bahasa Inggris 2', 4, 'qwe', 'qwe');
+(5, 'Guru Bahasa Inggris 4', 4, 'qwe', 'qwe');
 
 --
 -- Triggers `guru`
@@ -77,6 +77,32 @@ CREATE TRIGGER `hapus_guru` BEFORE DELETE ON `guru` FOR EACH ROW BEGIN
 END
 $$
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ikut_ujian`
+--
+
+CREATE TABLE `ikut_ujian` (
+  `id_tes` int(11) NOT NULL,
+  `id_ujian` int(11) DEFAULT NULL,
+  `id_siswa` int(11) DEFAULT NULL,
+  `list_soal` longtext,
+  `list_jawaban` longtext,
+  `jml_benar` int(11) DEFAULT NULL,
+  `nilai` int(11) DEFAULT NULL,
+  `tgl_mulai` datetime DEFAULT NULL,
+  `tgl_selesai` datetime DEFAULT NULL,
+  `status` enum('Y','N') DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ikut_ujian`
+--
+
+INSERT INTO `ikut_ujian` (`id_tes`, `id_ujian`, `id_siswa`, `list_soal`, `list_jawaban`, `jml_benar`, `nilai`, `tgl_mulai`, `tgl_selesai`, `status`) VALUES
+(4, 4, 2, '5,6,8,9,13,14,15,16', '5:,6:,8:,9:,13:,14:,15:,16:', 0, 0, '2019-02-19 04:01:27', '2019-02-19 05:01:27', 'Y');
 
 -- --------------------------------------------------------
 
@@ -227,8 +253,8 @@ CREATE TABLE `siswa` (
 --
 
 INSERT INTO `siswa` (`id_siswa`, `nama`, `nis`, `kelas`, `password`, `nohp`, `pertanyaan`, `jawaban`) VALUES
-(1, 'Muhammad Zulfi Izzulhaq', 1610853, 1, '1610853', '081228075321', '', ''),
-(2, 'Zulfi Izzulhaq', 1610859, 1, '1610859', '0812345324', 'contoh pertanyaan', 'jawaban');
+(1, 'Muhammad Zulfi Izzulhaq', 1610853, 1, 'qwe', '081228075321', 'siapa nama kucing peliharaan?', 'kucing'),
+(2, 'Zulfi Izzulhaq', 1610859, 4, 'qwe', '0812345324', 'siapa nama kucing peliharaan?', 'meong');
 
 --
 -- Triggers `siswa`
@@ -269,7 +295,12 @@ INSERT INTO `soal` (`id_soal`, `mapel`, `kelas`, `guru`, `soal`, `media`, `opsi_
 (5, 6, 4, 4, '<p>qwe</p>\r\n', NULL, 'qwe', 'qwe', 'qwe', 'qwe', 'qwe', 'a'),
 (6, 6, 4, 4, '<p>bahasa kita adalah?</p>\r\n', 'Koala.jpg', 'indonesia', 'jawa', 'sunda', 'madura', 'jepang', 'a'),
 (7, 4, 10, 2, 'hgkhh', NULL, 'asd', 'asd', 'asd', 'asd', NULL, NULL),
-(8, 6, 1, 4, 'qwe', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(8, 6, 1, 4, 'qwe', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(9, 6, 4, 4, '<p>asdasd</p>\r\n', NULL, 'aasd', 'asd', 'asd', 'asdasd', 'asdasd', 'a'),
+(13, 6, 4, 4, '<p>qwe</p>\r\n', NULL, 'z', 'z', 'z', 'z', 'z', 'a'),
+(14, 6, 4, 4, '<p>q</p>\r\n', NULL, 'q', 'q', 'q', 'q', 'q', 'a'),
+(15, 6, 4, 4, '<p>q</p>\r\n', NULL, 'q', 'q', 'q', 'q', 'q', 'a'),
+(16, 6, 4, 4, '<p>q</p>\r\n', NULL, 'q', 'qwe', 'q', 'q', 'q', 'a');
 
 -- --------------------------------------------------------
 
@@ -279,11 +310,20 @@ INSERT INTO `soal` (`id_soal`, `mapel`, `kelas`, `guru`, `soal`, `media`, `opsi_
 
 CREATE TABLE `ujian` (
   `id_ujian` int(11) NOT NULL,
-  `kelas` int(11) DEFAULT NULL,
-  `mapel` int(11) DEFAULT NULL,
-  `guru` int(11) DEFAULT NULL,
-  `waktu` int(11) DEFAULT NULL
+  `nama_ujian` varchar(100) NOT NULL DEFAULT '0',
+  `id_kelas` int(11) DEFAULT NULL,
+  `id_mapel` int(11) DEFAULT NULL,
+  `id_guru` int(11) DEFAULT NULL,
+  `waktu` int(11) DEFAULT NULL,
+  `tanggal` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ujian`
+--
+
+INSERT INTO `ujian` (`id_ujian`, `nama_ujian`, `id_kelas`, `id_mapel`, `id_guru`, `waktu`, `tanggal`) VALUES
+(4, 'uts', 4, 6, 4, 60, '2019-02-17');
 
 --
 -- Indexes for dumped tables
@@ -301,6 +341,14 @@ ALTER TABLE `admin`
 ALTER TABLE `guru`
   ADD PRIMARY KEY (`id_guru`),
   ADD KEY `mapel` (`mapel`);
+
+--
+-- Indexes for table `ikut_ujian`
+--
+ALTER TABLE `ikut_ujian`
+  ADD PRIMARY KEY (`id_tes`),
+  ADD KEY `id_ujian` (`id_ujian`),
+  ADD KEY `siswa` (`id_siswa`);
 
 --
 -- Indexes for table `jurusan`
@@ -350,7 +398,11 @@ ALTER TABLE `soal`
 -- Indexes for table `ujian`
 --
 ALTER TABLE `ujian`
-  ADD PRIMARY KEY (`id_ujian`);
+  ADD PRIMARY KEY (`id_ujian`),
+  ADD KEY `nama_ujian` (`nama_ujian`),
+  ADD KEY `FK1_kelas` (`id_kelas`),
+  ADD KEY `id_mapel` (`id_mapel`),
+  ADD KEY `id_guru` (`id_guru`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -367,6 +419,12 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `guru`
   MODIFY `id_guru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `ikut_ujian`
+--
+ALTER TABLE `ikut_ujian`
+  MODIFY `id_tes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `jurusan`
@@ -402,13 +460,13 @@ ALTER TABLE `siswa`
 -- AUTO_INCREMENT for table `soal`
 --
 ALTER TABLE `soal`
-  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `ujian`
 --
 ALTER TABLE `ujian`
-  MODIFY `id_ujian` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_ujian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -419,6 +477,13 @@ ALTER TABLE `ujian`
 --
 ALTER TABLE `guru`
   ADD CONSTRAINT `guru_ibfk_1` FOREIGN KEY (`mapel`) REFERENCES `mapel` (`id_mapel`);
+
+--
+-- Constraints for table `ikut_ujian`
+--
+ALTER TABLE `ikut_ujian`
+  ADD CONSTRAINT `FK1_ujian` FOREIGN KEY (`id_ujian`) REFERENCES `ujian` (`id_ujian`),
+  ADD CONSTRAINT `FK2_siswa` FOREIGN KEY (`id_siswa`) REFERENCES `siswa` (`id_siswa`);
 
 --
 -- Constraints for table `kelas`
@@ -447,6 +512,14 @@ ALTER TABLE `soal`
   ADD CONSTRAINT `soal_guruFK3` FOREIGN KEY (`guru`) REFERENCES `guru` (`id_guru`),
   ADD CONSTRAINT `soal_kelasFK2` FOREIGN KEY (`kelas`) REFERENCES `kelas` (`id_kelas`),
   ADD CONSTRAINT `soal_mapelFK1` FOREIGN KEY (`mapel`) REFERENCES `mapel` (`id_mapel`);
+
+--
+-- Constraints for table `ujian`
+--
+ALTER TABLE `ujian`
+  ADD CONSTRAINT `FK1_kelas` FOREIGN KEY (`id_kelas`) REFERENCES `kelas` (`id_kelas`),
+  ADD CONSTRAINT `FK2_mapel` FOREIGN KEY (`id_mapel`) REFERENCES `mapel` (`id_mapel`),
+  ADD CONSTRAINT `FK3_guru` FOREIGN KEY (`id_guru`) REFERENCES `guru` (`id_guru`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

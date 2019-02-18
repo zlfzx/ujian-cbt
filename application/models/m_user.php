@@ -58,4 +58,30 @@ class m_user extends CI_Model{
 		$this->db->where($whr);
 		return $this->db->get();
 	}
+	function cek_selesai_ujian($whr){
+		return $this->db->get_where('ikut_ujian', $whr);
+	}
+	function cek_detil_tes($whr){
+		return $this->db->get_where('ujian', $whr);
+	}
+	function cek_sdh_ujian($whr){
+		return $this->db->get_where('ikut_ujian', $whr);
+	}
+	function q_soal($whr){
+		return $this->db->get_where('soal', $whr);
+	}
+	function tambah_ujian($data){
+		$this->db->insert('ikut_ujian', $data);
+	}
+	function detil_soal($whr){
+		$this->db->select('ujian.*, guru.nama AS guru, mapel.mapel AS mapel');
+		$this->db->from('ujian');
+		$this->db->join('guru', 'ujian.id_guru=guru.id_guru');
+		$this->db->join('mapel', 'ujian.id_mapel=mapel.id_mapel');
+		$this->db->where($whr);
+		return $this->db->get();
+	}
+	function detil_tes($whr){
+		return $this->db->get_where('ikut_ujian', $whr);
+	}
 }

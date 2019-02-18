@@ -1,5 +1,7 @@
 <?php
-echo $this->uri->segment(1);
+echo print_r($detiltes);
+$jj = explode(" ", $detiltes->tgl_selesai);
+echo $jj;
 ?>
 <!-- main -->
 	<div id="masuk" class="row w91 mgratas3 mgrbawah3">
@@ -89,7 +91,7 @@ echo $this->uri->segment(1);
 
 	<script>
 		const time = document.getElementById('masuk');
-		var timer = <?=$ujian['waktu'];?> * 60;
+		var timer = <?=$detilujian->waktu;?> * 60;
 		var min = 0;
 		var sec = 0;
 
