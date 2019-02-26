@@ -9,7 +9,7 @@
 				<ul>
 					<li><h6><i class="fa fa-caret-right"></i> Ubah password default anda dengan yang baru !</h6></li>
 					<li><h6><i class="fa fa-caret-right"></i> Atur pertanyaan dan jawaban untuk mereset password !</h6></li>
-					<li><h6><i class="fa fa-caret-right"></i> Silahkan <a href="/setting">klik disini !</a></h6></li>
+					<li><h6><i class="fa fa-caret-right"></i> Silahkan <a href="<?=base_url('setting');?>">klik disini !</a></h6></li>
 				</ul>
 			</div>
 		</div>

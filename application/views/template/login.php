@@ -73,9 +73,9 @@
         </form>
         <form method="post" action="<?=base_url('Login/resetpasswd');?>" class="form padding-b formreset">
           <input type="hidden" class="nis" name="nis">
-          <input type="text" id="passwd" name="password" placeholder="Masukkan Password Baru" required>
+          <input type="password" id="passwd" name="password" placeholder="Masukkan Password Baru" required>
           <i class="fa fa-key"></i>
-          <input type="text" id="repasswd" name="repassword" placeholder="Masukkan Kembali Password" required>
+          <input type="password" id="repasswd" name="repassword" placeholder="Masukkan Kembali Password" required>
           <i class="fa fa-key"></i>
           <p class="error-redB">Password Tidak Cocok !</p>
           <button class="btn-submit">GANTI PASSWORD</button> 

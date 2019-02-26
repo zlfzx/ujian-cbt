@@ -9,7 +9,7 @@
 			<?php if ($this->session->flashdata('repass')): ?>
 				<h6 class="center-align red-text"><?=$this->session->flashdata('repass');?></h6>
 			<?php endif ?>
-			<form action="/user/gantipass" method="POST">
+			<form action="<?=base_url('user/gantipass');?>" method="POST">
 				<div class="form-group">
 					<label for="PasswordLama">Password Lama :</label>
 					<input type="password" name="passLama" placeholder="Masukkan Password Lama">
@@ -35,7 +35,7 @@
 			<?php if ($this->session->flashdata('reper')): ?>
 				<h6 class="center-align red-text"><?=$this->session->flashdata('reper');?></h6>
 			<?php endif ?>
-			<form action="/user/gantiprtnyan" method="POST">
+			<form action="<?=base_url('user/gantiprtnyan');?>" method="POST">
 				<div class="form-group">
 					<label for="PasswordLama">Pertanyaan :</label>
 					<input type="text" name="pertanyaan" placeholder="Masukkan Pertanyaan" value="<?=$ar['pertanyaan'];?>">
