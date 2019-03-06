@@ -1,0 +1,26 @@
+.waktu{
+	margin: 5px;
+	padding: 5px;
+	border: 3px solid #333;
+	border-radius: 3px;
+	font-size: 3rem;
+	font-weight: bold;
+	display: flex;
+	justify-content: center;
+}
+
+.box-ujian{
+	padding: 2rem;
+}
+
+.img-ujian{
+	margin-bottom: 15px;
+}
+
+.ujian-sls{
+	font-size: 20rem;
+	margin: 0;
+}
+.ujian-sls2{
+	margin-top: 0;
+}

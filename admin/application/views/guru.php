@@ -9,8 +9,8 @@
         <section class="content">
             <div class="box box-warning">
                 <div class="box-header">
-                    <button type="button" data-toggle="modal" data-target="#tambah-guru" class="btn btn-success"><i class="fa fa-user-plus"></i> Tambah</button>
-                    <button type="button" data-toggle="modal" data-target="#import-guru" class="btn btn-info"><i class="fa fa-upload"></i> Import</button>
+                    <button type="button" data-toggle="modal" data-target="#tambah-guru" class="btn btn-success"><i class="fa fa-user-plus"></i> Tambah Guru</button>
+                    <!-- <button type="button" data-toggle="modal" data-target="#import-guru" class="btn btn-info"><i class="fa fa-upload"></i> Import</button> -->
 
                     <!-- Modal Tambah Guru -->
                     <div class="modal fade" id="tambah-guru">
@@ -103,10 +103,10 @@
                                 <td><?= $no++;?>.</td>
                                 <td><?= $g->nama;?></td>
                                 <td><?= $g->mapel;?></td>
-                                <td><button class="btn btn-sm btn-info" data-toggle="modal" data-target="#lihatLogin<?= $g->id_guru;?>"><i class="fa fa-eye"></i> Lihat</button></td>
+                                <td><button class="btn btn-xs btn-info" data-toggle="modal" data-target="#lihatLogin<?= $g->id_guru;?>"><i class="fa fa-eye"></i> Lihat</button></td>
                                 <td>
-                                    <button type="button" data-toggle="modal" data-target="#editGuru<?= $g->id_guru;?>" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i> Edit</button> &nbsp;
-                                    <button type="button" data-toggle="modal" data-target="#hapusGuru<?= $g->id_guru;?>" class="btn btn-sm btn-danger"><i class="fa fa-user-times"></i> Hapus</button>
+                                    <button type="button" data-toggle="modal" data-target="#editGuru<?= $g->id_guru;?>" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Edit</button> &nbsp;
+                                    <button type="button" data-toggle="modal" data-target="#hapusGuru<?= $g->id_guru;?>" class="btn btn-xs btn-danger"><i class="fa fa-user-times"></i> Hapus</button>
                                 </td>
                             </tr>
                                 <!-- Modal Lihat Login Guru -->

@@ -346,6 +346,14 @@ main .card .container .parent .spek a{
   margin: 0 .3rem;
 }
 
+.waktu{
+	padding: 10px;
+	margin: 10px;
+	font-size: 1.9rem;
+	border: 1px solid grey;
+	border-radius: 3px;
+}
+
 /*DROPDOWN*/
 .nav-wrapper ul li a{
 	display: flex;
@@ -464,4 +472,8 @@ nav .nav-wrapper ul li .card p{
 
 label{
 	color: #333;
+}
+
+.soal{
+	margin: 10px;
 }

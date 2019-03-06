@@ -4,6 +4,55 @@
     </section>
     <section class="content">
         <div class="row">
+            <!--Ganti Foto-->
+            <div class="col-md-6">
+                <div class="box box-danger">
+                    <div class="box-header">
+                        <button data-toggle="modal" data-target="#tambah-admin" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Tambah Admin</button>
+                        <div class="modal fade" id="tambah-admin">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+                                        <h4><i class="fa fa-users"></i> Tambah Admin</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="" method="post">
+                                            <div class="form-group">
+                                                <label for="Nama">Nama Admin</label>
+                                                <input type="text" class="form-control" placeholder="Masukkan Nama Admin">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="username">Username</label>
+                                                <input type="text" class="form-control" placeholder="Masukkan Username">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="Password">Password</label>
+                                                <input type="password" name="" id="" class="form-control" placeholder="Masukkan Password">
+                                            </div>
+                                            <button type="submit" class="btn btn-success">Tambah</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <th>Nama</th>
+                                <th>Info</th>
+                                <th>#</th>
+                            </thead>
+                            <tbody>
+                                <td>Admin</td>
+                                <td><button class="btn btn-info btn-xs">Info</button></td>
+                                <td><button class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></button></td>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
             
             <!--Ganti Password-->
             <div class="col-md-6">
@@ -40,25 +89,6 @@
                             <h5 class="text-danger"><i class="fa fa-warning"></i> <?=$this->session->flashdata('passwdbaru');?></h5> <?php } ?>
                         </div>
                         <button type="submit" class="btn btn-warning">Ganti</button>
-                    </div>
-                </form>
-            </div>
-
-            <!--Ganti Foto-->
-            <div class="col-md-6">
-                <form action="" class="box box-info">
-                    <div class="box-header">
-                        Ganti Foto
-                    </div>
-                    <div class="box-body">
-                        <div class="form-group" align="center">
-                        <img src="<?= base_url('assets/adminlte/dist/img/avatar5.png');?>" class="img-circle">
-                        </div>
-                        <div class="form-group">
-                            <label for="PilihFile">Pilih File :</label>
-                            <input type="file" name="" id="">
-                        </div>
-                        <button type="submit" class="btn btn-info">Upload</button>
                     </div>
                 </form>
             </div>

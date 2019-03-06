@@ -32,7 +32,7 @@
             <div class="inner">
               <h3><?=$jmlmapel;?></h3>
 
-              <p>Jumlah Mata Pelajaran</p>
+              <p>Mata Pelajaran</p>
             </div>
             <div class="icon">
               <i class="fa fa-file-text"></i>
@@ -45,12 +45,12 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
+              <h3><?=$jmljurusan;?></h3>
 
-              <p>Persentasi Ujian</p>
+              <p>Jurusan</p>
             </div>
             <div class="icon">
-              <i class="ion ion-stats-bars"></i>
+              <i class="fa fa-th-large"></i>
             </div>
             <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -62,7 +62,7 @@
             <div class="inner">
               <h3><?=$jmlsiswa;?></h3>
 
-              <p>Jumlah Siswa</p>
+              <p>Siswa</p>
             </div>
             <div class="icon">
               <i class="fa fa-user"></i>
@@ -80,7 +80,7 @@
               <p>Kelas</p>
             </div>
             <div class="icon">
-              <i class="fa fa-th-large"></i>
+              <i class="fa fa-th"></i>
             </div>
             <a href="<?=base_url('kelas');?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>

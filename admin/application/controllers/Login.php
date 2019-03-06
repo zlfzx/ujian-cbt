@@ -19,28 +19,47 @@ class Login extends CI_Controller{
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
 		$hak = $this->input->post('akses');
-		$where = array('username' => $username, 'password' => $password);
+		$whereguru = array('username' => $username, 'password' => $password);
+		$whereadmin = array('username' => $username);
 		if($hak == 'admin'){
-			$cek = $this->m_admin->login_admin($where);
-			if($cek->num_rows() > 0){
+			$cek = $this->m_admin->login_admin($whereadmin);
+			// if($cek->num_rows() > 0){
+			// 	$d = $cek->row_array();
+			// 	$data = array(
+			// 		'id' => $d['id_admin'],
+			// 		'nama' => $d['nama'],
+			// 		'username' => $d['username'],
+			// 		'status' => 'admin'
+			// 	);
+			// 	$this->session->set_userdata($data);
+			// 	redirect('');
+			// }
+			// else{
+			// 	$this->session->set_flashdata('gagal', 'Username / Password salah');
+			// 	redirect('login');
+			// }
+			if ($cek->num_rows() > 0) {
 				$d = $cek->row_array();
-				$data = array(
-					'id' => $d['id_admin'],
-					'nama' => $d['nama'],
-					'username' => $d['username'],
-					'status' => 'admin'
-				);
-				$this->session->set_userdata($data);
-				redirect('');
-			}
-			else{
-				$this->session->set_flashdata('gagal', 'Username / Password salah');
-				redirect('login');
+				if (password_verify($password, $d['password'])) {
+					# data session
+					$data = [
+						'id' => $d['id_admin'],
+						'nama' => $d['nama'],
+						'username' => $d['username'],
+						'status' => 'admin'
+					];
+					$this->session->set_userdata($data);
+					redirect('');
+				}
+				else{
+					$this->session->set_flashdata('gagal', 'Username / Password salah');
+					redirect('login');
+				}
 			}
 		}
 		if ($hak == 'guru') {
 			# code...
-			$cek = $this->m_admin->login_guru($where);
+			$cek = $this->m_admin->login_guru($whereguru);
 			if ($cek->num_rows() > 0) {
 				# code...
 				$d = $cek->row_array();

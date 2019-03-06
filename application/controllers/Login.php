@@ -13,7 +13,7 @@ class Login extends CI_Controller{
         if($this->session->userdata('login')){
             redirect('');
         }
-        $this->load->view('template/login');
+        $this->load->view('_template_login/login');
     }
 	
 	function actlogin(){

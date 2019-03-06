@@ -1,15 +1,16 @@
-	<main class="w50 mgratas5">
-		<div class="card upbiru">
-			<div class="w50">
-				<div class="card-content center-align">
-					<h4 class="nopad">Waktu Habis</h4>
-					<img src="<?=base_url('assets/img/closebulet.png');?>" class="gambar" alt="">
+	<div class="row">
+		<!-- <div class="col-sm-6"> -->
+			<div class="box box-danger">
+				<!-- <div class="box-header bg-blue with-border">
+					<h3 class="box-title">Ujian Selesai</h3>
+				</div> -->
+				<div class="box-body">
+					<h1 class="text-center ujian-sls text-red"><i class="fa fa-minus-circle"></i></h1>
+					<h1 class="text-center ujian-sls2">Ujian Telah Selesai !</h1>
 				</div>
-				<div class="card-action">
-						<a href="index.html">
-						<button class="btn btntimeout">Selesai</button>
-						</a>
+				<div class="box-footer">
+					<a href="<?=base_url();?>" class="pull-right btn btn-primary"><i class="fa fa-sign-out"></i> Kembali</a>
 				</div>
 			</div>
-		</div>
-	</main>
+		<!-- </div> -->
+	</div>

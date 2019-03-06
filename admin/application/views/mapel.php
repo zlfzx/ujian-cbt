@@ -9,8 +9,8 @@
     <section class="content">
         <div class="box box-warning">
             <div class="box-header">
-                <button type="button" data-toggle="modal" data-target="#tambah-mapel" class="btn btn-success"><i class="fa fa-plus"></i> Tambah</button>
-                <button type="button" data-toggle="modal" data-target="#import-mapel" class="btn btn-info"><i class="fa fa-upload"></i> Import</button>
+                <button type="button" data-toggle="modal" data-target="#tambah-mapel" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Mapel</button>
+                <!-- <button type="button" data-toggle="modal" data-target="#import-mapel" class="btn btn-info"><i class="fa fa-upload"></i> Import</button> -->
 
                 <!-- Modal Tambah Pelajaran -->
                 <div class="modal fade" id="tambah-mapel">
@@ -79,8 +79,8 @@
                             <td><?= $no++;?>.</td>
                             <td><?= $d->mapel; ?></td>
                             <td>
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editMapel<?= $d->id_mapel;?>"><i class="fa fa-edit"></i> Edit</button> &nbsp;
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#hapusMapel<?= $d->id_mapel;?>"><i class="fa fa-trash"></i> Hapus</button>
+                                <button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#editMapel<?= $d->id_mapel;?>"><i class="fa fa-edit"></i> Edit</button> &nbsp;
+                                <button class="btn btn-xs btn-danger" data-toggle="modal" data-target="#hapusMapel<?= $d->id_mapel;?>"><i class="fa fa-trash"></i> Hapus</button>
                             </td>
                         </tr>
                         <!-- Modal Edit Mapel -->

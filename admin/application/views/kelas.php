@@ -9,8 +9,8 @@
     <section class="content">
         <div class="box box-warning">
             <div class="box-header">
-                <button type="button" data-toggle="modal" data-target="#tambah-kelas" class="btn btn-success"><i class="fa fa-plus"></i> Tambah</button>
-                <button type="button" data-toggle="modal" data-target="#import-kelas" class="btn btn-info"><i class="fa fa-upload"></i> Import</button>
+                <button type="button" data-toggle="modal" data-target="#tambah-kelas" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Kelas</button>
+                <!-- <button type="button" data-toggle="modal" data-target="#import-kelas" class="btn btn-info"><i class="fa fa-upload"></i> Import</button> -->
                 <!-- Modal Tambah Kelas -->
                 <div class="modal fade" id="tambah-kelas">
                     <div class="modal-dialog">
@@ -101,8 +101,8 @@
                             <td><?= $k->rombel;?></td>
                             <td><?= $k->kode_kelas;?></td>
                             <td>
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editKelas<?= $k->id_kelas;?>"><i class="fa fa-edit"></i> Edit</button> &nbsp;
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#hapusKelas<?= $k->id_kelas;?>"><i class="fa fa-trash"></i> Hapus</button>
+                                <button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#editKelas<?= $k->id_kelas;?>"><i class="fa fa-edit"></i> Edit</button> &nbsp;
+                                <button class="btn btn-xs btn-danger" data-toggle="modal" data-target="#hapusKelas<?= $k->id_kelas;?>"><i class="fa fa-trash"></i> Hapus</button>
                             </td>
                         </tr>
                         <!-- Modal Edit Kelas -->
@@ -176,7 +176,7 @@
 
         <div class="box box-warning">
             <div class="box-header">
-                <button class="btn btn-success" data-toggle="modal" data-target="#tambahJurusan"><i class="fa fa-plus"></i> Tambah</button>
+                <button class="btn btn-success" data-toggle="modal" data-target="#tambahJurusan"><i class="fa fa-plus"></i> Tambah Jurusan</button>
                 <!-- Modal Tambah Jurusan -->
                 <div class="modal fade" id="tambahJurusan">
                     <div class="modal-dialog">
@@ -218,8 +218,8 @@
                             <td><?= $no++;?>.</td>
                             <td><?= $j->jurusan;?></td>
                             <td>
-                                <button class="btn btn-warning" data-toggle="modal" data-target="#editJurusan<?= $j->id_jurusan;?>"><i class="fa fa-edit"></i> Edit</button> &nbsp;
-                                <button class="btn btn-danger" data-toggle="modal" data-target="#hapusJurusan<?= $j->id_jurusan;?>"><i class="fa fa-trash"></i> Hapus</button>
+                                <button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#editJurusan<?= $j->id_jurusan;?>"><i class="fa fa-edit"></i> Edit</button> &nbsp;
+                                <button class="btn btn-xs btn-danger" data-toggle="modal" data-target="#hapusJurusan<?= $j->id_jurusan;?>"><i class="fa fa-trash"></i> Hapus</button>
                             </td>
                         </tr>
                         <!-- Modal Edit Jurusan -->

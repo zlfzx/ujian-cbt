@@ -9,8 +9,8 @@
     <section class="content">
         <div class="box box-warning">
             <div class="box-header">
-                <button type="button" data-toggle="modal" data-target="#tambahSiswa" class="btn btn-success"><i class="fa fa-user-plus"></i> Tambah</button>
-                <button type="button" data-toggle="modal" data-target="#importSiswa" class="btn btn-info"><i class="fa fa-upload"></i> Import</button>
+                <button type="button" data-toggle="modal" data-target="#tambahSiswa" class="btn btn-success"><i class="fa fa-user-plus"></i> Tambah Siswa</button>
+                <!-- <button type="button" data-toggle="modal" data-target="#importSiswa" class="btn btn-info"><i class="fa fa-upload"></i> Import</button> -->
                 <!-- Modal Tambah Siswa -->
                 <div class="modal fade" id="tambahSiswa">
                     <div class="modal-dialog">
@@ -100,11 +100,11 @@
                             <td><?= $s->kode_kelas;?></td>
                             <td><?= $s->nohp;?></td>
                             <td>
-                                <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#lihatPassword<?= $s->id_siswa;?>"><i class="fa fa-eye"></i> Lihat</button>
+                                <button class="btn btn-xs btn-info" data-toggle="modal" data-target="#lihatPassword<?= $s->id_siswa;?>"><i class="fa fa-eye"></i> Lihat</button>
                             </td>
                             <td>
-                                <button type="button" data-toggle="modal" data-target="#editSiswa<?= $s->id_siswa;?>" class="btn btn-sm btn-warning" href="#"><i class="fa fa-edit"></i> Edit</button> &nbsp;
-                                <button type="button" data-toggle="modal" data-target="#hapusSiswa<?= $s->id_siswa;?>" class="btn btn-sm btn-danger" href="#"><i class="fa fa-user-times"></i> Hapus</button> 
+                                <button type="button" data-toggle="modal" data-target="#editSiswa<?= $s->id_siswa;?>" class="btn btn-xs btn-warning" href="#"><i class="fa fa-edit"></i> Edit</button> &nbsp;
+                                <button type="button" data-toggle="modal" data-target="#hapusSiswa<?= $s->id_siswa;?>" class="btn btn-xs btn-danger" href="#"><i class="fa fa-user-times"></i> Hapus</button> 
                             </td>
                         </tr>
                         <!-- Modal Lihat Password Siswa -->

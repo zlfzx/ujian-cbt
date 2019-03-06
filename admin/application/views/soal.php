@@ -4,6 +4,7 @@
             Soal |
             <small><?=$kelas['kode_kelas'];?></small>
         </h1>
+        <a href="<?=base_url('./../media');?>">klik</a>
     </section>
     <section class="content">
         <div class="box box-warning">
@@ -82,9 +83,9 @@
                             <td><?=$ls->opsi_d;?></td>
                             <td><?=$ls->opsi_e;?></td>
                             <td>
-                                <button class="btn btn-info m2px" data-toggle="modal" data-target="#info<?=$ls->id_soal;?>"><i class="fa fa-info"></i> Info</button>
-                                <button class="btn btn-warning m2px"><i class="fa fa-edit"></i> Edit</button>
-                                <button class="btn btn-danger m2px"><i class="fa fa-trash"></i> Hapus</button>
+                                <button class="btn btn-xs btn-info m2px" data-toggle="modal" data-target="#info<?=$ls->id_soal;?>"><i class="fa fa-info"></i> Info</button>
+                                <button class="btn btn-xs btn-warning m2px"><i class="fa fa-edit"></i> Edit</button>
+                                <button class="btn btn-xs btn-danger m2px"><i class="fa fa-trash"></i> Hapus</button>
                             </td>
                         </tr>
                         <!-- Modal Info Soal -->
@@ -98,8 +99,9 @@
                                     <div class="modal-body">
                                         <div class="box-body">
                                             <?php if ($ls->media) { ?>
-                                            <img src="./../media/<?=$ls->media;?>" class="img-thumbnail">
+                                            <img src="<?=base_url('./../media/'.$ls->media);?>" class="img-thumbnail">
                                             <?php } ?>
+                                            <?=$ls->soal;?>
                                             <div class="well">
                                                 <h3>Jawaban : </h3>
                                                 <p><?=$ls->jawaban;?></p>
@@ -142,7 +144,13 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="box-body">
-                                            <img src="./../media/"<?=$ls->media;?> alt="" class="img-responsive">
+                                            <?php if ($ls->media) { ?>
+                                            <img src="<?=base_url('./../media/'.$ls->media);?>" class="img-thumbnail">
+                                            <?php } ?>
+                                            <div class="well">
+                                                <h3>Jawaban : </h3>
+                                                <p><?=$ls->jawaban;?></p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -160,6 +168,5 @@
 <script>
 $(function(){
     $('#tabelSoal').DataTable();
-    CKEDITOR.replace('fieldSoal');
 })
 </script>

@@ -21,6 +21,11 @@ class m_admin extends CI_Model{
         return $this->db->get();
     }
 
+    //Cek password admin
+    function cek_passwd_admin($where){
+        $this->db->select('username, password');
+        return $this->db->get_where('admin', $where);
+    }
     //Cek Password Default Guru
     function cek_passwd_guru($where){
         $this->db->select('guru.username, guru.password');
@@ -28,6 +33,11 @@ class m_admin extends CI_Model{
     }
     //Ganti Password Guru
     function update_passwd_guru($table, $data, $where){
+        $this->db->where($where);
+        $this->db->update($table, $data);
+    }
+    //Ganti password admin
+    function update_passwd_admin($table, $data, $where){
         $this->db->where($where);
         $this->db->update($table, $data);
     }

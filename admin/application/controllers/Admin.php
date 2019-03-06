@@ -66,6 +66,7 @@ class Admin extends CI_Controller {
 
 		$data['jmlmapel'] = $this->m_admin->list_mapel()->num_rows();
 		$data['jmlsiswa'] = $this->m_admin->list_siswa()->num_rows();
+		$data['jmljurusan'] = $this->m_admin->list_jurusan()->num_rows();
 		$data['jmlkelas'] = $this->m_admin->list_kelas()->num_rows();
 
 		$data['title'] = 'Dashboard';
@@ -512,9 +513,31 @@ class Admin extends CI_Controller {
 	}
 	//Admin
 	public function ganti_passwd_admin(){
+		$username = $this->input->post('username');
 		$passwordlama = $this->input->post('password');
 		$passwordbaru = $this->input->post('passwordbaru');
 		$konfirmpassword = $this->input->post('konfirmpassword');
+
+		$id = ['id_admin' => $this->session->id];
+		$cek = $this->m_admin->cek_passwd_admin($id)->row_array();
+		if ($cek['password'] == $passwordlama && $passwordbaru == $konfirmpassword && $username != $this->session->nama) {
+			# code...
+			$data = ['username' => $username, 'password' => $passwordbaru];
+			$this->m_admin->update_passwd_admin('admin', $data, $id);
+			redirect('setting');
+		}
+		else{
+			if($username != $this->session->nama){
+				$this->session->set_flashdata('username', 'Username salah !');
+			}
+			if($passwordlama != $cek['password']){
+				$this->session->set_flashdata('passwdlama', 'Password lama salah !');
+			}
+			if($passwordbaru != $konfirmpassword){
+				$this->session->set_flashdata('passwdbaru', 'Password baru tidak cocok !');
+			}
+			redirect('setting');
+		}
 	}
 	//Guru
 	public function ganti_passwd_guru(){

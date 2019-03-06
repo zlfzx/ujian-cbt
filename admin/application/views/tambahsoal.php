@@ -69,11 +69,11 @@
                         <label for="Jawaban">Jawaban</label>
                         <select name="jawaban" id="" class="form-control" required="">
                             <option value="">Pilih Jawaban...</option>
-                            <option value="a">A</option>
-                            <option value="b">B</option>
-                            <option value="c">C</option>
-                            <option value="d">D</option>
-                            <option value="e">E</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
                         </select>
                         <input type="hidden" class="form-control">
                     </div>
@@ -86,7 +86,7 @@
     </section>
 </div>
 
-<script>
+<script async="defer">
 $(function(){
     CKEDITOR.replace('fieldSoal')
 })
@@ -100,3 +100,6 @@ if ($this->session->flashdata('soal')) { ?>
 <?php
 }
 ?>
+
+<!-- CK Editor -->
+<script src="<?= base_url('assets/adminlte/bower_components/ckeditor/ckeditor.js');?>"></script>

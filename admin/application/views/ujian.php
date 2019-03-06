@@ -97,8 +97,8 @@
                             <td><?=$lu->waktu;?> Menit</td>
                             <td><?=$lu->tanggal;?></td>
                             <td>
-                                <button class="btn btn-sm btn-warning"><i class="fa fa-edit"></i> Edit</button> &nbsp;
-                                <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus</button>
+                                <button class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Edit</button> &nbsp;
+                                <button class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Hapus</button>
                             </td>
                         </tr>
                     <?php } ?>

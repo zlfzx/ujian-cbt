@@ -31,7 +31,7 @@ class User extends CI_Controller {
 
 	//Header
 	private function header($data){
-		$this->load->view('template/header', $data);
+		$this->load->view('_template/header', $data);
 	}
 
 	//404
@@ -44,12 +44,13 @@ class User extends CI_Controller {
      	$id = ['id_siswa' => $this->session->id];
      	$data['ar'] = $this->m_user->cekdefpass($id)->row_array();
      	$data['title'] = 'Ujian Berbasis Komputer';
+          $data['judul'] = 'Dashboard';
           $whrkelas = ['kelas.kode_kelas' => $this->session->userdata('kelas')];
           $data['jdwlujian'] = $this->m_user->jadwal_ujian($whrkelas)->result();
 
      	$this->header($data);
           $this->load->view('utama');
-          $this->load->view('template/footer');
+          $this->load->view('_template/footer');
      }
 
      //Ujian
@@ -125,6 +126,8 @@ class User extends CI_Controller {
                     $whr_detil_tes = ['id_ujian' => $id_ujian, 'id_siswa' => $data['sess_id']];
                     $data['detil_tes'] = $this->m_user->detil_tes($whr_detil_tes)->row();
                     $data['data'] = $soal_urut_ok;
+
+                    redirect($id_ujian);
                }
                else{
                     $q_ambil_soal = $this->db->query('SELECT * FROM ikut_ujian WHERE id_ujian = '.$id_ujian.' AND id_siswa = '.$data['sess_id'].'')->row();
@@ -143,46 +146,34 @@ class User extends CI_Controller {
 
                     $whr_detil_soal = ['id_ujian' => $id_ujian];
                     $data['detil_soal'] = $this->m_user->detil_soal($whr_detil_soal)->row();
-                    $data['detiltes'] = $q_ambil_soal;
+                    $data['detil_tes'] = $q_ambil_soal;
                     $data['data'] = $soal_urut_ok;
+
+                    //view
+                    $data['title'] = $data['detil_soal']->nama_ujian;
+                    $data['judul'] = 'Ujian';
+                    $this->load->view('_template_ujian/header', $data);
+                    $this->load->view('_template_ujian/ujian');
+                    $this->load->view('_template_ujian/footer');
                }
           }
           else{
                //redirecte ujian selesai
                redirect('user/ujian_selesai');
           }
-
-          $whwhw = ['id_ujian' => $id_ujian];
-          $data['detilujian'] = $this->m_user->cek_detil_tes($whwhw)->row();
-          $data['title'] = $data['detilujian']->nama_ujian;
-          $this->header($data);
-          $this->load->view('ujian');
-          $this->load->view('template/footer');
-
-          // //data ujian
-          // $whr_ujian = ['id_ujian' => $id_ujian];
-          // $data['ujian'] = $this->m_user->ujian($whr_ujian)->row_array();
-          // if (count($data['ujian']) < 1) {
-          //      redirect('');
-          // }
-          // else{
-          //      $data['title'] = $data['ujian']['nama_ujian'].' | '.$data['ujian']['mapel'];
-
-          //      $this->header($data);
-          //      $this->load->view('ujian');
-          //      $this->load->view('template/footer');
-          // }
      }
+
      //fungsi proses ujian
      function simpan(){
           echo '1';
      }
      public function ujian_selesai(){
           $data['title'] = 'Ujian Selesai';
+          $data['judul'] = 'Ujian';
 
-          $this->header($data);
+          $this->load->view('_template_ujian/header', $data);
           $this->load->view('waktu_habis');
-          $this->load->view('template/footer');
+          $this->load->view('_template_ujian/footer');
      }
 
      //Setting
@@ -190,10 +181,11 @@ class User extends CI_Controller {
      	$id = ['id_siswa' => $this->session->id];
      	$data['ar'] = $this->m_user->cekdefpass($id)->row_array();
      	$data['title'] = 'Setting | Ujian Berbasis Komputer';
+          $data['judul'] = 'Pengaturan';
 
      	$this->header($data);
      	$this->load->view('setting');
-     	$this->load->view('template/footer');
+     	$this->load->view('_template/footer');
      }
      function gantipass(){
      	$password = $this->input->post('passLama');

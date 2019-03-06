@@ -18,11 +18,11 @@
   <!-- Date Picker -->
   <link rel="stylesheet" href="<?= base_url('assets/adminlte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css');?>">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="<?= base_url('assets/adminlte/bower_components/bootstrap-daterangepicker/daterangepicker.css');?>">
+  <!-- <link rel="stylesheet" href="<?= base_url('assets/adminlte/bower_components/bootstrap-daterangepicker/daterangepicker.css');?>"> -->
   <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css');?>">  
+  <!-- <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css');?>">   -->
   <!-- Select2 -->
-  <link rel="stylesheet" href="<?=base_url('assets/adminlte/bower_components/select2/dist/css/select2.min.css');?>">
+  <!-- <link rel="stylesheet" href="<?=base_url('assets/adminlte/bower_components/select2/dist/css/select2.min.css');?>"> -->
   <!-- Sweetalert -->
   <link rel="stylesheet" href="<?=base_url('assets/css/sweetalert2.min.css');?>">
   <!-- CSS -->
@@ -30,7 +30,7 @@
   <!-- jQuery 3 -->
   <script src="<?= base_url('assets/adminlte/bower_components/jquery/dist/jquery.min.js');?>"></script>
   <!-- jQuery UI 1.11.4 -->
-  <script src="<?= base_url('assets/adminlte/bower_components/jquery-ui/jquery-ui.min.js');?>"></script>
+  <!-- <script src="<?= base_url('assets/adminlte/bower_components/jquery-ui/jquery-ui.min.js');?>"></script> -->
   <!-- Sweetalert -->
   <script src="<?=base_url('assets/js/sweetalert2.all.min.js');?>"></script>
 
@@ -51,7 +51,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>CBT</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg">Ujian<b>CBT</b></span>
+      <span class="logo-lg"><b>C</b>omputer <b>B</b>ased <b>T</b>est</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
