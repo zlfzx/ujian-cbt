@@ -1,6 +1,12 @@
 ###################
-What is CodeIgniter
+Computer Based Test
 ###################
+
+Adalah sebuah aplikasi ujian berbasis komputer yang dibangun dengan menggunakan
+framework Codeigniter 3. Aplikasi ini memiliki dua halaman yaitu halaman untuk
+siswa dan halaman untuk admin. Halaman siswa bisa diakses oleh siswa untuk
+melaksanakan ujian. Sedangkan halaman admin digunakan untuk mengelola aplikasi
+ini.
 
 CodeIgniter is an Application Development Framework - a toolkit - for people
 who build web sites using PHP. Its goal is to enable you to develop projects
