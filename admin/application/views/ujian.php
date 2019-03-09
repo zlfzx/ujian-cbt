@@ -5,7 +5,7 @@
     <section class="content">
         <div class="box box-warning">
             <div class="box-header">
-                <button class="btn btn-success" data-toggle="modal" data-target="#tambahUjian"><i class="fa fa-plus"></i> Tambah Ujian</button>
+                <button class="btn btn-sm btn-flat btn-success" data-toggle="modal" data-target="#tambahUjian"><i class="fa fa-plus"></i> Tambah Ujian</button>
 
                 <div class="modal fade" id="tambahUjian">
                     <div class="modal-dialog">

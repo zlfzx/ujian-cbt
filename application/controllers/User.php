@@ -46,7 +46,7 @@ class User extends CI_Controller {
      	$data['title'] = 'Ujian Berbasis Komputer';
           $data['judul'] = 'Dashboard';
           $whrkelas = ['kelas.kode_kelas' => $this->session->userdata('kelas')];
-          $data['jdwlujian'] = $this->m_user->jadwal_ujian($whrkelas)->result();
+          $data['jdwlujian'] = $this->m_user->jadwal_ujian($this->session->id)->result();
 
      	$this->header($data);
           $this->load->view('utama');
@@ -55,6 +55,11 @@ class User extends CI_Controller {
 
      //Ujian
      public function ujian($id_ujian){
+          $c = $this->m_user->cek_detil_tes(['id_ujian' => $id_ujian]);
+          if ($c->num_rows() < 1) {
+               # code...
+               redirect('');
+          }
           //def session siswa
           $data['sess_id'] = $this->session->userdata('id');
           $data['sess_nama'] = $this->session->userdata('nama');
@@ -121,11 +126,11 @@ class User extends CI_Controller {
                     ];
                     $this->m_user->tambah_ujian($data_tmbh_ujian);
 
-                    $whr_detil_soal = ['id_ujian' => $id_ujian];
-                    $data['detil_soal'] = $this->m_user->detil_soal($whr_detil_soal)->row();
-                    $whr_detil_tes = ['id_ujian' => $id_ujian, 'id_siswa' => $data['sess_id']];
-                    $data['detil_tes'] = $this->m_user->detil_tes($whr_detil_tes)->row();
-                    $data['data'] = $soal_urut_ok;
+                    // $whr_detil_soal = ['id_ujian' => $id_ujian];
+                    // $data['detil_soal'] = $this->m_user->detil_soal($whr_detil_soal)->row();
+                    // $whr_detil_tes = ['id_ujian' => $id_ujian, 'id_siswa' => $data['sess_id']];
+                    // $data['detil_tes'] = $this->m_user->detil_tes($whr_detil_tes)->row();
+                    // $data['data'] = $soal_urut_ok;
 
                     redirect($id_ujian);
                }
@@ -150,26 +155,74 @@ class User extends CI_Controller {
                     $data['data'] = $soal_urut_ok;
 
                     //view
-                    $data['title'] = $data['detil_soal']->nama_ujian;
-                    $data['judul'] = 'Ujian';
+                    $data['title'] = $data['detil_soal']->mapel.' | '.$data['detil_soal']->nama_ujian;
+                    $data['judul'] = $data['detil_soal']->mapel;
                     $this->load->view('_template_ujian/header', $data);
                     $this->load->view('_template_ujian/ujian');
                     $this->load->view('_template_ujian/footer');
                }
           }
           else{
-               //redirecte ujian selesai
-               redirect('user/ujian_selesai');
+               //redirect ujian selesai
+               $xx = $this->m_user->cek_selesai_ujian(['id_siswa' => $data['sess_id'], 'id_ujian' => $id_ujian, 'status' => 'N'])->row();
+               redirect('selesai/'.$xx->id_tes);
           }
      }
 
      //fungsi proses ujian
-     function simpan(){
-          echo '1';
+     function ujian_simpan($id_tes){
+          $id_siswa = $this->session->id;
+          $p = json_decode(file_get_contents('php://input'));
+          $update_ = '';
+          for ($i=1; $i < $p->jml_soal; $i++) { 
+               # code...
+               $_tjawab = 'opsi_'.$i;
+               $_tidsoal = 'id_soal_'.$i;
+               $jawaban_ = empty($p->$_tjawab) ? '' : $p->$_tjawab;
+               $update_ .= ''.$p->$_tidsoal.':'.$jawaban_.',';
+          }
+          $update_ = substr($update_, 0, -1);
+
+          $this->db->query("UPDATE ikut_ujian SET list_jawaban='".$update_."' WHERE id_tes='$id_tes' AND id_siswa='$id_siswa'");
+          echo $this->db->last_query();
+          exit;
      }
-     public function ujian_selesai(){
+     function ujian_akhir($id_tes){
+          $id_siswa = $this->session->id;
+          $p = json_decode(file_get_contents('php://input'));
+          $jumlah_soal = $p->jml_soal;
+          $jumlah_benar = 0;
+          $update_ = '';
+
+          for ($i=1; $i < $p->jml_soal; $i++) { 
+               # code...
+               $_tjawab = 'opsi_'.$i;
+               $_tidsoal = 'id_soal_'.$i;
+               $jawaban_ = empty($p->$_tjawab) ? '' : $p->$_tjawab;
+               $cek_jwb = $this->db->query("SELECT jawaban FROM soal WHERE id_soal='".$p->$_tidsoal."'")->row();
+               if ($cek_jwb->jawaban == $jawaban_) {
+                    $jumlah_benar++;
+               }
+               $update_ .= ''.$p->$_tidsoal.':'.$jawaban_.',';
+          }
+          $update_ = substr($update_, 0, -1);
+
+          $nilai = ($jumlah_benar/($jumlah_soal-1)) * 100;
+          $this->db->query("UPDATE ikut_ujian SET jml_benar=".$jumlah_benar.", nilai='".$nilai."', list_jawaban='".$update_."', status='N' WHERE id_tes='$id_tes' AND id_siswa='$id_siswa'");
+          $a['status'] = 'ok';
+          $this->j($a);
+          exit;
+     }
+
+     public function ujian_selesai($id_tes){
+          if ($data['detil_tes'] = $this->m_user->detil_tes(['id_tes' => $id_tes])->num_rows() < 1) {
+               redirect('');
+          }
+          $data['detil_tes'] = $this->m_user->detil_tes(['id_tes' => $id_tes])->row();
+          $whr_detil_soal = ['id_ujian' => $data['detil_tes']->id_ujian];
+          $data['detil_soal'] = $this->m_user->detil_soal($whr_detil_soal)->row();
           $data['title'] = 'Ujian Selesai';
-          $data['judul'] = 'Ujian';
+          $data['judul'] = $data['detil_soal']->mapel;
 
           $this->load->view('_template_ujian/header', $data);
           $this->load->view('waktu_habis');
@@ -216,6 +269,13 @@ class User extends CI_Controller {
           $this->m_user->gantipass($data, $whr);
           $this->session->set_flashdata('reper', 'Pertanyaan dan jawaban berhasil diubah');
           redirect('setting');
+      }
+
+
+      //Fungsi tambahan
+      public function j($data){
+          header('Content-Type: application/json');
+          echo json_encode($data);
       }
 
 }

@@ -4,42 +4,11 @@
             Soal |
             <small><?=$kelas['kode_kelas'];?></small>
         </h1>
-        <a href="<?=base_url('./../media');?>">klik</a>
     </section>
     <section class="content">
-        <div class="box box-warning">
+        <div class="box box-info box-solid">
             <div class="box-header">
-                <button class="btn btn-info" data-toggle="modal" data-target="#importSoal"><i class="fa fa-upload"></i> Import</button>
-                <!-- Modal Import Soal -->
-                <div class="modal fade" id="importSoal">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title"><i class="fa fa-upload"></i> Import Soal</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form action="">
-                                    <div class="box-body">
-                                        <div class="form-group">
-                                            <label for="File">File :</label>
-                                            <input type="file">
-                                        </div>
-                                    </div>
-                                    <div class="box-footer">
-                                        <button type="submit" class="btn btn-success"><i class="fa fa-upload"></i> Import</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="box-body">
-                <!-- Pilih Kelas-->
-                <div class="pad">
-                    <div class="callout callout-info">
-                        <form action="" class="form-inline">
+                <form action="" class="form-inline">
                             <div class="form-group">
                                 <label for="MataPelajaran">Mata Pelajaran :</label>
                                 <select name="" id="pilihKelas" class="form-control">
@@ -49,9 +18,8 @@
                                 </select>
                             </div>
                         </form>
-                    </div>
-                </div>
-
+            </div>
+            <div class="box-body">
                 <!-- Tabel Soal -->
                 <table class="table table-striped table-bordered table-hover" id="tabelSoal">
                     <thead>
@@ -59,11 +27,6 @@
                             <th>No.</th>
                             <th>Guru</th>
                             <th>Soal</th>
-                            <th>Opsi A</th>
-                            <th>Opsi B</th>
-                            <th>Opsi C</th>
-                            <th>Opsi D</th>
-                            <th>Opsi E</th>
                             <th>#</th>
                         </tr>
                     </thead>
@@ -77,15 +40,10 @@
                             <td><?=$no++;?></td>
                             <td><?=$ls->nama;?></td>
                             <td><?=$ls->soal;?></td>
-                            <td><?=$ls->opsi_a;?></td>
-                            <td><?=$ls->opsi_b;?></td>
-                            <td><?=$ls->opsi_c;?></td>
-                            <td><?=$ls->opsi_d;?></td>
-                            <td><?=$ls->opsi_e;?></td>
                             <td>
                                 <button class="btn btn-xs btn-info m2px" data-toggle="modal" data-target="#info<?=$ls->id_soal;?>"><i class="fa fa-info"></i> Info</button>
-                                <button class="btn btn-xs btn-warning m2px"><i class="fa fa-edit"></i> Edit</button>
-                                <button class="btn btn-xs btn-danger m2px"><i class="fa fa-trash"></i> Hapus</button>
+                                <a href="<?=base_url('editsoal/'.$ls->id_soal);?>" class="btn btn-xs btn-warning m2px"><i class="fa fa-edit"></i> Edit</a>
+                                <button class="btn btn-xs btn-danger m2px" data-toggle="modal" data-target="#hapus<?=$ls->id_soal;?>"><i class="fa fa-trash"></i> Hapus</button>
                             </td>
                         </tr>
                         <!-- Modal Info Soal -->
@@ -98,14 +56,58 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="box-body">
-                                            <?php if ($ls->media) { ?>
+                                            <?php 
+                                            $ex = explode(".", $ls->media);
+                                            $ex = strtolower(end($ex));
+                                            if ($ex == 'jpg' || $ex == "png") { ?>
                                             <img src="<?=base_url('./../media/'.$ls->media);?>" class="img-thumbnail">
+                                            <?php }
+                                            if ($ex == 'mp3' || $ex == 'wav') { ?>
+                                            <audio src="<?=base_url('./../media/'.$ls->media);?>" controls></audio>
                                             <?php } ?>
-                                            <?=$ls->soal;?>
-                                            <div class="well">
-                                                <h3>Jawaban : </h3>
-                                                <p><?=$ls->jawaban;?></p>
+                                            <div class="box box-solid with-border info-soal">
+                                                <div class="box-body">
+                                                    <h5>Soal :</h5>
+                                                    <p><?=$ls->soal;?></p>
+                                                    <hr>
+                                                    <h5>Opsi A :</h5>
+                                                    <p><?=$ls->opsi_a;?></p>
+                                                    <h5>Opsi B :</h5>
+                                                    <p><?=$ls->opsi_b;?></p>
+                                                    <h5>Opsi C :</h5>
+                                                    <p><?=$ls->opsi_c;?></p>
+                                                    <h5>Opsi D :</h5>
+                                                    <p><?=$ls->opsi_d;?></p>
+                                                    <h5>Opsi E</h5>
+                                                    <p><?=$ls->opsi_e;?></p>
+                                                    <h4>Jawaban : </h4>
+                                                    <p><?=$ls->jawaban;?></p>
+                                                </div>
+                                                <div class="box-footer">
+                                                    <h5>Dibuat oleh : </h5>
+                                                    <p><?=$ls->nama;?></p>
+                                                </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal hapus soal -->
+                        <div class="modal fade" id="hapus<?=$ls->id_soal;?>">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                     <div class="modal-header">
+                                        <button class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title"><i class="fa fa-trash"></i> Hapus Soal</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="box-body">
+                                            <h4>Anda yakin akan menghapus soal ?</h4>
+                                        </div>
+                                        <div class="box-footer">
+                                            <a href="<?= base_url('admin/hapus_soal/'.$ls->id_soal);?>" class="btn btn-danger">Ya</a> &nbsp;
+                                            <button class="btn btn-default" data-dismiss="modal">Tidak</button>
                                         </div>
                                     </div>
                                 </div>
@@ -124,15 +126,10 @@
                             <td><?=$no++;?></td>
                             <td><?=$this->session->nama;?></td>
                             <td><?=$ls->soal;?></td>
-                            <td><?=$ls->opsi_a;?></td>
-                            <td><?=$ls->opsi_b;?></td>
-                            <td><?=$ls->opsi_c;?></td>
-                            <td><?=$ls->opsi_d;?></td>
-                            <td><?=$ls->opsi_e;?></td>
                             <td>
-                                <button class="btn btn-info m2px" data-toggle="modal" data-target="#info<?= $ls->id_soal;?>"><i class="fa fa-info"></i> Info</button>
-                                <button class="btn btn-warning m2px"><i class="fa fa-edit"></i> Edit</button>
-                                <button class="btn btn-danger m2px"><i class="fa fa-trash"></i> Hapus</button>
+                                <button class="btn btn-xs btn-info m2px" data-toggle="modal" data-target="#info<?= $ls->id_soal;?>"><i class="fa fa-info"></i> Info</button>
+                                <a href="<?=base_url('editsoal/'.$ls->id_soal);?>" class="btn btn-xs btn-warning m2px"><i class="fa fa-edit"></i> Edit</a>
+                                <button class="btn btn-xs btn-danger m2px"><i class="fa fa-trash"></i> Hapus</button>
                             </td>
                         </tr>
                         <!-- Modal Info Soal -->
@@ -144,12 +141,37 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="box-body">
-                                            <?php if ($ls->media) { ?>
+                                            <?php 
+                                            $ex = explode(".", $ls->media);
+                                            $ex = strtolower(end($ex));
+                                            if ($ex == 'jpg' || $ex == "png") { ?>
                                             <img src="<?=base_url('./../media/'.$ls->media);?>" class="img-thumbnail">
+                                            <?php }
+                                            if ($ex == 'mp3' || $ex == 'wav') { ?>
+                                            <audio src="<?=base_url('./../media/'.$ls->media);?>" controls></audio>
                                             <?php } ?>
-                                            <div class="well">
-                                                <h3>Jawaban : </h3>
-                                                <p><?=$ls->jawaban;?></p>
+                                            <div class="box box-solid with-border info-soal">
+                                                <div class="box-body">
+                                                    <h5>Soal :</h5>
+                                                    <p><?=$ls->soal;?></p>
+                                                    <hr>
+                                                    <h5>Opsi A :</h5>
+                                                    <p><?=$ls->opsi_a;?></p>
+                                                    <h5>Opsi B :</h5>
+                                                    <p><?=$ls->opsi_b;?></p>
+                                                    <h5>Opsi C :</h5>
+                                                    <p><?=$ls->opsi_c;?></p>
+                                                    <h5>Opsi D :</h5>
+                                                    <p><?=$ls->opsi_d;?></p>
+                                                    <h5>Opsi E</h5>
+                                                    <p><?=$ls->opsi_e;?></p>
+                                                    <h4>Jawaban : </h4>
+                                                    <p><?=$ls->jawaban;?></p>
+                                                </div>
+                                                <div class="box-footer">
+                                                    <h5>Dibuat oleh : </h5>
+                                                    <p><?=$ls->nama;?></p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

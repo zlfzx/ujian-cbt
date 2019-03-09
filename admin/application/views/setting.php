@@ -4,11 +4,12 @@
     </section>
     <section class="content">
         <div class="row">
-            <!--Ganti Foto-->
+            <!--info admin-->
+            <?php if ($this->session->status != 'guru') { ?>
             <div class="col-md-6">
                 <div class="box box-danger">
-                    <div class="box-header">
-                        <button data-toggle="modal" data-target="#tambah-admin" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Tambah Admin</button>
+                    <div class="box-header with-border">
+                        <button data-toggle="modal" data-target="#tambah-admin" class="btn btn-xs btn-success"><i class="fa fa-plus"></i> Tambah Admin</button>
                         <div class="modal fade" id="tambah-admin">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -53,16 +54,17 @@
                     </div>
                 </div>
             </div>
+            <?php } ?>
             
             <!--Ganti Password-->
             <div class="col-md-6">
             <?php if($this->session->status == 'admin'){ ?>
-                <form action="<?=base_url('admin/ganti_passwd_admin');?>" class="box box-info" method="post">
+                <form action="<?=base_url('admin/ganti_passwd_admin');?>" class="box box-danger" method="post">
             <?php }
                 if($this->session->status == 'guru'){ ?>
-                <form action="<?=base_url('admin/ganti_passwd_guru');?>" class="box box-warning" method="post">
+                <form action="<?=base_url('admin/ganti_passwd_guru');?>" class="box box-danger" method="post">
             <?php } ?>
-                    <div class="box-header">
+                    <div class="box-header with-border">
                         <i class="fa fa-lock"></i> Ganti Username dan Password
                     </div>
                     <div class="box-body">

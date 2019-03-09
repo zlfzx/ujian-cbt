@@ -7,32 +7,32 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="<?= base_url('assets/adminlte/bower_components/bootstrap/dist/css/bootstrap.min.css');?>">
+  <link rel="stylesheet" href="<?= base_url('./../assets/adminlte/bower_components/bootstrap/dist/css/bootstrap.min.css');?>">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?= base_url('assets/adminlte/bower_components/font-awesome/css/font-awesome.min.css');?>">
+  <link rel="stylesheet" href="<?= base_url('./../assets/adminlte/bower_components/font-awesome/css/font-awesome.min.css');?>">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?= base_url('assets/adminlte/dist/css/AdminLTE.min.css');?>">
+  <link rel="stylesheet" href="<?= base_url('./../assets/adminlte/dist/css/AdminLTE.min.css');?>">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="<?= base_url('assets/adminlte/dist/css/skins/skin-blue.min.css');?>">
+  <link rel="stylesheet" href="<?= base_url('./../assets/adminlte/dist/css/skins/skin-blue.min.css');?>">
   <!-- Date Picker -->
-  <link rel="stylesheet" href="<?= base_url('assets/adminlte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css');?>">
+  <link rel="stylesheet" href="<?= base_url('./../assets/adminlte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css');?>">
   <!-- Daterange picker -->
-  <!-- <link rel="stylesheet" href="<?= base_url('assets/adminlte/bower_components/bootstrap-daterangepicker/daterangepicker.css');?>"> -->
+  <!-- <link rel="stylesheet" href="<?= base_url('./../assets/adminlte/bower_components/bootstrap-daterangepicker/daterangepicker.css');?>"> -->
   <!-- bootstrap wysihtml5 - text editor -->
-  <!-- <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css');?>">   -->
+  <!-- <link rel="stylesheet" href="<?= base_url('./../assets/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css');?>">   -->
   <!-- Select2 -->
-  <!-- <link rel="stylesheet" href="<?=base_url('assets/adminlte/bower_components/select2/dist/css/select2.min.css');?>"> -->
+  <!-- <link rel="stylesheet" href="<?=base_url('./../assets/adminlte/bower_components/select2/dist/css/select2.min.css');?>"> -->
   <!-- Sweetalert -->
-  <link rel="stylesheet" href="<?=base_url('assets/css/sweetalert2.min.css');?>">
+  <link rel="stylesheet" href="<?=base_url('./../assets/css/sweetalert2.min.css');?>">
   <!-- CSS -->
-  <link rel="stylesheet" href="<?=base_url('assets/css/style.css');?>">
+  <link rel="stylesheet" href="<?=base_url('./../assets/css/style-admin.css');?>">
   <!-- jQuery 3 -->
-  <script src="<?= base_url('assets/adminlte/bower_components/jquery/dist/jquery.min.js');?>"></script>
+  <script src="<?= base_url('./../assets/adminlte/bower_components/jquery/dist/jquery.min.js');?>"></script>
   <!-- jQuery UI 1.11.4 -->
-  <!-- <script src="<?= base_url('assets/adminlte/bower_components/jquery-ui/jquery-ui.min.js');?>"></script> -->
+  <!-- <script src="<?= base_url('./../assets/adminlte/bower_components/jquery-ui/jquery-ui.min.js');?>"></script> -->
   <!-- Sweetalert -->
-  <script src="<?=base_url('assets/js/sweetalert2.all.min.js');?>"></script>
+  <script src="<?=base_url('./../assets/js/sweetalert2.all.min.js');?>"></script>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -65,16 +65,15 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?= base_url('assets/adminlte/dist/img/avatar5.png');?>" class="user-image" alt="User Image">
+              <img src="<?= base_url('./../assets/adminlte/dist/img/avatar5.png');?>" class="user-image" alt="User Image">
               <span class="hidden-xs">
-                <?php if($this->session->status == 'admin'){echo 'Administrator';}
-                      elseif($this->session->status == 'guru'){echo 'Guru';}?>
+                <?=$this->session->nama;?>
               </span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="<?= base_url('assets/adminlte/dist/img/avatar5.png');?>" class="img-circle" alt="User Image">
+                <img src="<?= base_url('./../assets/adminlte/dist/img/avatar5.png');?>" class="img-circle" alt="User Image">
                 <p>
                   <?= $this->session->nama;?>
                 </p>
@@ -101,7 +100,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="<?= base_url('assets/adminlte/dist/img/avatar5.png');?>" class="img-circle" alt="User Image">
+          <img src="<?= base_url('./../assets/adminlte/dist/img/avatar5.png');?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p><?php if($this->session->status == 'admin'){echo 'Administrator';}
@@ -139,7 +138,7 @@
                   $where = array('kelas' => $pk->kelas); 
                   $perkelasjurusan = $this->m_admin->perkelasjurusan($where)->result();
                   foreach($perkelasjurusan as $pkj){ ?>
-                <li><a href="<?=base_url('admin/soal/'.$pk->kelas.'/'.$pkj->id_kelas);?>"><?=$pkj->kode_kelas;?></a></li>
+                <li><a href="<?=base_url('soal/'.$pk->kelas.'/'.$pkj->id_kelas);?>"><?=$pkj->kode_kelas;?></a></li>
                 <?php } ?>
               </ul>
             </li>
@@ -161,7 +160,7 @@
                   $where = array('kelas' => $pk->kelas); 
                   $perkelasjurusan = $this->m_admin->perkelasjurusan($where)->result();
                   foreach($perkelasjurusan as $pkj){ ?>
-                <li><a href="<?= base_url('admin/nilai/'.$pk->kelas.'/'.$pkj->id_kelas);?>"><i class="fa fa-circle-o"></i> <?=$pkj->kode_kelas;?></a></li>
+                <li><a href="<?= base_url('nilai/'.$pk->kelas.'/'.$pkj->id_kelas);?>"><i class="fa fa-circle-o"></i> <?=$pkj->kode_kelas;?></a></li>
                 <?php } ?>
               </ul>
             </li>
@@ -199,7 +198,7 @@
                   //$where = array('kelas' => $pk->kelas, 'id_guru' => $this->session->id); 
                   $perkelasjurusan = $this->m_admin->perkelasjurusan_g($pk->kelas, $this->session->id)->result();
                   foreach($perkelasjurusan as $pkj){ ?>
-                <li><a href="<?=base_url('admin/soal/'.$pk->kelas.'/'.$pkj->id_kelas);?>"><?=$pkj->kode_kelas;?></a></li>
+                <li><a href="<?=base_url('soal/'.$pk->kelas.'/'.$pkj->id_kelas);?>"><?=$pkj->kode_kelas;?></a></li>
                 <?php } ?>
               </ul>
             </li>
@@ -221,7 +220,7 @@
                   //$where = array('kelas' => $pk->kelas, 'id_guru' => $this->session->id); 
                   $perkelasjurusan = $this->m_admin->perkelasjurusan_g($pk->kelas, $this->session->id)->result();
                   foreach($perkelasjurusan as $pkj){ ?>
-                <li><a href="<?= base_url('admin/nilai/'.$pk->kelas.'/'.$pkj->id_kelas);?>"><i class="fa fa-circle-o"></i> <?=$pkj->kode_kelas;?></a></li>
+                <li><a href="<?= base_url('nilai/'.$pk->kelas.'/'.$pkj->id_kelas);?>"><i class="fa fa-circle-o"></i> <?=$pkj->kode_kelas;?></a></li>
                 <?php } ?>
               </ul>
             </li>

@@ -194,6 +194,25 @@ class m_admin extends CI_Model{
         $this->db->insert($table, $data);
     }
 
+    //Update soal tanpa media
+    function up_soal_nomedia($where, $table, $data){
+        $this->db->where($where);
+        $this->db->update($table, $data);
+    }
+    //Update soal dengan media
+    function up_soal_media($where, $table, $data){
+        $this->db->where($where);
+        $this->db->update($table, $data);
+    }
+
+    //get soal by id
+    function get_soal_by_id($where){
+        $this->db->join('kelas', 'soal.kelas=kelas.id_kelas');
+        $this->db->join('guru', 'soal.guru=guru.id_guru');
+        $this->db->join('mapel', 'soal.mapel=mapel.id_mapel');
+        return $this->db->get_where('soal', $where);
+    }
+
 
     //Tampil kelas
     function vkelas($where){

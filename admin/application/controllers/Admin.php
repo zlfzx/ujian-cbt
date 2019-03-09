@@ -368,8 +368,7 @@ class Admin extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	//Aksi tambah soal
-	//Sebelum menambah soal, ubah settingan maximum file upload pada php.ini
-	public function act_tsoal(){
+	function act_tsoal(){
 		$mapel = $this->input->post('mapel');
 		$kelas = $this->input->post('kelas');
 		$guru = $this->input->post('guru');
@@ -431,6 +430,87 @@ class Admin extends CI_Controller {
 				$this->m_admin->in_soal_media('soal', $data);
 				$this->session->set_flashdata('soal', 'Soal berhasil ditambahkan');
 				redirect('tsoal');
+			}
+		}
+	}
+	//Edit Soal
+	public function esoal($id){
+		$data['title'] = 'Edit Soal';
+		$data['listmapel'] = $this->m_admin->list_mapel()->result();
+		$data['listkelas'] = $this->m_admin->list_kelas()->result();
+		$data['listguru'] = $this->m_admin->list_guru()->result();
+		$data['soal'] = $this->m_admin->get_soal_by_id(['id_soal' => $id])->row();
+
+		$this->header($data);
+		$this->load->view('editsoal');
+		$this->load->view('template/footer');
+	}
+	//Aksi ediit soal
+	function act_esoal($id){
+		$mapel = $this->input->post('mapel');
+		$kelas = $this->input->post('kelas');
+		$guru = $this->input->post('guru');
+		$soal = $this->input->post('soal');
+		$a = $this->input->post('a');
+		$b = $this->input->post('b');
+		$c = $this->input->post('c');
+		$d = $this->input->post('d');
+		$e = $this->input->post('e');
+		$jawaban = $this->input->post('jawaban');
+		$cekmedia = $_FILES['media'];
+
+		$where = ['id_soal' => $id];
+		//jika ada file
+		if (empty($cekmedia['name'])) {
+			# code...
+			$data = array(
+				'mapel' => $mapel,
+				'kelas' => $kelas,
+				'guru' => $guru,
+				'soal' => $soal,
+				'opsi_a' => $a,
+				'opsi_b' => $b,
+				'opsi_c' => $c,
+				'opsi_d' => $d,
+				'opsi_e' => $e,
+				'jawaban' => $jawaban
+			);
+			$this->m_admin->up_soal_nomedia($where, 'soal', $data);
+			$this->session->set_flashdata('soal', 'Soal berhasil diubah');
+			redirect($this->agent->referrer());
+		}
+		else{
+			$s = $this->db->query('select media from soal where id_soal='.$id)->row();
+			unlink('./../media/'.$s->media);
+			$config['upload_path'] = './../media';
+			$config['allowed_types'] = 'jpg|png|gif|wav|mp3';
+			//load library upload
+			$this->load->library('upload', $config);
+
+			//proses upload file
+			if (!$this->upload->do_upload('media')) {
+				$data['error'] = $this->upload->display_errors();
+				redirect('tsoal', $data);
+			}
+			else{
+				$media = $this->upload->data('file_name');
+				$data = array(
+					'mapel' => $mapel,
+					'kelas' => $kelas,
+					'guru' => $guru,
+					'soal' => $soal,
+					'media' => $media,
+					'opsi_a' => $a,
+					'opsi_b' => $b,
+					'opsi_c' => $c,
+					'opsi_d' => $d,
+					'opsi_e' => $e,
+					'jawaban' => $jawaban
+				);
+
+				$this->m_admin->up_soal_media($where, 'soal', $data);
+				$this->session->set_flashdata('soal', 'Soal berhasil diubah');
+				redirect($this->agent->referrer());
 			}
 		}
 	}

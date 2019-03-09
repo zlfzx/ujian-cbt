@@ -4,13 +4,9 @@
     </section>
 
     <section class="content">
-        <div class="box box-warning">
+        <div class="box box-info box-solid">
             <div class="box-header">
-                <a href="#" class="btn btn-danger"><i class="fa fa-print"></i> Print</a>
-            </div>
-            <div class="box-body">
-                <div class="callout callout-info">
-                    <form action="" class="form-inline">
+                <form action="" class="form-inline">
                         <div class="form-group">
                             <label for="MataPelajaran">Mata Pelajaran :</label>
                             <select name="" id="" class="form-control">
@@ -20,14 +16,12 @@
                                 <?php } ?>
                             </select>
                         </div>
-                        &nbsp;&nbsp;&nbsp;
-                        <button type="submit" class="btn btn-success">Lihat</button>
                         <div class="pull-right">
-                            <a href="" class="btn btn-warning"><i class="fa fa-download"></i> Export</a>
+                            <a href="#" class="btn btn-flat btn-warning"><i class="fa fa-download"></i> Export</a>
                         </div>
                     </form>
-                </div>
-
+            </div>
+            <div class="box-body">
                 <table class="table table-striped table-bordered table-hover">
                     <thead>
                         <tr>

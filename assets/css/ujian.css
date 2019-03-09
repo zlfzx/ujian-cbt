@@ -24,3 +24,16 @@
 .ujian-sls2{
 	margin-top: 0;
 }
+
+.bf-tengah{
+	display: flex;
+	justify-content: center;
+}
+.bf-kanan{
+	display: flex;
+	justify-content: flex-end;
+}
+.bf-kiri{
+	display: flex;
+	justify-content: flex-start;
+}

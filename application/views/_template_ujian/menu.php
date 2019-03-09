@@ -10,7 +10,7 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse pull-left" id="navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li><a href="#"><?=$this->session->nama;?></a></li>
+						<li><a href="#"><?=$this->session->nis;?></a></li>
 					</ul>
 				</div>
 				<div class="navbar-custom-menu">

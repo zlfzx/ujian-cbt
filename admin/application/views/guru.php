@@ -9,7 +9,7 @@
         <section class="content">
             <div class="box box-warning">
                 <div class="box-header">
-                    <button type="button" data-toggle="modal" data-target="#tambah-guru" class="btn btn-success"><i class="fa fa-user-plus"></i> Tambah Guru</button>
+                    <button type="button" data-toggle="modal" data-target="#tambah-guru" class="btn btn-sm btn-flat btn-success"><i class="fa fa-user-plus"></i> Tambah Guru</button>
                     <!-- <button type="button" data-toggle="modal" data-target="#import-guru" class="btn btn-info"><i class="fa fa-upload"></i> Import</button> -->
 
                     <!-- Modal Tambah Guru -->

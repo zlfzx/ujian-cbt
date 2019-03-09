@@ -158,7 +158,7 @@ input[type="submit"] {
 
 .user_registered-login,
 .user_unregistered-signup {
-  margin-top: 30px;
+  margin-top: 15px;
   border: 1px solid #ccc;
   border-radius: 3px;
   padding: 10px 30px;
@@ -508,4 +508,18 @@ input[type="submit"] {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.div-logo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.logo-smk{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin-bottom: 15px;
 }

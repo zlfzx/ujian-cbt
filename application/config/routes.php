@@ -51,6 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'user';
 $route['(:num)'] = '/user/ujian/$1';
+$route['selesai/(:num)'] = 'user/ujian_selesai/$1';
 $route['setting'] = 'user/setting';
 $route['logout'] = 'Login/logout';
 $route['404_override'] = 'user/notfound';

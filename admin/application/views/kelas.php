@@ -9,7 +9,7 @@
     <section class="content">
         <div class="box box-warning">
             <div class="box-header">
-                <button type="button" data-toggle="modal" data-target="#tambah-kelas" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Kelas</button>
+                <button type="button" data-toggle="modal" data-target="#tambah-kelas" class="btn btn-sm btn-flat btn-success"><i class="fa fa-plus"></i> Tambah Kelas</button>
                 <!-- <button type="button" data-toggle="modal" data-target="#import-kelas" class="btn btn-info"><i class="fa fa-upload"></i> Import</button> -->
                 <!-- Modal Tambah Kelas -->
                 <div class="modal fade" id="tambah-kelas">

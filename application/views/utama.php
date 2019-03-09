@@ -41,7 +41,7 @@
 
 			<div class="col-sm-12">
 				<div class="box box-solid">
-					<div class="box-header with-border bg-blue">
+					<div class="box-header bg-blue">
 						<h3 class="box-title">Jadwal Ujian</h3>
 					</div>
 					<div class="box-body">
@@ -59,16 +59,17 @@
 							<tbody>
 								<?php
 								$no = 1; 
-								foreach($jdwlujian as $ju){ ?>
+								foreach($jdwlujian as $ju){ 
+									if ($ju->sudah_ikut < 1) { ?>
 								<tr>
 									<td><?=$no++;?>.</td>
 									<td><?=$ju->nama_ujian;?></td>
 									<td><?=$ju->mapel;?></td>
 									<td><?=$ju->waktu;?> Menit</td>
-									<td><button class="btn btn-xs btn-info" data-toggle="modal" data-target="#modalUjian"><i class="fa fa-send"></i> Ikuti Ujian</button></td>
+									<td><button class="btn btn-xs btn-info" data-toggle="modal" data-target="#modalUjian<?=$ju->id_ujian;?>"><i class="fa fa-send"></i> Ikuti Ujian</button></td>
 								</tr>
 								<!-- Modal ujian -->
-								<div class="modal fade" id="modalUjian">
+								<div class="modal fade" id="modalUjian<?=$ju->id_ujian;?>">
 									<div class="modal-dialog">
 										<div class="modal-content">
 											<div class="modal-header">
@@ -85,7 +86,54 @@
 										</div>
 									</div>
 								</div>
-								<?php } ?>
+								<?php }
+								} ?>
+							</tbody>
+						</table>
+						<?php }
+							  else{ ?>
+						<div>
+							<h1 class="text-center text-red"><i class="fa fa-warning"></i></h1>
+							<h4 class="text-center">Tidak Ada Ujian !</h4>
+						</div>
+							<?php } ?>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-12">
+				<div class="box box-solid">
+					<div class="box-header bg-red">
+						<h4 class="box-title">Riwayat Ujian</h4>
+					</div>
+					<div class="box-body">
+						<?php if(count($jdwlujian) > 0) { ?>
+						<table class="table table-bordered table-striped table-hover">
+							<thead>
+								<tr>
+									<th>No.</th>
+									<th>Nama Ujian</th>
+									<th>Mata Pelajaran</th>
+									<th>Waktu</th>
+									<th>Aksi</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php
+								$no = 1; 
+								foreach($jdwlujian as $ju){ 
+								if ($ju->sudah_ikut > 0) { ?>
+								<tr>
+									<td><?=$no++;?>.</td>
+									<td><?=$ju->nama_ujian;?></td>
+									<td><?=$ju->mapel;?></td>
+									<td><?=$ju->waktu;?> Menit</td>
+									<td><a href="<?=base_url($ju->id_ujian);?>" class="btn btn-xs btn-danger"><i class="fa fa-check"></i> Sudah Ujian</a></td>
+									
+								</tr>
+								<?php 
+									}
+								} ?>
 							</tbody>
 						</table>
 						<?php }

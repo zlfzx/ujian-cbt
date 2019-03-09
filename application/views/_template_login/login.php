@@ -8,7 +8,7 @@
   <!-- MyCSS -->
     <link rel="stylesheet" href="<?=base_url('assets/css/style.css');?>">
 	<!-- FontAwesome -->
-    <link rel="stylesheet" href="<?=base_url('assets/fontawesome/css/all.css');?>">
+    <link rel="stylesheet" href="<?=base_url('assets/adminlte/bower_components/font-awesome/css/font-awesome.css');?>">
   <!-- Jquery -->
     <script src="<?=base_url('assets/js/jquery.js');?>"></script>
 </head>
@@ -24,10 +24,13 @@
 <section class="user">
   <div class="user_options-container">
     <div class="user_options-text">
-      <div class="user_options-unregistered">
-        <h2 class="user_unregistered-title">Selamat Datang <br>di SMK N 1 Kedungwuni</h2>
+      <div class="user_options-unregistered div-logo">
+        <div class="logo-smk">
+          <img src="<?=base_url('assets/img/lsmk.png');?>" style="width: 75px; margin-right: 20px;">
+          <h1>SMK N 1 KEDUNGWUNI</h1>
+        </div>
+        <!-- <h2 class="user_unregistered-title">SMK N 1 Kedungwuni</h2> -->
         <p class="user_unregistered-text">Gunakan NIS dan Passsword untuk masuk,</p>
-        <p>Jika lupa password, klik tombol di bawah</p>
         <button class="user_unregistered-signup" id="lupa-button">LUPA PASSWORD</button>
       </div>
 

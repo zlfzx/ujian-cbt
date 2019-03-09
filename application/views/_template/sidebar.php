@@ -8,7 +8,7 @@
           <img src="<?=base_url('assets/img/user1.png');?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p><?=$this->session->nama;?></p>
+          <p><?=$this->session->kelas.' | '.$this->session->nis;?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>

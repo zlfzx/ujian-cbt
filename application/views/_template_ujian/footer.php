@@ -17,9 +17,9 @@
 <!-- ./wrapper -->
 
 <!-- Bootstrap 3.3.7 -->
-<script src="<?=base_url('admin/assets/adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js');?>"></script>
+<script src="<?=base_url('assets/adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js');?>"></script>
 <!-- AdminLTE App -->
-<script src="<?=base_url('admin/assets/adminlte/dist/js/adminlte.min.js');?>"></script>
+<script src="<?=base_url('assets/adminlte/dist/js/adminlte.min.js');?>"></script>
 
 <script>
 	$(document).ready(function(){
