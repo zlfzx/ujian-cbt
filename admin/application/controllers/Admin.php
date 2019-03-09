@@ -585,69 +585,88 @@ class Admin extends CI_Controller {
 
 	//Setting
 	public function setting(){
+		if ($this->session->status == 'admin') {
+			$data['admin'] = $this->db->query('SELECT id_admin, nama, username FROM admin')->result();
+		}
 		$data['title'] = 'Pengaturan';
 
 		$this->header($data);
 		$this->load->view('setting');
 		$this->load->view('template/footer');
 	}
-	//Admin
-	public function ganti_passwd_admin(){
-		$username = $this->input->post('username');
-		$passwordlama = $this->input->post('password');
+	function ganti_passwd_admin(){
+		$password = $this->input->post('password');
 		$passwordbaru = $this->input->post('passwordbaru');
-		$konfirmpassword = $this->input->post('konfirmpassword');
 
 		$id = ['id_admin' => $this->session->id];
-		$cek = $this->m_admin->cek_passwd_admin($id)->row_array();
-		if ($cek['password'] == $passwordlama && $passwordbaru == $konfirmpassword && $username != $this->session->nama) {
+		$cek = $this->m_admin->cek_passwd_admin($id)->row();
+		if (password_verify($password, $cek->password)) {
 			# code...
-			$data = ['username' => $username, 'password' => $passwordbaru];
-			$this->m_admin->update_passwd_admin('admin', $data, $id);
+			$pb = password_hash($passwordbaru, PASSWORD_DEFAULT);
+			$data = ['password' => $pb];
+			$this->m_admin->update_passwd('admin', $data, $id);
+			$this->session->set_flashdata('passwd', 'Password berhasil diubah');
 			redirect('setting');
 		}
 		else{
-			if($username != $this->session->nama){
-				$this->session->set_flashdata('username', 'Username salah !');
-			}
-			if($passwordlama != $cek['password']){
-				$this->session->set_flashdata('passwdlama', 'Password lama salah !');
-			}
-			if($passwordbaru != $konfirmpassword){
-				$this->session->set_flashdata('passwdbaru', 'Password baru tidak cocok !');
-			}
+			$this->session->set_flashdata('error', 'Password lama salah !');
 			redirect('setting');
 		}
 	}
-	//Guru
-	public function ganti_passwd_guru(){
-		$username = $this->input->post('username');
-		$passwordlama = $this->input->post('password');
+	function ganti_passwd_guru(){
+		$password = $this->input->post('password');
 		$passwordbaru = $this->input->post('passwordbaru');
-		$konfirmpassword = $this->input->post('konfirmpassword');
-		
-		$id = array('id_guru' => $this->session->id);
-		$cek = $this->m_admin->cek_passwd_guru($id)->row_array();
-		if($cek['password'] == $passwordlama && $passwordbaru == $konfirmpassword && $username != $this->session->nama){
-			$data = array(
-				'username' => $username,
-				'password' => $passwordbaru
-			);
-			$this->m_admin->update_passwd_guru('guru', $data, $id);
+		$where = ['id_guru' => $this->session->id];
+		$cek = $this->m_admin->cek_passwd_guru($where)->row();
+		if ($password == $cek->password) {
+			$data = ['password' => $passwordbaru];
+			$this->m_admin->update_passwd('guru', $data, $where);
+			$this->session->set_flashdata('passwd', 'Password berhasil diubah');
 			redirect('setting');
 		}
 		else{
-			if($username != $this->session->nama){
-				$this->session->set_flashdata('username', 'Username salah !');
-			}
-			if($passwordlama != $cek['password']){
-				$this->session->set_flashdata('passwdlama', 'Password lama salah !');
-			}
-			if($passwordbaru != $konfirmpassword){
-				$this->session->set_flashdata('passwdbaru', 'Password baru tidak cocok !');
-			}
+			$this->session->set_flashdata('error', 'Password lama salah !');
 			redirect('setting');
 		}
+	}
+	function ganti_user(){
+		$id = $this->session->id;
+		$nama = $this->input->post('nama');
+		$username = $this->input->post('username');
+		$data = ['nama' => $nama, 'username' => $username];
+		if ($this->session->status == 'admin') {
+			$where = ['id_admin' => $id];
+			$this->m_admin->update_passwd('admin', $data, $where);
+
+			$this->session->unset_userdata(['nama','username']);
+			$this->session->set_userdata($data);
+
+			$this->session->set_flashdata('passwd', 'Nama/Username berhasil diubah');
+			redirect('setting');
+		}
+		if ($this->session->status == 'guru') {
+			$where = ['id_guru' => $id];
+			$this->m_admin->update_passwd('guru', $data, $where);
+
+			$this->session->unset_userdata(['nama','username']);
+			$this->session->set_userdata($data);
+
+			$this->session->set_flashdata('passwd', 'Nama/Username berhasil diubah');
+			redirect('setting');
+		}
+	}
+	function tambah_admin(){
+		$nama = $this->input->post('nama');
+		$username = $this->input->post('username');
+		$password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+		$data = ['nama' => $nama, 'username' => $username, 'password' => $password];
+		$this->db->insert('admin', $data);
+		$this->session->set_flashdata('tambahadmin', $nama.' berhasil ditambahkan sebagai admin');
+		redirect('setting');
+	}
+	function hapus_admin($id){
+		$this->db->query('DELETE FROM admin WHERE id_admin='.$id);
+		redirect('setting');
 	}
 
 	//Error 404

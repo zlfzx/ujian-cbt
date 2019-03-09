@@ -103,8 +103,7 @@
           <img src="<?= base_url('./../assets/adminlte/dist/img/avatar5.png');?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p><?php if($this->session->status == 'admin'){echo 'Administrator';}
-                      elseif($this->session->status == 'guru'){echo 'Guru';}?></p>
+          <p><?=$this->session->username;?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
