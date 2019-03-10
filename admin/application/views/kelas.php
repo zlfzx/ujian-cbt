@@ -8,9 +8,8 @@
 
     <section class="content">
         <div class="box box-warning">
-            <div class="box-header">
+            <div class="box-header with-border">
                 <button type="button" data-toggle="modal" data-target="#tambah-kelas" class="btn btn-sm btn-flat btn-success"><i class="fa fa-plus"></i> Tambah Kelas</button>
-                <!-- <button type="button" data-toggle="modal" data-target="#import-kelas" class="btn btn-info"><i class="fa fa-upload"></i> Import</button> -->
                 <!-- Modal Tambah Kelas -->
                 <div class="modal fade" id="tambah-kelas">
                     <div class="modal-dialog">
@@ -52,30 +51,6 @@
                         </div>
                     </div>
                 </div> <!-- End Modal -->
-                <!-- Modal Import Kelas -->
-                <div class="modal fade" id="import-kelas">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-                                <h4 class="modal-title"><i class="fa fa-upload"></i> Import Data Kelas</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form action="">
-                                    <div class="box-body">
-                                        <div class="form-group">
-                                            <label for="PilihFile">Pilih File :</label>
-                                            <input type="file">
-                                        </div>
-                                    </div>
-                                    <div class="box-footer">
-                                    <button type="submit" class="btn btn-success">Import</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="box-body">
                 <table class="table table-bordered table-striped table-hover" id="tabelKelas">
@@ -159,6 +134,7 @@
                                     <div class="modal-body">
                                         <div class="box-body">
                                             <h4>Anda yakin akan menghapus kelas <?= $k->kode_kelas;?>?</h4>
+                                            <p class="text-danger">*Menghapus data siswa terpilih akan menghapus semua data yang terkait seperti nilai dan yang lainnya...</p>
                                         </div>
                                         <div class="box-footer">
                                             <a href="<?= base_url('admin/hapus_kelas/'.$k->id_kelas);?>" class="btn btn-danger">Ya</a> &nbsp;
@@ -175,8 +151,8 @@
         </div>
 
         <div class="box box-warning">
-            <div class="box-header">
-                <button class="btn btn-success" data-toggle="modal" data-target="#tambahJurusan"><i class="fa fa-plus"></i> Tambah Jurusan</button>
+            <div class="box-header with-border">
+                <button class="btn btn-sm btn-flat btn-success" data-toggle="modal" data-target="#tambahJurusan"><i class="fa fa-plus"></i> Tambah Jurusan</button>
                 <!-- Modal Tambah Jurusan -->
                 <div class="modal fade" id="tambahJurusan">
                     <div class="modal-dialog">

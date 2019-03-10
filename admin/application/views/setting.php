@@ -127,6 +127,20 @@
                 </form>
             </div>
 
+            <?php if ($this->session->status != 'guru') { ?>
+            <div class="col-sm-12">
+                <div class="box box-danger box-solid">
+                    <div class="box-header">
+                        <h3 class="box-title"><i class="fa fa-warning"></i> Reset Aplikasi</h3>
+                    </div>
+                    <div class="box-body">
+                        <p>Mereset aplikasi akan menghapus semua data kecuali admin.</p>
+                        <button class="reset btn btn-danger btn-flat"><i class="fa fa-trash"></i> RESET</button>
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
+
         </div>
     </section>
 </div>
@@ -147,3 +161,21 @@ if ($this->session->flashdata('tambahadmin')) { ?>
          Swal.fire('Sukses!', '<?=$this->session->flashdata("tambahadmin");?>', 'success');
      </script>
 <?php  } ?>
+<script>
+    $(document).ready(function(){
+        $('.reset').on('click', function(e){
+            e.preventDefault();
+            Swal.fire({
+                type: 'question',
+                title: 'Reset Aplikasi',
+                text: 'Anda yakin akan menghapus semua data ?',
+                showCancelButton: true,
+                confirmButtonText: 'RESET'
+            }).then((result) => {
+                if (result.value) {
+                    location.href = '<?=base_url("admin/teser");?>';
+                }
+            });
+        });
+    });
+</script>

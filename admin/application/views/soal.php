@@ -8,16 +8,22 @@
     <section class="content">
         <div class="box box-info box-solid">
             <div class="box-header">
-                <form action="" class="form-inline">
-                            <div class="form-group">
-                                <label for="MataPelajaran">Mata Pelajaran :</label>
-                                <select name="" id="pilihKelas" class="form-control">
-                                    <option>Pilih Mata Pelajaran...</option>
-                                    <option>Matematika</option>
-                                    <option>Bahasa Indonesia</option>
-                                </select>
-                            </div>
-                        </form>
+                <?php if ($this->session->status == 'admin') { ?>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="MataPelajaran">Mata Pelajaran :</label>
+                        <select name="mapel" id="pilihmapel" class="form-control">
+                            <option>Pilih Mata Pelajaran...</option>
+                            <?php foreach ($pilihmapel as $pm) { ?>
+                            <option value="<?=$pm->id_mapel;?>"><?=$pm->mapel;?></option>
+                        <?php } ?>
+                        </select>
+                    </div>
+                </form>
+                <?php }
+                if ($this->session->status == 'guru') { ?>
+                    <h4 class="box-title">Mapel</h4>
+                <?php } ?>
             </div>
             <div class="box-body">
                 <!-- Tabel Soal -->
@@ -33,9 +39,10 @@
                     <tbody>
                     <?php
                     //Jika Admin
-                    if($this->session->status == 'admin'){
-                        $no = 1;
-                        foreach($listsoal as $ls): ?>
+                     if($this->session->status == 'admin'){
+                         $no = 1;
+                         if(!empty($listsoal)){
+                         foreach($listsoal as $ls): ?>
                         <tr>
                             <td><?=$no++;?></td>
                             <td><?=$ls->nama;?></td>
@@ -115,8 +122,9 @@
                         </div>
 
                     <?php
-                        endforeach;
-                    }
+                         endforeach;
+                        }
+                     }
                     //Jika Guru
                     if($this->session->status == 'guru'){
                         $no = 1;
@@ -188,7 +196,11 @@
 </div>
 
 <script>
-$(function(){
+$(document).ready(function(){
+    $('#pilihmapel').on('change', function(){
+        var id = $(this).val();
+        location.href = '<?=base_url("soal/".$kelas['id_kelas']."/");?>'+id;
+    })
     $('#tabelSoal').DataTable();
 })
 </script>

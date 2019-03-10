@@ -24,9 +24,6 @@
 <script src="<?= base_url('./../assets/adminlte/bower_components/bootstrap-daterangepicker/daterangepicker.js');?>"></script> -->
 <!-- datepicker -->
 <script src="<?= base_url('./../assets/adminlte/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js');?>"></script>
-<!-- DataTables -->
-<script src="<?= base_url('./../assets/adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js');?>"></script>
-<script src="<?= base_url('./../assets/adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js');?>"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <!-- <script src="<?= base_url('./../assets/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js');?>"></script> -->
 <!-- Select2 -->

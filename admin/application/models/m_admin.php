@@ -155,28 +155,18 @@ class m_admin extends CI_Model{
     function perkelasjurusan_g($kelas, $idguru){
         return $this->db->query('select kelas.* from soal, guru, kelas where guru.id_guru='.$idguru.' and kelas.kelas='.$kelas.' and soal.guru=guru.id_guru and soal.kelas=kelas.id_kelas group by kode_kelas');
     }
-    // select kelas.* from soal, guru, kelas where guru.id_guru=4 and soal.guru=guru.id_guru and soal.kelas=kelas.id_kelas
-
-    //Nilai
-    function nilai_kelas($pk, $pjk){
-        //$this->db->select('nilai.*, mapel.*, siswa.id_siswa, siswa.nama, siswa.nis, siswa.kelas, kelas.id_kelas, kelas.kelas, kelas.kode_kelas');
-        //$this->db->from('nilai, siswa, kelas, mapel');
-        //$this->db->where($where);
-        //return $this->db->get();
-        return $this->db->query('select nilai.*, mapel.*, siswa.id_siswa, siswa.nama, siswa.nis, siswa.kelas, kelas.id_kelas, kelas.kelas, kelas.kode_kelas from nilai, siswa, mapel, kelas where kelas.kelas='.$pk.' and kelas.id_kelas='.$pjk.' and nilai.id_kelas=kelas.id_kelas and nilai.id_siswa=siswa.id_siswa and nilai.id_mapel=mapel.id_mapel');
-    }
    
     //Soal
     //Tampil Soal Admin
-    function soal_admin($pk, $pjk){
+    function soal_admin($pjk, $mapel){
         //return $this->db->get_where('soal', $where);
-        return $this->db->query('select soal.*, kelas.id_kelas, kelas.kelas, kelas.kode_kelas, guru.id_guru, guru.nama, guru.mapel from soal, kelas, guru where kelas.kelas='.$pk.' and soal.kelas='.$pjk.' and soal.kelas=kelas.id_kelas and soal.guru=guru.id_guru');
+        return $this->db->query('select soal.*, kelas.id_kelas, kelas.kode_kelas, guru.id_guru, guru.nama, guru.mapel from soal, kelas, guru where soal.kelas='.$pjk.' and soal.mapel='.$mapel.' and soal.kelas=kelas.id_kelas and soal.guru=guru.id_guru');
     }
 
     //Tampil Soal Guru
-    function soal_guru($idguru, $pk, $pkj){
+    function soal_guru($idguru, $pkj){
         //return $this->db->get_where('soal, guru, kelas', $where);
-        return $this->db->query('select soal.* from soal, guru, kelas where guru.id_guru='.$idguru.' and kelas.kelas='.$pk.' and kelas.id_kelas='.$pkj.' and soal.guru=guru.id_guru and soal.kelas=kelas.id_kelas');
+        return $this->db->query('select soal.*, guru.nama from soal, guru, kelas where guru.id_guru='.$idguru.' and kelas.id_kelas='.$pkj.' and soal.guru=guru.id_guru and soal.kelas=kelas.id_kelas');
     }
 
     //Tambah soal tanpa media

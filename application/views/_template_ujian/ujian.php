@@ -1,7 +1,6 @@
 <?php
 $jam_mulai_pc = explode(" ", $detil_tes->tgl_mulai);
 $jam_selesai_pc = explode(" ", $detil_tes->tgl_selesai);
-echo print_r($detil_soal);
 ?>
 
 		<div class="row">
@@ -105,6 +104,10 @@ echo print_r($detil_soal);
 					})
 					.on('finish.countdown', function(event){
 						alert('Waktu telah selesai !');
+						var f_asal = $('#_form');
+						var form = getFormData(f_asal);
+						simpan_akhir(<?=$detil_tes->id_tes;?>);
+						window.location.assign("<?=base_url();?>selesai/<?=$detil_tes->id_tes;?>");
 
 						return false;
 					});

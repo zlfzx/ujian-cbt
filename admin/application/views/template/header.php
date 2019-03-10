@@ -29,6 +29,9 @@
   <link rel="stylesheet" href="<?=base_url('./../assets/css/style-admin.css');?>">
   <!-- jQuery 3 -->
   <script src="<?= base_url('./../assets/adminlte/bower_components/jquery/dist/jquery.min.js');?>"></script>
+  <!-- DataTables -->
+  <script src="<?= base_url('./../assets/adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js');?>"></script>
+  <script src="<?= base_url('./../assets/adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js');?>"></script>
   <!-- jQuery UI 1.11.4 -->
   <!-- <script src="<?= base_url('./../assets/adminlte/bower_components/jquery-ui/jquery-ui.min.js');?>"></script> -->
   <!-- Sweetalert -->
@@ -137,7 +140,7 @@
                   $where = array('kelas' => $pk->kelas); 
                   $perkelasjurusan = $this->m_admin->perkelasjurusan($where)->result();
                   foreach($perkelasjurusan as $pkj){ ?>
-                <li><a href="<?=base_url('soal/'.$pk->kelas.'/'.$pkj->id_kelas);?>"><?=$pkj->kode_kelas;?></a></li>
+                <li><a href="<?=base_url('soal/'.$pkj->id_kelas);?>"><?=$pkj->kode_kelas;?></a></li>
                 <?php } ?>
               </ul>
             </li>
@@ -159,7 +162,7 @@
                   $where = array('kelas' => $pk->kelas); 
                   $perkelasjurusan = $this->m_admin->perkelasjurusan($where)->result();
                   foreach($perkelasjurusan as $pkj){ ?>
-                <li><a href="<?= base_url('nilai/'.$pk->kelas.'/'.$pkj->id_kelas);?>"><i class="fa fa-circle-o"></i> <?=$pkj->kode_kelas;?></a></li>
+                <li><a href="<?= base_url('nilai/'.$pkj->id_kelas);?>"><i class="fa fa-circle-o"></i> <?=$pkj->kode_kelas;?></a></li>
                 <?php } ?>
               </ul>
             </li>
@@ -197,7 +200,7 @@
                   //$where = array('kelas' => $pk->kelas, 'id_guru' => $this->session->id); 
                   $perkelasjurusan = $this->m_admin->perkelasjurusan_g($pk->kelas, $this->session->id)->result();
                   foreach($perkelasjurusan as $pkj){ ?>
-                <li><a href="<?=base_url('soal/'.$pk->kelas.'/'.$pkj->id_kelas);?>"><?=$pkj->kode_kelas;?></a></li>
+                <li><a href="<?=base_url('soal/'.$pkj->id_kelas);?>"><?=$pkj->kode_kelas;?></a></li>
                 <?php } ?>
               </ul>
             </li>
@@ -219,7 +222,7 @@
                   //$where = array('kelas' => $pk->kelas, 'id_guru' => $this->session->id); 
                   $perkelasjurusan = $this->m_admin->perkelasjurusan_g($pk->kelas, $this->session->id)->result();
                   foreach($perkelasjurusan as $pkj){ ?>
-                <li><a href="<?= base_url('nilai/'.$pk->kelas.'/'.$pkj->id_kelas);?>"><i class="fa fa-circle-o"></i> <?=$pkj->kode_kelas;?></a></li>
+                <li><a href="<?= base_url('nilai/'.$pkj->id_kelas);?>"><i class="fa fa-circle-o"></i> <?=$pkj->kode_kelas;?></a></li>
                 <?php } ?>
               </ul>
             </li>

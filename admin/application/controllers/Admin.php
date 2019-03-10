@@ -326,33 +326,34 @@ class Admin extends CI_Controller {
 	}
 
 	//Soal
-	public function soal($pk, $pjk){
+	public function soal($pjk){
 		//$data['title'] = 'Soal';
+		$mapel = $this->uri->segment(3);
 
-		$vkelas = array('kelas' => $pk, 'id_kelas' => $pjk);
-		$data['kelas'] = $this->m_admin->vkelas($vkelas)->row_array();
+		$vkelas = array('id_kelas' => $pjk);
+		$data['kelas'] = $this->m_admin->vkelas($vkelas)->row_array();		
 		$data['title'] = 'Soal '.$data['kelas']['kode_kelas'];
 		
 		//admin
 		if($this->session->status == 'admin'){
-			$data['listsoal'] = $this->m_admin->soal_admin($pk, $pjk)->result();
+			$data['pilihmapel'] = $this->m_admin->list_mapel()->result();
+			$data['listsoal'] = '';
 		}
+		if($mapel) {
+		 	$data['listsoal'] = $this->m_admin->soal_admin($pjk, $mapel)->result();
+		 }
 		//Guru
 		if($this->session->status == 'guru'){
-			//$where = array('guru' => $this->session->id,);
-			/*$where = array(
-				'guru.id_guru' => $this->session->id,
-				'kelas.kelas' => $pk,
-				'kelas.id_kelas' => $pjk,
-				'soal.guru=guru.id_guru',
-				'soal.kelas=kelas.id_kelas'
-			);*/
-			$data['listsoal'] = $this->m_admin->soal_guru($this->session->id, $pk, $pjk)->result();
+			$data['listsoal'] = $this->m_admin->soal_guru($this->session->id, $pjk)->result();
 		}
 
 		$this->header($data);
 		$this->load->view('soal');
 		$this->load->view('template/footer');
+	}
+	function soal_by_mapel($kelas, $mapel){
+		$soal = $this->db->query('SELECT * FROM soal WHERE kelas='.$kelas.' AND mapel='.$mapel)->result();
+		$this->j($soal);
 	}
 
 	//Tambah Soal
@@ -516,43 +517,34 @@ class Admin extends CI_Controller {
 	}
 
 	//Nilai
-	public function nilai($pk, $pjk){
-		//$data['title'] = 'Nilai';
+	public function nilai($pjk){
+		$mapel = $this->uri->segment(3);
 
-		$vkelas = array('kelas' => $pk, 'id_kelas' => $pjk);
+		$vkelas = array('id_kelas' => $pjk);
 		$data['kelas'] = $this->m_admin->vkelas($vkelas)->row_array();
 		$data['kls'] = $data['kelas']['kode_kelas'];
 		$data['title'] = 'Nilai '.$data['kelas']['kode_kelas'];
-
+		$data['judul'] = 'Nilai';
 		$data['listmapel'] = $this->m_admin->list_mapel()->result();
+		$data['nilai'] = '';
 
-		$data['kelas'] = $pk;
-		$data['idkelas'] = $pjk;
-		$where = array(
-			'kelas.kelas' => $pk,
-			'kelas.id_kelas' => $pjk,
-			'nilai.id_kelas' => 'kelas.id_kelas',
-			'siswa.kelas' => 'kelas.id_kelas',
-			'nilai.id_siswa' => 'siswa.id_siswa',
-			'nilai.id_mapel' => 'mapel.id_mapel'
-		);
-		$data['nilai'] = $this->m_admin->nilai_kelas($pk, $pjk)->result();
+		if ($mapel) {
+			$m = $this->db->query('SELECT mapel FROM mapel WHERE id_mapel='.$mapel)->row_array();
+			$data['judul'] = 'Nilai '.$m['mapel'];
+			$data['nilai'] = $this->nilai_by_mapel($pjk, $mapel)->result();
+		}
 
 		$this->header($data);
 		$this->load->view('nilai');
 		$this->load->view('template/footer');
-	}  
-	public function pilih_siswa_by_kelas(){
-		$kelas = $this->input->post('kelas');
-		$where = array('kelas' => $id);
-		$data = $this->m_admin->siswa_by_kelas($where);
-		echo json_encode($data);
+	} 
+	function nilai_by_mapel($kelas, $mapel){
+		return $this->db->query('SELECT siswa.id_siswa, siswa.nis, siswa.nama, mapel.mapel, ikut_ujian.id_ujian, ikut_ujian.nilai, ujian.id_kelas, ujian.id_mapel FROM siswa, ikut_ujian, ujian, mapel WHERE ikut_ujian.id_siswa=siswa.id_siswa AND ujian.id_ujian=ikut_ujian.id_ujian AND ujian.id_mapel=mapel.id_mapel AND ujian.id_kelas='.$kelas.' AND ujian.id_mapel='.$mapel);
 	}
 
 	//Ujian
 	public function ujian(){
 		$data['title'] = 'Ujian';
-		$data['listmapel'] = $this->m_admin->list_mapel()->result();
 		$data['listkelas'] = $this->m_admin->list_kelas()->result();
 		$data['listguru'] = $this->m_admin->list_guru()->result();
 		$data['listujian'] = $this->m_admin->list_ujian()->result();
@@ -560,6 +552,10 @@ class Admin extends CI_Controller {
 		$this->header($data);
 		$this->load->view('ujian');
 		$this->load->view('template/footer');
+	}
+	function mapel_by_kelas($id){
+		$mapel = $this->db->query('SELECT mapel.* FROM mapel, soal WHERE soal.mapel=mapel.id_mapel AND soal.mapel=mapel.id_mapel AND soal.kelas='.$id.' GROUP BY mapel')->result();
+		echo json_encode($mapel);
 	}
 	function tambah_ujian(){
 		$ujian = $this->input->post('nmujian');
@@ -669,6 +665,21 @@ class Admin extends CI_Controller {
 		redirect('setting');
 	}
 
+	//Reset aplikasi
+	function teser(){
+		$this->db->truncate('guru');
+		$this->db->truncate('ikut_ujian');
+		$this->db->truncate('jurusan');
+		$this->db->truncate('kelas');
+		$this->db->truncate('mapel');
+		$this->db->truncate('nilai');
+		$this->db->truncate('siswa');
+		$this->db->truncate('soal');
+		$this->db->truncate('ujian');
+		delete_files('./../media/');
+		redirect('');
+	}
+
 	//Error 404
 	public function error(){
 		$data['title'] = '404 Not Found';
@@ -676,5 +687,10 @@ class Admin extends CI_Controller {
 		$this->header($data);
 		$this->load->view('template/404');
 		$this->load->view('template/footer');
+	}
+
+	function j($data){
+		header('Content-Type: application/json');
+		echo json_encode($data);
 	}
 }

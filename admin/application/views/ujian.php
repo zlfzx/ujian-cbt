@@ -4,7 +4,7 @@
     </section>
     <section class="content">
         <div class="box box-warning">
-            <div class="box-header">
+            <div class="box-header with-border">
                 <button class="btn btn-sm btn-flat btn-success" data-toggle="modal" data-target="#tambahUjian"><i class="fa fa-plus"></i> Tambah Ujian</button>
 
                 <div class="modal fade" id="tambahUjian">
@@ -19,11 +19,11 @@
                                     <div class="box-body">
                                         <div class="form-group">
                                             <label for="NamaUjian">Nama Ujian :</label>
-                                            <input type="text" name="nmujian" class="form-control" placeholder="Masukkan Nama Ujian">
+                                            <input type="text" name="nmujian" class="form-control" placeholder="Masukkan Nama Ujian" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="Kelas">Kelas :</label>
-                                            <select name="kelas" class="form-control select2">
+                                            <select name="kelas" id="pilihkelas" class="form-control" required>
                                                 <option selected>Pilih Kelas...</option>
                                                 <?php foreach ($listkelas as $lk) { ?>
                                                 <option value="<?= $lk->id_kelas;?>"><?= $lk->kode_kelas;?></option>
@@ -31,17 +31,14 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label for="Mapel">Mapel :</label>
-                                            <select name="mapel" class="form-control">
+                                            <label for="Mapel">Mata Pelajaran :</label>
+                                            <select name="mapel" id="mapel" class="form-control" required>
                                                 <option value="">Pilih Mapel...</option>
-                                                <?php foreach($listmapel as $lm){ ?>
-                                                <option value="<?= $lm->id_mapel;?>"><?= $lm->mapel;?></option>
-                                                <?php } ?>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="Guru">Guru :</label>
-                                            <select name="guru" class="form-control">
+                                            <select name="guru" class="form-control" required>
                                                 <option value="">Pilih Guru...</option>
                                                 <?php foreach($listguru as $lg){ ?>
                                                 <option value="<?= $lg->id_guru;?>"><?= $lg->nama;?></option>
@@ -50,13 +47,13 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="Waktu">Waktu :</label>
-                                            <input type="text" name="waktu" class="form-control" placeholder="Menit">
+                                            <input type="text" name="waktu" class="form-control" placeholder="Menit" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="Tanggal">Tanggal :</label>
                                             <div class="input-group date">
                                                 <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                                <input type="text" name="tanggal" class="form-control pull-right" id="tanggalujian" placeholder="Pilih Tanggal">
+                                                <input type="text" name="tanggal" class="form-control pull-right" id="tanggalujian" placeholder="Pilih Tanggal" required>
                                             </div>
                                         </div>
                                     </div>
@@ -71,7 +68,7 @@
             </div>
             <div class="box-body">
 
-                <table class="table table-striped table-hover">
+                <table class="table table-bordered table-striped table-hover">
                     <thead>
                         <tr>
                             <th>No.</th>
@@ -107,20 +104,37 @@
             </div>
         </div>
 
-        <div class="box box-warning">
-            <div class="box-header">
-                <h4 class="text-center">Terlaksana</h4>
-            </div>
-        </div>
     </section>
 </div>
 
 <script>
-$(function(){
+$(document).ready(function(){
+    $('#pilihkelas').on('change', function(){
+        var id = $(this).val();
+        $.ajax({
+            type: 'POST',
+            url: '<?=base_url("admin/mapel_by_kelas/");?>'+id,
+            dataType: 'json',
+            success: function(data){
+                var html = '';
+                for (var i = 0; i < data.length; i++) {
+                    html += '<option value="'+data[i].id_mapel+'">'+data[i].mapel+'</option>';
+                }
+                if (data) {
+                    $('#mapel').html(html);
+                }
+                 if (data == '') {
+                     var html = '<option>-- Belum Ada Soal --</option>';
+                     $('#mapel').html(html);
+                 }
+            }
+        })
+    });
     $('#tanggalujian').datepicker({
         autoclose: true,
         todayHighlight: true,
         format: 'yyyy-mm-dd'
-    })
+    });
+    $('.table').DataTable();
 })
 </script>

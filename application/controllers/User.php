@@ -78,8 +78,9 @@ class User extends CI_Controller {
                if ($cek_sdh_ujian->num_rows() < 1) {
                     # code...
                     $soal_urut_ok = array();
-                    $whr_q_soal = ['mapel' => $cek_detil_tes->id_mapel];
-                    $q_soal = $this->m_user->q_soal($whr_q_soal)->result();
+                    //$whr_q_soal = ['mapel' => $cek_detil_tes->id_mapel];
+                    $kelas = $this->db->query('SELECT kelas FROM siswa WHERE id_siswa='.$this->session->id)->row();
+                    $q_soal = $this->m_user->q_soal($cek_detil_tes->id_mapel, $kelas->kelas)->result();
                     $i = 0;
                     foreach ($q_soal as $q) {
                          # code...
@@ -125,12 +126,6 @@ class User extends CI_Controller {
                          'status' => 'Y'
                     ];
                     $this->m_user->tambah_ujian($data_tmbh_ujian);
-
-                    // $whr_detil_soal = ['id_ujian' => $id_ujian];
-                    // $data['detil_soal'] = $this->m_user->detil_soal($whr_detil_soal)->row();
-                    // $whr_detil_tes = ['id_ujian' => $id_ujian, 'id_siswa' => $data['sess_id']];
-                    // $data['detil_tes'] = $this->m_user->detil_tes($whr_detil_tes)->row();
-                    // $data['data'] = $soal_urut_ok;
 
                     redirect($id_ujian);
                }

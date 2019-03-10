@@ -70,8 +70,9 @@ class m_user extends CI_Model{
 	function cek_sdh_ujian($whr){
 		return $this->db->get_where('ikut_ujian', $whr);
 	}
-	function q_soal($whr){
-		return $this->db->get_where('soal', $whr);
+	function q_soal($mapel, $kelas){
+		//return $this->db->get_where($mapel, $id_siswa);
+		return $this->db->query('SELECT * FROM soal WHERE mapel='.$mapel.' AND kelas='.$kelas);
 	}
 	function tambah_ujian($data){
 		$this->db->insert('ikut_ujian', $data);
