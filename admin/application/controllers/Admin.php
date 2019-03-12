@@ -531,6 +531,7 @@ class Admin extends CI_Controller {
 		if ($mapel) {
 			$m = $this->db->query('SELECT mapel FROM mapel WHERE id_mapel='.$mapel)->row_array();
 			$data['judul'] = 'Nilai '.$m['mapel'];
+			$data['title'] = 'Nilai '.$m['mapel'].' '.$data['kelas']['kode_kelas'];
 			$data['nilai'] = $this->nilai_by_mapel($pjk, $mapel)->result();
 		}
 
@@ -539,7 +540,11 @@ class Admin extends CI_Controller {
 		$this->load->view('template/footer');
 	} 
 	function nilai_by_mapel($kelas, $mapel){
-		return $this->db->query('SELECT siswa.id_siswa, siswa.nis, siswa.nama, mapel.mapel, ikut_ujian.id_ujian, ikut_ujian.nilai, ujian.id_kelas, ujian.id_mapel FROM siswa, ikut_ujian, ujian, mapel WHERE ikut_ujian.id_siswa=siswa.id_siswa AND ujian.id_ujian=ikut_ujian.id_ujian AND ujian.id_mapel=mapel.id_mapel AND ujian.id_kelas='.$kelas.' AND ujian.id_mapel='.$mapel);
+		return $this->db->query('SELECT siswa.id_siswa, siswa.nis, siswa.nama, mapel.mapel, ikut_ujian.id_tes, ikut_ujian.id_ujian, ikut_ujian.nilai, ujian.id_kelas, ujian.id_mapel FROM siswa, ikut_ujian, ujian, mapel WHERE ikut_ujian.id_siswa=siswa.id_siswa AND ujian.id_ujian=ikut_ujian.id_ujian AND ujian.id_mapel=mapel.id_mapel AND ujian.id_kelas='.$kelas.' AND ujian.id_mapel='.$mapel);
+	}
+	function hapus_nilai($id){
+		$this->db->query('DELETE FROM ikut_ujian WHERE id_tes='.$id);
+		redirect($this->agent->referrer());
 	}
 
 	//Ujian

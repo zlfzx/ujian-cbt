@@ -4,7 +4,7 @@
     </section>
 
     <section class="content">
-        <div class="box box-info">
+        <div class="box box-info box-solid">
             <div class="box-header with-border">
                 <form class="form-inline">
                     <div class="form-group">
@@ -15,9 +15,6 @@
                             <option value="<?= $lm->id_mapel;?>"><?= $lm->mapel;?></option>
                             <?php } ?>
                         </select>
-                    </div>
-                    <div class="pull-right">
-                        <a href="#" class="btn btn-flat btn-warning"><i class="fa fa-download"></i> Export</a>
                     </div>
                 </form>
             </div>
@@ -30,6 +27,7 @@
                             <th>Nama Siswa</th>
                             <th>Mapel</th>
                             <th>Nilai</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody id="datanilai">
@@ -43,7 +41,24 @@
                             <td><?=$n->nama;?></td>
                             <td><?=$n->mapel;?></td>
                             <td><?=$n->nilai;?></td>
-                            <td><button class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></button></td>
+                            <td><button class="btn btn-hapus<?=$n->id_siswa;?> btn-xs btn-danger"><i class="fa fa-trash"></i></button></td>
+                            <script>
+                                $(document).ready(function(){
+                                    $('.btn-hapus<?=$n->id_siswa;?>').on('click', function(){
+                                        Swal.fire({
+                                            title: 'Hapus Nilai',
+                                            text: 'Anda yakin akan menghapus nilai tersebut ?',
+                                            type: 'question',
+                                            showCancelButton: true,
+                                            confirmButtonText: 'Hapus'
+                                        }).then((result) => {
+                                            if (result.value) {
+                                            location.href='<?=base_url("admin/hapus_nilai/".$n->id_tes);?>';
+                                            }
+                                        })
+                                    })
+                                })
+                            </script>
                         </tr>
                         <?php }
                         } ?>
@@ -70,7 +85,7 @@ $(document).ready(function(){
     });
     $('.table').DataTable({
         dom: 'Bfrtip',
-        buttons: ['csv', 'excel', 'pdf', 'print']
+        buttons: ['csv', 'excel', 'pdf']
     });
 })
 </script>
