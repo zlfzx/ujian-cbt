@@ -255,15 +255,30 @@ class User extends CI_Controller {
      }
       function gantiprtnyan(){
           $pertanyaan = $this->input->post('pertanyaan');
-          $jawaban = $this->input->post('konfirJawaban');
-          $whr = ['id_siswa' => $this->session->id];
-          $data = [
-               'pertanyaan' => $pertanyaan,
-               'jawaban' => $jawaban
-          ];
-          $this->m_user->gantipass($data, $whr);
-          $this->session->set_flashdata('reper', 'Pertanyaan dan jawaban berhasil diubah');
-          redirect('setting');
+          $jawaban = $this->input->post('jawaban');
+          $kjawaban = $this->input->post('konfirJawaban');
+          if (empty($pertanyaan))  {
+               $this->session->set_flashdata('reper', 'Pertanyaan belum diisi !');
+               redirect('setting');
+          }
+          if (empty($jawaban) || empty($kjawaban))  {
+               $this->session->set_flashdata('reper', 'Jawaban belum diisi !');
+               redirect('setting');
+          }
+          if ($kjawaban != $jawaban)  {
+               $this->session->set_flashdata('reper', 'Jawaban tidak sama !');
+               redirect('setting');
+          }
+          else{
+               $whr = ['id_siswa' => $this->session->id];
+               $data = [
+                    'pertanyaan' => $pertanyaan,
+                    'jawaban' => $jawaban
+               ];
+               $this->m_user->gantipass($data, $whr);
+               $this->session->set_flashdata('reper', 'Pertanyaan dan jawaban berhasil diubah');
+               redirect('setting');
+          }
       }
 
 

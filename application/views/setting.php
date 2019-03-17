@@ -10,7 +10,9 @@
 						<h4 class="text-center text-red">*Anda belum mengubah password !</h4>
 						<?php endif ?>
 						<?php if ($this->session->flashdata('repass')): ?>
-							<h4 class="text-center text-red"><?=$this->session->flashdata('repass');?></h4>
+							<script>
+								Swal.fire('Ganti Password', '<?=$this->session->flashdata("repass");?>', 'info');
+							</script>
 						<?php endif ?>
 						<form action="<?=base_url('user/gantipass');?>" method="POST">
 							<div class="form-group">
@@ -40,7 +42,9 @@
 						<h4 class="text-center text-red">*Anda belum membuat pertanyaan !</h4>
 						<?php endif ?>
 						<?php if ($this->session->flashdata('reper')): ?>
-							<h4 class="text-center text-red"><?=$this->session->flashdata('reper');?></h4>
+							<script>
+								Swal.fire('Ganti Pertanyaan', '<?=$this->session->flashdata("reper");?>', 'info');
+							</script>
 						<?php endif ?>
 						<form action="<?=base_url('user/gantiprtnyan');?>" method="POST">
 							<div class="form-group">

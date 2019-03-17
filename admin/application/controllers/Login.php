@@ -56,6 +56,10 @@ class Login extends CI_Controller{
 					redirect('login');
 				}
 			}
+			else{
+				$this->session->set_flashdata('gagal', 'Username / Password salah');
+				redirect('login');
+			}
 		}
 		if ($hak == 'guru') {
 			# code...

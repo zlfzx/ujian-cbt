@@ -217,5 +217,10 @@ class m_admin extends CI_Model{
     function t_ujian($table, $data){
         $this->db->insert($table, $data);
     }
+    //Edit ujian
+    function e_ujian($where, $table, $data){
+        $this->db->where($where);
+        $this->db->update($table, $data);
+    }
 
 }

@@ -515,6 +515,11 @@ class Admin extends CI_Controller {
 			}
 		}
 	}
+	//Hapus Soal
+	function hapus_soal($id){
+		$this->db->query("DELETE FROM soal WHERE id_soal=".$id);
+		redirect($this->agent->referrer());
+	}
 
 	//Nilai
 	public function nilai($pjk){
@@ -582,7 +587,31 @@ class Admin extends CI_Controller {
 		$this->session->set_flashdata('t_ujian', '');
 		redirect('ujian');
 	}
+	function edit_ujian($id_ujian){
+		$ujian = $this->input->post('nmujian');
+		$kelas = $this->input->post('kelas');
+		$mapel = $this->input->post('mapel');
+		$guru = $this->input->post('guru');
+		$waktu = $this->input->post('waktu');
+		$tanggal = $this->input->post('tanggal');
+		$where = ['id_ujian' => $id_ujian];
+		$data = [
+			'nama_ujian' => $ujian,
+			'id_kelas' => $kelas,
+			'id_mapel' => $mapel,
+			'id_guru' => $guru,
+			'waktu' => $waktu,
+			'tanggal' => $tanggal
+		];
 
+		$this->m_admin->e_ujian($where, 'ujian', $data);
+		$this->session->set_flashdata('t_ujian', '');
+		redirect('ujian');
+	}
+	function hapus_ujian($id){
+		$this->db->query("DELETE FROM ujian WHERE id_ujian=".$id);
+		redirect($this->agent->referrer());
+	}
 
 	//Setting
 	public function setting(){

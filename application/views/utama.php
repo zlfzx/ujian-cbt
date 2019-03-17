@@ -86,7 +86,7 @@
 										</div>
 									</div>
 								</div>
-								<?php }
+								<?php }									
 								} ?>
 							</tbody>
 						</table>
@@ -128,8 +128,12 @@
 									<td><?=$ju->nama_ujian;?></td>
 									<td><?=$ju->mapel;?></td>
 									<td><?=$ju->waktu;?> Menit</td>
+								<?php if ($ju->status == 'Y') { ?>
+									<td><a href="<?=base_url($ju->id_ujian);?>" class="btn btn-xs btn-success"><i class="fa fa-spin fa-spinner"></i> Sedang Ujian</a></td>
+								<?php }
+									if ($ju->status == 'N') { ?>
 									<td><a href="<?=base_url($ju->id_ujian);?>" class="btn btn-xs btn-danger"><i class="fa fa-check"></i> Sudah Ujian</a></td>
-									
+								<?php } ?>
 								</tr>
 								<?php 
 									}

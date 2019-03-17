@@ -50,7 +50,7 @@ class m_user extends CI_Model{
  //        return $this->db->get();
 	// }
 	function jadwal_ujian($id_siswa){
-		return $this->db->query("SELECT ujian.*, (SELECT count(id_tes) FROM ikut_ujian WHERE ikut_ujian.id_siswa=".$id_siswa." AND ikut_ujian.id_ujian=ujian.id_ujian) AS sudah_ikut, (SELECT mapel FROM mapel WHERE mapel.id_mapel=ujian.id_mapel) AS mapel FROM ujian, siswa WHERE ujian.id_kelas=siswa.kelas AND siswa.id_siswa=".$id_siswa." ORDER BY sudah_ikut ASC");
+		return $this->db->query("SELECT ujian.*, (SELECT count(id_tes) FROM ikut_ujian WHERE ikut_ujian.id_siswa=".$id_siswa." AND ikut_ujian.id_ujian=ujian.id_ujian) AS sudah_ikut, (SELECT mapel FROM mapel WHERE mapel.id_mapel=ujian.id_mapel) AS mapel, (SELECT status FROM ikut_ujian WHERE ikut_ujian.id_siswa=".$id_siswa." AND ikut_ujian.id_ujian=ujian.id_ujian) AS status FROM ujian, siswa WHERE ujian.id_kelas=siswa.kelas AND siswa.id_siswa=".$id_siswa." ORDER BY sudah_ikut ASC");
 	}
 
 	//Ujian
