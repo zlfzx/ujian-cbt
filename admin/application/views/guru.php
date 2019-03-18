@@ -10,7 +10,6 @@
             <div class="box box-warning">
                 <div class="box-header">
                     <button type="button" data-toggle="modal" data-target="#tambah-guru" class="btn btn-sm btn-flat btn-success"><i class="fa fa-user-plus"></i> Tambah Guru</button>
-                    <!-- <button type="button" data-toggle="modal" data-target="#import-guru" class="btn btn-info"><i class="fa fa-upload"></i> Import</button> -->
 
                     <!-- Modal Tambah Guru -->
                     <div class="modal fade" id="tambah-guru">
@@ -55,32 +54,6 @@
                             </div>
                         </div>
                     </div> <!-- End Modal Tambah Guru -->
-
-                    <!-- Modal Import Guru -->
-                    <div class="modal fade" id="import-guru">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title"><i class="fa fa-upload"></i> Import Data Guru</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="" enctype="multipart/form-data" role="form">
-                                        <div class="box-body">
-                                            <div class="form-group">
-                                                <label for="File">File :</label>
-                                                <input type="file">
-                                            </div>
-                                        </div>
-                                        <div class="box-footer">
-                                            <button type="submit" class="btn btn-success"><i class="fa fa-upload"></i> Import</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- End Modal Import Guru -->
                 </div>
 
                 <div class="box-body">

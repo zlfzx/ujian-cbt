@@ -701,15 +701,16 @@ class Admin extends CI_Controller {
 
 	//Reset aplikasi
 	function teser(){
+		$this->db->query('SET FOREIGN_KEY_CHECKS = 0');
 		$this->db->truncate('guru');
 		$this->db->truncate('ikut_ujian');
 		$this->db->truncate('jurusan');
 		$this->db->truncate('kelas');
 		$this->db->truncate('mapel');
-		$this->db->truncate('nilai');
 		$this->db->truncate('siswa');
 		$this->db->truncate('soal');
 		$this->db->truncate('ujian');
+		$this->db->query('SET FOREIGN_KEY_CHECKS = 1');
 		delete_files('./../media/');
 		redirect('');
 	}

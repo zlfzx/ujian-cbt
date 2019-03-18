@@ -33,7 +33,7 @@
     var base_url = '<?=base_url();?>';
   </script>
 </head>
-<body class="hold-transition skin-blue layout-top-nav">
+<body class="hold-transition skin-blue layout-top-nav" oncontextmenu="return false;" style="-moz-user-select: none; cursor: default;">
 <div class="wrapper">
 
   <header class="main-header">

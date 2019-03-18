@@ -27,7 +27,7 @@
   <script src="<?=base_url('assets/adminlte/bower_components/jquery/dist/jquery.min.js');?>"></script>
   <script src="<?=base_url('assets/js/sweetalert2.all.min.js');?>"></script>
 </head>
-<body class="hold-transition skin-blue fixed sidebar-mini">
+<body class="hold-transition skin-blue fixed sidebar-mini" oncontextmenu="return false;" style="-moz-user-select: none; cursor: default;">
 <div class="wrapper">
 
   <header class="main-header">

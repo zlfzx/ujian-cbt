@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2019 at 05:07 AM
+-- Generation Time: Mar 18, 2019 at 03:15 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -65,9 +65,8 @@ CREATE TABLE `guru` (
 --
 
 INSERT INTO `guru` (`id_guru`, `nama`, `mapel`, `username`, `password`) VALUES
-(2, 'Guru Bahasa Inggris', 4, 'asd', 'asd'),
-(3, 'Guru Matematika', 5, 'mtk', 'mtk'),
-(4, 'Guru Bahasa Indonesia', 6, 'qwe', 'qwe');
+(1, 'Mamatika', 1, 'gurumtk', '1234'),
+(2, 'Bu Indo', 2, 'guruindo', '1234');
 
 --
 -- Triggers `guru`
@@ -75,6 +74,7 @@ INSERT INTO `guru` (`id_guru`, `nama`, `mapel`, `username`, `password`) VALUES
 DELIMITER $$
 CREATE TRIGGER `hapus_guru` BEFORE DELETE ON `guru` FOR EACH ROW BEGIN
 	DELETE FROM soal WHERE soal.guru=OLD.id_guru;
+	DELETE FROM ujian WHERE ujian.id_guru=OLD.id_guru;
 END
 $$
 DELIMITER ;
@@ -98,14 +98,6 @@ CREATE TABLE `ikut_ujian` (
   `status` enum('Y','N') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `ikut_ujian`
---
-
-INSERT INTO `ikut_ujian` (`id_tes`, `id_ujian`, `id_siswa`, `list_soal`, `list_jawaban`, `jml_benar`, `nilai`, `tgl_mulai`, `tgl_selesai`, `status`) VALUES
-(37, 4, 2, '5,6,9,14,16', '5:,6:,9:,14:,16:', 0, 0, '2019-03-17 10:57:15', '2019-03-17 12:57:15', 'N'),
-(39, 4, 1, '5,6,9,14,16', '5:,6:,9:,14:,16:', 0, 0, '2019-03-17 11:02:25', '2019-03-17 13:02:25', 'N');
-
 -- --------------------------------------------------------
 
 --
@@ -122,8 +114,7 @@ CREATE TABLE `jurusan` (
 --
 
 INSERT INTO `jurusan` (`id_jurusan`, `jurusan`) VALUES
-(1, 'Teknik Komputer dan Jaringan'),
-(3, 'Teknik Pengelasan');
+(1, 'Teknik Komputer dan Jaringan');
 
 --
 -- Triggers `jurusan`
@@ -155,15 +146,7 @@ CREATE TABLE `kelas` (
 
 INSERT INTO `kelas` (`id_kelas`, `kelas`, `jurusan`, `rombel`, `kode_kelas`) VALUES
 (1, 12, 1, 2, '12 TKJ 2'),
-(2, 10, 3, 1, '10 TLAS 1'),
-(3, 11, 1, 2, '11 TKJ 2'),
-(4, 10, 1, 1, '10 TKJ 1'),
-(5, 12, 1, 1, '12 TKJ 1'),
-(6, 11, 1, 1, '11 TKJ 1'),
-(7, 12, 3, 1, '12 TLAS 1'),
-(8, 10, 1, 2, '10 TKJ 2'),
-(9, 12, 3, 2, '12 TLAS 2'),
-(11, 11, 3, 1, '11 TLAS 1');
+(2, 12, 1, 1, '12 TKJ 1');
 
 --
 -- Triggers `kelas`
@@ -192,10 +175,9 @@ CREATE TABLE `mapel` (
 --
 
 INSERT INTO `mapel` (`id_mapel`, `mapel`) VALUES
-(4, 'Bahasa Inggris'),
-(5, 'Matematika'),
-(6, 'Bahasa Indonesia'),
-(7, 'Sejarah Indonesia');
+(1, 'Matematika'),
+(2, 'Bahasa Indonesia'),
+(3, 'Bahasa Inggris');
 
 --
 -- Triggers `mapel`
@@ -208,28 +190,6 @@ CREATE TRIGGER `hapus_mapel` BEFORE DELETE ON `mapel` FOR EACH ROW BEGIN
 END
 $$
 DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `nilai`
---
-
-CREATE TABLE `nilai` (
-  `id_nilai` int(11) NOT NULL,
-  `id_siswa` int(11) NOT NULL,
-  `id_kelas` int(11) NOT NULL,
-  `id_mapel` int(11) NOT NULL,
-  `nilai` float NOT NULL,
-  `status` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `nilai`
---
-
-INSERT INTO `nilai` (`id_nilai`, `id_siswa`, `id_kelas`, `id_mapel`, `nilai`, `status`) VALUES
-(3, 1, 1, 5, 85, 'tuntas');
 
 -- --------------------------------------------------------
 
@@ -253,8 +213,18 @@ CREATE TABLE `siswa` (
 --
 
 INSERT INTO `siswa` (`id_siswa`, `nama`, `nis`, `kelas`, `password`, `nohp`, `pertanyaan`, `jawaban`) VALUES
-(1, 'Muhammad Zulfi Izzulhaq', 1610853, 4, 'qwe', '081228075321', 'siapa nama kucing peliharaan?', 'meong'),
-(2, 'Zulfi Izzulhaq', 1610859, 4, 'qwe', '0812345324', 'siapa nama kucing peliharaan?', 'meong');
+(1, 'M. Afakhan Saifudin Alwi', 1610846, 1, '1610846', '', '', ''),
+(2, 'Makhi', 1610847, 1, '1610847', '', '', ''),
+(3, 'Mochammad Dani Setiardi', 1610848, 1, '1610848', '', '', ''),
+(4, 'Moh Zidni Khakim', 1610849, 1, '1610849', '', '', ''),
+(5, 'Muhammad Afifurrohman', 1610850, 1, '1610850', '', '', ''),
+(6, 'Muhammad I\'zzudin', 1610851, 1, '1610851', '', '', ''),
+(7, 'Muhammad Nafidzul Abror', 1610852, 1, '1610852', '', '', ''),
+(8, 'Muhammad Zulfi Izzulhaq', 1610853, 1, 'zxcv', '', 'siapa nama kucing peliharaan?', 'meong'),
+(9, 'Nastiti Indriasari', 1610854, 1, '1610854', '', '', ''),
+(10, 'Nayavakda Risvia Salsabila', 1610855, 1, '1610855', '', '', ''),
+(11, 'Owo', 1610802, 2, '1610802', '', '', ''),
+(12, 'Owi', 1610801, 2, '1610801', '', '', '');
 
 --
 -- Triggers `siswa`
@@ -292,14 +262,8 @@ CREATE TABLE `soal` (
 --
 
 INSERT INTO `soal` (`id_soal`, `mapel`, `kelas`, `guru`, `soal`, `media`, `opsi_a`, `opsi_b`, `opsi_c`, `opsi_d`, `opsi_e`, `jawaban`) VALUES
-(5, 6, 4, 4, '<p>qwe rrfwrw ew</p>\r\n', 'aud.mp3', 'qwe', 'asd', 'zxc', 'rty', 'fgh', 'A'),
-(6, 6, 4, 4, '<p>bahasa kita adalah?</p>\r\n', 'Desert.jpg', 'indonesia', 'jawa', 'sunda', 'madura', 'jepang', 'A'),
-(7, 4, 4, 2, '<p>contoh soal</p>', NULL, 'asd', 'dsa', 'sda', 'qds', 'zxd', 'A'),
-(8, 6, 1, 4, '<p>ini adalah contoh soal</p>', NULL, 'sdfw', 'sdfsdf', 'sdfsdw3w', 'w4twddfsdf', 'fsaeerwer', 'A'),
-(9, 6, 4, 4, '<p>asdasd</p>\r\n', NULL, 'yhdfvdf', 'yhdfr', 'tgtdrer', 'sdcrsdf', 'qwexcsd', 'A'),
-(14, 6, 4, 4, '<p>q</p>\r\n', NULL, 'q', 'w', 'e', 'r', 't', 'A'),
-(16, 6, 4, 4, '<p>qqweqwe q dfsdfwerwerfs sdfwerdfsdf</p>\r\n', NULL, 'z', 'x', 'c', 'v', 'b', 'A'),
-(17, 6, 1, 4, '<p>qweasdscrssdsdf</p>\r\n', NULL, 'sdfwer', 'uyutjg', 'ssdsdf', 'hjghjgyu', 'sfewwer', 'A');
+(1, 1, 1, 1, '<p>1+1=</p>\r\n', NULL, '3', '23', '1', '2', '34', 'C'),
+(2, 1, 1, 1, '<p>2 x 4 =</p>\r\n', NULL, '45', '23', '23', '3', '8', 'E');
 
 -- --------------------------------------------------------
 
@@ -316,13 +280,6 @@ CREATE TABLE `ujian` (
   `waktu` int(11) DEFAULT NULL,
   `tanggal` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `ujian`
---
-
-INSERT INTO `ujian` (`id_ujian`, `nama_ujian`, `id_kelas`, `id_mapel`, `id_guru`, `waktu`, `tanggal`) VALUES
-(4, 'uts', 4, 6, 4, 120, '2019-02-17');
 
 --
 -- Triggers `ujian`
@@ -379,15 +336,6 @@ ALTER TABLE `mapel`
   ADD PRIMARY KEY (`id_mapel`);
 
 --
--- Indexes for table `nilai`
---
-ALTER TABLE `nilai`
-  ADD PRIMARY KEY (`id_nilai`),
-  ADD KEY `id_siswa` (`id_siswa`),
-  ADD KEY `id_mapel` (`id_mapel`),
-  ADD KEY `id_kelas` (`id_kelas`);
-
---
 -- Indexes for table `siswa`
 --
 ALTER TABLE `siswa`
@@ -427,55 +375,49 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `guru`
 --
 ALTER TABLE `guru`
-  MODIFY `id_guru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_guru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `ikut_ujian`
 --
 ALTER TABLE `ikut_ujian`
-  MODIFY `id_tes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id_tes` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `jurusan`
 --
 ALTER TABLE `jurusan`
-  MODIFY `id_jurusan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_jurusan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `mapel`
 --
 ALTER TABLE `mapel`
-  MODIFY `id_mapel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `nilai`
---
-ALTER TABLE `nilai`
-  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_mapel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `soal`
 --
 ALTER TABLE `soal`
-  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `ujian`
 --
 ALTER TABLE `ujian`
-  MODIFY `id_ujian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_ujian` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -499,14 +441,6 @@ ALTER TABLE `ikut_ujian`
 --
 ALTER TABLE `kelas`
   ADD CONSTRAINT `kelas_ibfk_1` FOREIGN KEY (`jurusan`) REFERENCES `jurusan` (`id_jurusan`);
-
---
--- Constraints for table `nilai`
---
-ALTER TABLE `nilai`
-  ADD CONSTRAINT `nilai_kelas_ibfk_3` FOREIGN KEY (`id_kelas`) REFERENCES `kelas` (`id_kelas`),
-  ADD CONSTRAINT `nilai_mapel_ibfk_2` FOREIGN KEY (`id_mapel`) REFERENCES `mapel` (`id_mapel`),
-  ADD CONSTRAINT `nilai_siswa_ibfk_1` FOREIGN KEY (`id_siswa`) REFERENCES `siswa` (`id_siswa`);
 
 --
 -- Constraints for table `siswa`

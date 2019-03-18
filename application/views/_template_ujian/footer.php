@@ -8,7 +8,7 @@
 	<div class="container">
 		<?=strftime('%A, %d %B %Y')?>, <span class="live-clock"><?=date('H:i:s')?></span>
 		<div class="pull-right hidden-xs">
-			<b>Ujian Online</b> v1.0
+			<b>SMK N 1 KEDUNGWUNI | Ujian Online</b> v1.0
 		</div>
 	</div>
 	<!-- /.container -->

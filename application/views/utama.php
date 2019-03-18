@@ -43,6 +43,9 @@
 				<div class="box box-solid">
 					<div class="box-header bg-blue">
 						<h3 class="box-title">Jadwal Ujian</h3>
+						<div class="box-tools pull-right">
+							<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+						</div>
 					</div>
 					<div class="box-body">
 						<?php if(count($jdwlujian) > 0) { ?>
@@ -105,6 +108,9 @@
 				<div class="box box-solid">
 					<div class="box-header bg-red">
 						<h4 class="box-title">Riwayat Ujian</h4>
+						<div class="box-tools pull-right">
+							<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+						</div>
 					</div>
 					<div class="box-body">
 						<?php if(count($jdwlujian) > 0) { ?>

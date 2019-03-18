@@ -87,7 +87,7 @@ $jam_selesai_pc = explode(" ", $detil_tes->tgl_selesai);
 						<div class="waktu bg-blue" id="clock"></div>
 					</div>
 					<div class="box-footer">
-						<a href="#" class="btn btn-block btn-danger">SELESAI UJIAN</a>
+						<a class="btn btn-selesai btn-block btn-danger">SELESAI UJIAN</a>
 					</div>
 				</div>
 			</div>
@@ -119,6 +119,7 @@ $jam_selesai_pc = explode(" ", $detil_tes->tgl_selesai);
 					btnnext = $('.next');
 					btnsimpan = $('.simpan');
 					btnsubmit = $('.submit');
+					btnselesai = $('.btn-selesai');
 
 					//Init button and UI
 					widget.not(':eq(0)').hide();
@@ -156,6 +157,10 @@ $jam_selesai_pc = explode(" ", $detil_tes->tgl_selesai);
 					btnsubmit.click(function(){
 						simpan_akhir(<?=$detil_tes->id_tes;?>);
 					});
+
+					btnselesai.click(function(){
+						simpan_akhir(<?=$detil_tes->id_tes;?>);
+					})
 
 			});
 

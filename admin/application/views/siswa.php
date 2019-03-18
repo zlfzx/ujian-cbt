@@ -10,7 +10,6 @@
         <div class="box box-warning">
             <div class="box-header with-border">
                 <button type="button" data-toggle="modal" data-target="#tambahSiswa" class="btn btn-sm btn-flat btn-success"><i class="fa fa-user-plus"></i> Tambah Siswa</button>
-                <!-- <button type="button" data-toggle="modal" data-target="#importSiswa" class="btn btn-info"><i class="fa fa-upload"></i> Import</button> -->
                 <!-- Modal Tambah Siswa -->
                 <div class="modal fade" id="tambahSiswa">
                     <div class="modal-dialog">
@@ -53,27 +52,6 @@
                         </div>
                     </div>
                 </div> <!-- End Modal -->
-                <div class="modal fade" id="importSiswa">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-                                <h4 class="modal-title">Import Data Siswa</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="box-body">
-                                    <div class="form-group">
-                                        <label for="Import">Pilih File :</label>
-                                        <input type="file">
-                                    </div>
-                                </div>
-                                <div class="box-footer">
-                                    <button type="submit" class="btn btn-success">Import</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="box-body">
                 <table id="tabelSiswa" class="table table-bordered table-striped table-hover" id="tabelSiswa">

@@ -10,7 +10,6 @@
         <div class="box box-warning">
             <div class="box-header">
                 <button type="button" data-toggle="modal" data-target="#tambah-mapel" class="btn btn-sm btn-flat btn-success"><i class="fa fa-plus"></i> Tambah Mapel</button>
-                <!-- <button type="button" data-toggle="modal" data-target="#import-mapel" class="btn btn-info"><i class="fa fa-upload"></i> Import</button> -->
 
                 <!-- Modal Tambah Pelajaran -->
                 <div class="modal fade" id="tambah-mapel">
@@ -36,30 +35,6 @@
                         </div>
                     </div>
                 </div> <!-- End Modal Tambah Pelajaran -->
-                <!-- Modal Import Mapel -->
-                <div class="modal fade" id="import-mapel">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-                                <h4 class="modal-title">Import Mata Pelajaran</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form action="" role="form">
-                                    <div class="box-body">
-                                        <div class="form-group">
-                                            <label for="ImportMapel">Import Mapel :</label>
-                                            <input type="file">
-                                        </div>
-                                    </div>
-                                    <div class="box-footer">
-                                        <button type="submit" class="btn btn-success"><i class="fa fa-upload"></i> Import</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="box-body">
                 <table id="tabelMapel" class="table table-bordered table-striped table-hover">
