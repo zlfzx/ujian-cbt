@@ -10,7 +10,7 @@
 	<!-- FontAwesome -->
     <link rel="stylesheet" href="<?=base_url('assets/adminlte/bower_components/font-awesome/css/font-awesome.css');?>">
   <!-- Jquery -->
-    <script src="<?=base_url('assets/js/jquery.js');?>"></script>
+    <script src="<?=base_url('assets/adminlte/bower_components/jquery/dist/jquery.min.js');?>"></script>
 </head>
 
 <body>
