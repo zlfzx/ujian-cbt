@@ -1,2 +1,0 @@
-[nilai]
-SELECT siswa.id_siswa, siswa.nis, siswa.nama, mapel.mapel, ikut_ujian.id_ujian, ikut_ujian.nilai, ujian.id_kelas, ujian.id_mapel FROM siswa, ikut_ujian, ujian, mapel WHERE ikut_ujian.id_siswa=siswa.id_siswa AND ujian.id_ujian=ikut_ujian.id_ujian AND ujian.id_mapel=mapel.id_mapel AND ujian.id_kelas='.$kelas.' AND ujian.id_mapel='.$mapel
