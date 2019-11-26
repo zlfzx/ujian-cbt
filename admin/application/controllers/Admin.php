@@ -27,7 +27,7 @@ class Admin extends CI_Controller {
 		if(!$this->session->status){
 			redirect('login');
 		}
-		$this->load->model('m_admin');
+		$this->load->model('M_Admin', 'm_admin');
 	}
 
 	//Header

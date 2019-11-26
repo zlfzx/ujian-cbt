@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * 
  */
-class m_user extends CI_Model{
+class M_User extends CI_Model{
 	function login($data){
 		$this->db->select('siswa.id_siswa, siswa.nama, siswa.nis, siswa.kelas, kelas.*');
 		$this->db->from('siswa');

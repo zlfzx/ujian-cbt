@@ -23,7 +23,7 @@ class User extends CI_Controller {
 	function __construct(){
 		parent::__construct();
           $this->db->query('SET time_zone="+7:00"');
-		$this->load->model('m_user');
+		$this->load->model('M_User', 'm_user');
 		if (!$this->session->userdata('login')) {
 			redirect('login');
 		}
