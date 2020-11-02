@@ -1,5 +1,7 @@
 # Ujian Berbasis Web
 
+> ## [Project baru menggunakan Laravel](https://github.com/zulfizz/cbt)
+
 UjianCBT adalah sebuah aplikasi ujian berbasis komputer yang dibangun dengan menggunakan framework Codeigniter 3. Aplikasi ini memiliki tiga halaman utama yang bisa diakses yaitu halaman untuk siswa, guru, dan halaman untuk admin. Halaman siswa bisa diakses oleh siswa untuk melaksanakan ujian. Sedangkan halaman guru bisa digunakan guru untuk login dan mengelola soal maupun nilai. Lalu ada halaman admin yang digunakan untuk mengelola aplikasi ini. Codeigniter sendiri adalah sebuah kerangka kerja aplikasi yang digunakan untuk membangun sebuah website menggunakan PHP.
 
 ## Fitur
