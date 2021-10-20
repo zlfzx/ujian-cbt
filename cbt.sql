@@ -28,8 +28,8 @@ CREATE TABLE IF NOT EXISTS `admin` (
 -- Dumping data for table cbt.admin: ~3 rows (approximately)
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
 INSERT INTO `admin` (`id_admin`, `nama`, `username`, `password`) VALUES
-	(1, 'muhammad zulfi izzulhaq', 'zulfi', '$2y$10$VwZi.Rg5260KsgiRun.0f.e6/7gnnW7X5YiYLgAIedf6GF7vo1EPm'),
-	(2, 'Administrator', 'admin', '2y$12$b66V3qOxwG44wSaoFLK.g.g4lN2T.g.CnfeHCBuNHWA8x/Sb1xBGS'),
+	(1, 'muhammad zulfi izzulhaq', 'zulfi', '$2y$10$U6l7It/QtUG2yo4GzkgtfOhhvzWBgVgAStraWFmNG7LvoybQqnMdK'),
+	(2, 'Administrator', 'admin', '$2y$10$bWS1y9Hn0aMqcS1B3Sj8V.BFS4jF6btw1Qr0sv5ndirQyk2cs2sRG'),
 	(5, 'muhammad zulfi', 'izz', '$2y$10$zBIDIfZKbzNO5cPQcsTpK.NTqKG.24B2FIDFDbRjtphZ5HDchDBGy');
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 

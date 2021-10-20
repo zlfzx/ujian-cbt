@@ -1,6 +1,6 @@
 # Ujian Berbasis Web
 
-> ## [Project baru menggunakan Laravel](https://github.com/zulfizz/cbt)
+> ## [Project baru menggunakan Laravel](https://github.com/zulfizz/ujian-daring)
 
 UjianCBT adalah sebuah aplikasi ujian berbasis komputer yang dibangun dengan menggunakan framework Codeigniter 3. Aplikasi ini memiliki tiga halaman utama yang bisa diakses yaitu halaman untuk siswa, guru, dan halaman untuk admin. Halaman siswa bisa diakses oleh siswa untuk melaksanakan ujian. Sedangkan halaman guru bisa digunakan guru untuk login dan mengelola soal maupun nilai. Lalu ada halaman admin yang digunakan untuk mengelola aplikasi ini. Codeigniter sendiri adalah sebuah kerangka kerja aplikasi yang digunakan untuk membangun sebuah website menggunakan PHP.
 
@@ -24,3 +24,12 @@ Instalasi aplikasi mencakup pengaturan web server dan database untuk aplikasi. L
 2. Import database bernama `cbt.sql` yang ada di direktori aplikasi.
 3. Buka browser dan akses halaman admin `http://localhost/ujian/admin`. Login menggunakan username dan password admin yang ada pada database.
 4. Aplikasi sudah bisa digunakan.
+
+## Login Administrator
+Username: `admin`  
+Password: `admin`  
+
+atau  
+
+Username: `zulfi`  
+Password: `zulfi`
